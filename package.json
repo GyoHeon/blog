@@ -4,8 +4,9 @@
   "description": "Pure typescript blog",
   "main": "index.js",
   "scripts": {
-    "transpile": "npx tsc -w",
-    "test": "test"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
   "homepage": "https://github.com/GyoHeonLee/blog#readme",
   "devDependencies": {
     "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "vite": "^4.2.1"
   }
 }

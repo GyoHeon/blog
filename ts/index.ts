@@ -1,5 +1,5 @@
-console.log("Hello typescript!");
+import { marked } from "marked";
 
-{
-  const num: number = 15;
-}
+const app = document.querySelector<HTMLDivElement>("div#app");
+
+app!.innerHTML = marked.parse("#title");

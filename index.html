@@ -6,14 +6,43 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Developer Lee</title>
-
-  <!-- <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script> -->
 </head>
 
 <body>
-  <div id="app"></div>
-  <script type="module" src="/script/index.ts"></script>
+  <div id="app">
+    <header>
+      <h1>todos</h1>
+      <input class="new-todo" placeholder="What needs to be done?" autofocus="true">
+    </header>
+
+    <main>
+      <input id="toggle-all" class="toggle-all" type="checkbox">
+      <label for="toggle-all">
+        Mark all as complete
+      </label>
+      <ul class="todo-list"></ul>
+    </main>
+
+    <footer class="footer">
+      <span class="todo-count"></span>
+      <ul class="filters">
+        <li>
+          <a href="#/">All</a>
+          <a href="#/Active">Active</a>
+        </li>
+        <li>
+          <a href="#/Completed">Completed</a>
+        </li>
+      </ul>
+      <button class="clear-completed">
+        Clear completed
+      </button>
+    </footer>
+  </div>
+  <footer class="info">
+    <p>Double-click to edit a todo</p>
+  </footer>
+  <!-- <script type="module" src="/script/index.ts"></script> -->
 </body>
 
 </html>

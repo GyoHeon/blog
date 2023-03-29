@@ -6,9 +6,11 @@ const state = {
   currentFilter: "All",
 };
 
+console.log(state);
+
 const app = document.querySelector("div#app") as HTMLDivElement;
 
 window.requestAnimationFrame(() => {
   const newApp = viewTodos(app, state);
-  app?.replaceWith(newApp);
+  app.replaceWith(newApp);
 });

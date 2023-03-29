@@ -29,13 +29,13 @@ const getTodoCount = (todos: ITodo[]) => {
   return `${length} Item left`;
 };
 
-const viewTodos = (targetElement: Node, state: any) => {
+const viewTodos = (targetElement: HTMLElement, state: any) => {
   const { currentFilter, todos } = state;
 
   const element = targetElement.cloneNode(true) as HTMLElement;
   const list = element.querySelector(".todo-list") as HTMLElement;
   const counter = element.querySelector(".todo-count") as HTMLElement;
-  const filters = element.querySelector(".fliters") as HTMLElement;
+  const filters = element.querySelector(".filters") as HTMLElement;
 
   list.innerHTML = todos.map(getTodoElement).join("");
 

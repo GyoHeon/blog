@@ -1,30 +1,14 @@
-interface ITodo {
-  text: string;
-  completed: boolean;
-}
+import getTodos from "./getTodos";
+import viewTodos from "./view";
 
-const getTodoElement = (todo: ITodo) => {
-  const { text, completed } = todo;
-
-  return `
-  <li ${completed ? 'class="completed"' : ""}>
-    <div class="view>
-      <input
-        ${completed ? "checked" : ""}
-        class="toggle"
-        type="checkbox"
-      <label>${text}</label>
-      <button class="destroy"></button>
-    </div>
-    <input class="edit" value="${text}">
-  </li>
-  `;
+const state = {
+  todos: getTodos(),
+  currentFilter: "All",
 };
 
-const getTodoCount = (todos: ITodo[]) => {
-  const { length } = todos.filter((todo: ITodo) => !todo.completed);
+const app = document.querySelector("div#app") as HTMLDivElement;
 
-  if (length === 1) return "1 Item left";
-
-  return `${length} Item left`;
-};
+window.requestAnimationFrame(() => {
+  const newApp = viewTodos(app, state);
+  app?.replaceWith(newApp);
+});

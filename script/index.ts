@@ -22,5 +22,9 @@ const getTodoElement = (todo: ITodo) => {
 };
 
 const getTodoCount = (todos: ITodo[]) => {
-  const notCompleted = todos.filter((todo: ITodo) => !todo.completed);
+  const { length } = todos.filter((todo: ITodo) => !todo.completed);
+
+  if (length === 1) return "1 Item left";
+
+  return `${length} Item left`;
 };

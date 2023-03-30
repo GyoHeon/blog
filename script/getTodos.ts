@@ -8,7 +8,7 @@ const createElement = () => ({
     createNum(),
     createNum()
   ),
-  completed: Math.round(Math.random()),
+  completed: Boolean(Math.round(Math.random())),
 });
 
 const repeat = (elementFactory: Function, number: number) => {

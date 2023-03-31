@@ -1,4 +1,4 @@
-import { ITodo } from "./counter";
+import { ITodo } from "./counterView";
 
 const getTodoElement = ({ text, completed }: ITodo) => {
   return `
@@ -16,7 +16,10 @@ const getTodoElement = ({ text, completed }: ITodo) => {
   `;
 };
 
-const todos = (targetElement: HTMLElement, { todos }: { todos: ITodo[] }) => {
+const todosView = (
+  targetElement: HTMLElement,
+  { todos }: { todos: ITodo[] }
+) => {
   const newTodoList = targetElement.cloneNode(true) as HTMLElement;
 
   const todosElements = todos.map(getTodoElement).join("");
@@ -26,4 +29,4 @@ const todos = (targetElement: HTMLElement, { todos }: { todos: ITodo[] }) => {
   return newTodoList;
 };
 
-export default todos;
+export default todosView;

@@ -1,4 +1,4 @@
-const filters = (
+const filtersView = (
   targetElement: HTMLElement,
   { currentFilter }: { currentFilter: string }
 ) => {
@@ -15,4 +15,4 @@ const filters = (
   return newCounter;
 };
 
-export default filters;
+export default filtersView;

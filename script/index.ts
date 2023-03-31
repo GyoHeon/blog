@@ -1,14 +1,20 @@
 import getTodos from "./getTodos";
-import appView from "./view/app";
+import { add, renderRoot } from "./registry";
+import counterView from "./view/counterView";
+import filtersView from "./view/filtersView";
+import todosView from "./view/todosView";
+
+add("todos", todosView);
+add("counter", counterView);
+add("filters", filtersView);
 
 const state = {
   todos: getTodos(),
   currentFilter: "All",
 };
 
-const app = document.querySelector("div#app") as HTMLDivElement;
-
 window.requestAnimationFrame(() => {
-  const newApp = appView(app, state);
+  const app = document.querySelector("div#app") as HTMLDivElement;
+  const newApp = renderRoot(app, state);
   app.replaceWith(newApp);
 });

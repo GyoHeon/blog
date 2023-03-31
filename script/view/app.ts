@@ -1,6 +1,6 @@
-import counterView from "./counter";
-import filtersView from "./filter";
-import todosView from "./todos";
+import counterView from "./counterView";
+import filtersView from "./filtersView";
+import todosView from "./todosView";
 
 const app = (targetElement: HTMLElement, state: any) => {
   const element = targetElement.cloneNode(true) as HTMLElement;

@@ -1,19 +1,16 @@
-import counterView from "./counterView";
-import filtersView from "./filtersView";
-import todosView from "./todosView";
+let template: HTMLTemplateElement;
 
-const app = (targetElement: HTMLElement, state: any) => {
-  const element = targetElement.cloneNode(true) as HTMLElement;
+const createAppElement = () => {
+  if (!template) template = document.querySelector("#todo-app") as HTMLTemplateElement;
 
-  const list = element.querySelector(".todo-list") as HTMLElement;
-  const counter = element.querySelector(".todo-count") as HTMLElement;
-  const filters = element.querySelector(".filters") as HTMLElement;
+  return template.content.firstElementChild?.cloneNode(true) as Element;
+};
 
-  list.replaceWith(todosView(list, state));
-  counter.replaceWith(counterView(counter, state));
-  filters.replaceWith(filtersView(filters, state));
-
-  return element;
+const app = (targetElement: HTMLElement) => {
+  const newApp = targetElement.cloneNode(true) as Element;
+  newApp.innerHTML = "";
+  newApp.appendChild(createAppElement());
+  return newApp;
 };
 
 export default app;

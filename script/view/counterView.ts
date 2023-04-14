@@ -11,10 +11,7 @@ const getTodoCount = (todos: ITodo[]) => {
   return `${length} Item left`;
 };
 
-const counterView = (
-  targetElement: HTMLElement,
-  { todos }: { todos: ITodo[] }
-) => {
+const counterView = (targetElement: HTMLElement, { todos }: { todos: ITodo[] }) => {
   const newCounter = targetElement.cloneNode(true);
   newCounter.textContent = getTodoCount(todos);
 

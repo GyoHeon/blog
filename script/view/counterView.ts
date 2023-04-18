@@ -8,7 +8,7 @@ const getTodoCount = (todos: ITodo[]) => {
 
   if (length === 1) return "1 Item left";
 
-  return `${length} Item left`;
+  return `${length} Items left`;
 };
 
 const counterView = (targetElement: HTMLElement, { todos }: { todos: ITodo[] }) => {

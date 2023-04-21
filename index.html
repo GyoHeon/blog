@@ -5,10 +5,34 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Developer Lee</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-common@1.0.5/base.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-app-css@2.1.2/index.css">
+
+  <title>GyoHeon</title>
 </head>
 
 <body>
+  <template id="footer">
+    <footer class="footer">
+      <span class="todo-count">
+      </span>
+      <ul class="filters">
+        <li>
+          <a href="#/">All</a>
+        </li>
+        <li>
+          <a href="#/active">Active</a>
+        </li>
+        <li>
+          <a href="#/completed">Completed</a>
+        </li>
+      </ul>
+      <button class="clear-completed">
+        Clear completed
+      </button>
+    </footer>
+  </template>
   <template id="todo-item">
     <li>
       <div class="view">
@@ -30,34 +54,16 @@
         <label for="toggle-all">
           Mark all as complete
         </label>
-        <ul class="todo-list" data-component="todos">
-        </ul>
+        <todomvc-list></todomvc-list>
       </section>
-      <footer class="footer">
-        <span class="todo-count" data-component="counter">
-        </span>
-        <ul class="filters" data-component="filters">
-          <li>
-            <a href="#/">All</a>
-          </li>
-          <li>
-            <a href="#/active">Active</a>
-          </li>
-          <li>
-            <a href="#/completed">Completed</a>
-          </li>
-        </ul>
-        <button class="clear-completed">
-          Clear completed
-        </button>
-      </footer>
+      <todomvc-footer></todomvc-footer>
     </section>
   </template>
-  <div id="root">
-    <div data-component="app"></div>
-  </div>
+  <todomvc-app></todomvc-app>
   <footer class="info">
     <p>Double-click to edit a todo</p>
+    <p>Created by <a href="http://twitter.com/thestrazz86">Francesco Strazzullo</a></p>
+    <p>Thanks to <a href="http://todomvc.com">TodoMVC</a></p>
   </footer>
   <script type="module" src="/script/index.ts"></script>
 </body>

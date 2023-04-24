@@ -4,7 +4,7 @@
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
     "strict": true,
-    "moduleResolution": "node"
-  },
-  "allowJs": true
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  }
 }

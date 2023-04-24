@@ -1,7 +1,10 @@
-import { App } from "./components/App";
-import { Footer } from "./components/Footer";
-import { List } from "./components/List";
+import page from "./page";
+import router from "./router";
 
-window.customElements.define("todomvc-app", App);
-window.customElements.define("todomvc-footer", Footer);
-window.customElements.define("todomvc-list", List);
+const container = document.querySelector("main") as HTMLElement;
+
+const pages = page(container);
+
+const route = router();
+
+route.addRouter("#/", pages.home).addRouter("#/list", pages.list).setNotFound(pages.notFound).start();

@@ -15,6 +15,8 @@ route
   .setNotFound(pages.notFound)
   .start();
 
-window.addEventListener("popstate", () => {
-  console.log("Popstate event fired!");
+window.addEventListener("popstate", (evt: PopStateEvent) => {
+  const main = document.querySelector("main") as HTMLElement;
+
+  main.innerText = evt.state.id;
 });

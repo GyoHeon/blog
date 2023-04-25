@@ -9,7 +9,13 @@ const pages = page(container);
 
 const route = router();
 
-route.addRouter("#/", pages.home).addRouter("#/list", pages.list).setNotFound(pages.notFound).start();
+route
+  .addRouter("#/list/:id/:anotherId", pages.anotherDetail)
+  .addRouter("#/list/:id", pages.detail)
+  .addRouter("#/list", pages.list)
+  .addRouter("#/", pages.home)
+  .setNotFound(pages.notFound)
+  .start();
 
 document.body.addEventListener("click", (e: Event) => {
   const target = e.target as HTMLElement;

@@ -1,6 +1,5 @@
 const ROUTE_PARAMETER_REGEXP = /:(\w+)/g;
 const URL_FRAGMENT_REGEXP = "([^\\/]+)";
-const TICK_TIME = 250;
 const NAV_A_SELECTOR = "a[data-navigation]";
 
 const extractUrlParams = (route: any, pathname: any) => {
@@ -71,15 +70,17 @@ export default () => {
   };
 
   router.navigate = (path: string) => {
-    window.history.pushState(null, "", path);
+    window.history.pushState({ id: path }, "", path);
+
+    const popStateEvent = new PopStateEvent("popstate", { state: { id: path } });
+    window.dispatchEvent(popStateEvent);
   };
 
   router.start = () => {
     checkRoutes();
-    window.setInterval(checkRoutes, TICK_TIME);
 
     document.body.addEventListener("click", (evt: Event) => {
-      const target = e.target as HTMLElement;
+      const target = evt.target as HTMLElement;
       if (target.matches(NAV_A_SELECTOR)) {
         evt.preventDefault();
         const path = target.getAttribute("href");

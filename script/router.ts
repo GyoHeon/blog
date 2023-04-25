@@ -1,14 +1,16 @@
 const ROUTE_PARAMETER_REGEXP = /:(\w+)/g;
 const URL_FRAGMENT_REGEXP = "([^\\/]+)";
+const TICK_TIME = 250;
+const NAV_A_SELECTOR = "a[data-navigation]";
 
-const extractUrlParams = (route: any, windowHash: any) => {
-  const params: any = {};
-
+const extractUrlParams = (route: any, pathname: any) => {
   if (route.params.length === 0) {
-    return params;
+    return {};
   }
 
-  const matches = windowHash.match(route.regex);
+  const params: any = {};
+
+  const matches = pathname.match(route.regex);
 
   matches.shift();
 
@@ -23,15 +25,19 @@ const extractUrlParams = (route: any, windowHash: any) => {
 export default () => {
   const routes: any[] = [];
   let notFound = () => {};
+  let lastPathname: string;
 
   const router: any = {};
 
   const checkRoutes = () => {
-    const { hash } = window.location;
+    const { pathname } = window.location;
+    if (lastPathname === pathname) {
+      return;
+    }
 
     const currentRoute = routes.find((route) => {
       const { regex } = route;
-      return regex.test(hash);
+      return regex.test(pathname);
     });
 
     if (!currentRoute) {
@@ -39,15 +45,15 @@ export default () => {
       return;
     }
 
-    const urlParams = extractUrlParams(currentRoute, hash);
+    const urlParams = extractUrlParams(currentRoute, pathname);
 
     currentRoute.component(urlParams);
   };
 
-  router.addRouter = (fragment: string, component: any) => {
+  router.addRouter = (path: string, component: any) => {
     const params: any[] = [];
 
-    const parsedFragment = fragment
+    const parsedFragment = path
       .replace(ROUTE_PARAMETER_REGEXP, (match: any, paramName: string) => {
         params.push(paramName);
         return URL_FRAGMENT_REGEXP;
@@ -64,17 +70,24 @@ export default () => {
     return router;
   };
 
-  router.navigate = (fragment: string) => {
-    window.location.hash = fragment;
+  router.navigate = (path: string) => {
+    window.history.pushState(null, "", path);
   };
 
   router.start = () => {
-    window.addEventListener("hashchange", checkRoutes);
-    if (!window.location.hash) {
-      window.location.hash = "#/";
-    }
-
     checkRoutes();
+    window.setInterval(checkRoutes, TICK_TIME);
+
+    document.body.addEventListener("click", (evt: Event) => {
+      const target = e.target as HTMLElement;
+      if (target.matches(NAV_A_SELECTOR)) {
+        evt.preventDefault();
+        const path = target.getAttribute("href");
+        router.navigate(path);
+      }
+    });
+
+    return router;
   };
 
   return router;

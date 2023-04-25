@@ -10,10 +10,10 @@ const pages = page(container);
 const route = router();
 
 route
-  .addRouter("#/list/:id/:anotherId", pages.anotherDetail)
-  .addRouter("#/list/:id", pages.detail)
-  .addRouter("#/list", pages.list)
-  .addRouter("#/", pages.home)
+  .addRouter("/list/:id/:anotherId", pages.anotherDetail)
+  .addRouter("/list/:id", pages.detail)
+  .addRouter("/list", pages.list)
+  .addRouter("/", pages.home)
   .setNotFound(pages.notFound)
   .start();
 

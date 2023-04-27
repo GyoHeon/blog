@@ -4,7 +4,8 @@ import router from "./router";
 
 const body = document.querySelector("body") as HTMLElement;
 customElements.define("app-header", AppHeader);
-body.innerHTML = `<app-header></app-header>`;
+body.innerHTML = `<app-header></app-header>
+<main></main>`;
 const container = document.querySelector("main") as HTMLElement;
 const pages = page(container);
 const route = router();

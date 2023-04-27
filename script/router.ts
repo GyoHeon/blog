@@ -21,7 +21,7 @@ const extractUrlParams = (route: any, pathname: any) => {
   return params;
 };
 
-export default () => {
+const router = () => {
   const routes: any[] = [];
   let notFound = () => {};
   let lastPathname: string;
@@ -93,3 +93,5 @@ export default () => {
 
   return router;
 };
+
+export default router;

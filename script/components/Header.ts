@@ -1,3 +1,36 @@
+const template = document.createElement("template");
+template.innerHTML = `
+  <style>
+    header {
+      height: 50px;
+      background-color: #333;
+    }
+    ul {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+    }
+    a {
+      color:white;
+      transition: color 0.3s ease-in-out;
+    }
+    a:hover {
+      color: #ccc;
+    }
+  </style>
+
+  <header>
+    <ul>
+      <li><a data-navigation href="/">Home</a></li>
+      <li><a data-navigation href="/posts">Posts</a></li>
+      <li><a data-navigation href="/resume">Resume</a></li>
+      <li><a data-navigation href="/portfolio">Portfolio</a></li>
+      <li><a data-navigation href="/memo">Memo</a></li>
+    </ul>
+  </header>
+  `;
+
 class AppHeader extends HTMLElement {
   constructor() {
     super();
@@ -5,18 +38,7 @@ class AppHeader extends HTMLElement {
 
   connectedCallback() {
     window.requestAnimationFrame(() => {
-      this.innerHTML = `
-        <header>
-          <ul>
-            <li><a data-navigation href="/">Go To Home</a></li>
-            <li><a data-navigation href="/list">Go To Lits</a></li>
-            <li><a data-navigation href="/list/1">Go To Detail with Id 1</a></li>
-            <li><a data-navigation href="/list/2">Go To Detail with Id 2</a></li>
-            <li><a data-navigation href="/list/1/2">Go To Another Detail</a></li>
-            <li><a data-navigation href="/dummy">Dummy Page</a></li>
-          </ul>
-        </header>
-        `;
+      this.appendChild(template.content.cloneNode(true));
     });
   }
 }

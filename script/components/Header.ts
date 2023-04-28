@@ -33,7 +33,7 @@ template.innerHTML = `
     <ul>
       <li>
         <h1>
-          <image src='/public/image/gear.png' alt='main image of blog Developer GyoHeon' />
+          <image src='/image/gear.png' alt='main image of blog Developer GyoHeon' />
         </h1>
       </li>
       <li><a data-navigation href="/">Home</a></li>

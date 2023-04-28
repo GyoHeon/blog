@@ -1,3 +1,4 @@
+import { inject } from "@vercel/analytics";
 import AppFooter from "./components/Footer";
 import AppHeader from "./components/Header";
 import page from "./page";
@@ -29,3 +30,6 @@ window.addEventListener("popstate", (evt: PopStateEvent) => {
 
   // main.innerText = evt.state.id;
 });
+
+// vercel analytics
+inject();

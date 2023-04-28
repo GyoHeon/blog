@@ -1151,6 +1151,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vercel/analytics@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@vercel/analytics@npm:1.0.0"
+  peerDependencies:
+    react: ^16.8||^17||^18
+  checksum: e9badd995ac67ef971250a93f6e03c5628923337a1ea5be821becb3afa3f4ceda13e9cc989b4a5432039851c82bd0695fd7e690c0373e31eb555ee30ce0384a7
+  languageName: node
+  linkType: hard
+
 "@yarnpkg/core@npm:^4.0.0-rc.40":
   version: 4.0.0-rc.40
   resolution: "@yarnpkg/core@npm:4.0.0-rc.40"
@@ -1462,6 +1471,7 @@ __metadata:
   dependencies:
     "@jest/globals": ^29.5.0
     "@types/marked": ^4.0.8
+    "@vercel/analytics": ^1.0.0
     "@yarnpkg/sdks": ^3.0.0-rc.40
     jest: ^29.5.0
     marked: ^4.3.0

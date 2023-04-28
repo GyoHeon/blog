@@ -30,6 +30,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@jest/globals", "npm:29.5.0"],\
             ["@types/marked", "npm:4.0.8"],\
+            ["@vercel/analytics", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:1.0.0"],\
             ["@yarnpkg/sdks", "npm:3.0.0-rc.40"],\
             ["jest", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:29.5.0"],\
             ["marked", "npm:4.3.0"],\
@@ -1699,6 +1700,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@vercel/analytics", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/@vercel-analytics-npm-1.0.0-0bc9a3ea25-e9badd995a.zip/node_modules/@vercel/analytics/",\
+          "packageDependencies": [\
+            ["@vercel/analytics", "npm:1.0.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:1.0.0", {\
+          "packageLocation": "./.yarn/__virtual__/@vercel-analytics-virtual-8afc1088e1/0/cache/@vercel-analytics-npm-1.0.0-0bc9a3ea25-e9badd995a.zip/node_modules/@vercel/analytics/",\
+          "packageDependencies": [\
+            ["@vercel/analytics", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:1.0.0"],\
+            ["@types/react", null],\
+            ["react", null]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@yarnpkg/core", [\
         ["npm:4.0.0-rc.40", {\
           "packageLocation": "./.yarn/cache/@yarnpkg-core-npm-4.0.0-rc.40-a4e9a78d88-38a141f5e2.zip/node_modules/@yarnpkg/core/",\
@@ -2101,6 +2124,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["blog", "workspace:."],\
             ["@jest/globals", "npm:29.5.0"],\
             ["@types/marked", "npm:4.0.8"],\
+            ["@vercel/analytics", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:1.0.0"],\
             ["@yarnpkg/sdks", "npm:3.0.0-rc.40"],\
             ["jest", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:29.5.0"],\
             ["marked", "npm:4.3.0"],\

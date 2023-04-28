@@ -24,6 +24,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
+  background-color: rgba(64, 58, 53);
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -53,4 +54,11 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+::selection {
+  background: red;
 }

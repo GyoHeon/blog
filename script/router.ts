@@ -85,6 +85,7 @@ const router = () => {
         evt.preventDefault();
         const path = target.getAttribute("href");
         router.navigate(path);
+        checkRoutes();
       }
     });
 

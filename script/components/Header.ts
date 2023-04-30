@@ -3,12 +3,8 @@ template.innerHTML = `
   <style>
     header {
       max-width: 700px;
-      height: 100px;
-      margin: 20px auto;
-      border-radius: 20px;
-      background: #403a36;
-      box-shadow:  20px -20px 60px #36312e,
-             -20px 20px 60px #4a433e;
+      height: 80px;
+      border-bottom: 1px solid #DAA276;
     }
     img {
       width: 50px;
@@ -20,12 +16,15 @@ template.innerHTML = `
       place-items: center;
       height: 100%;
     }
+    li.active{
+      border-bottom: 2px solid #DAA276;
+    }
     a {
       color:white;
       transition: color 0.3s ease-in-out;
     }
     a:hover {
-      color: #ccc;
+      color:#DAA276;
     }
   </style>
 

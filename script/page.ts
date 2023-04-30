@@ -3,28 +3,31 @@ export default (container: HTMLElement) => {
     container.textContent = "This is home page";
   };
 
+  const post = (params: any) => {
+    const { slug } = params;
+    container.textContent = "This is post page with slug: " + slug;
+  };
+
   const posts = () => {
-    container.textContent = "This is list page";
+    container.innerHTML = `
+    <a data-navigation href='/posts/1'>This is list page</a>`;
   };
 
-  const resume = (params: any) => {
-    const { id } = params;
-    container.textContent = `This is detail page with id ${id}`;
+  const resume = () => {
+    container.textContent = `This is resume page`;
   };
 
-  const portfolio = (params: any) => {
-    const { id, anotherId } = params;
-    container.textContent = `This is another detail page with id ${id} and anotherId ${anotherId}`;
+  const portfolio = () => {
+    container.textContent = `This is portfolio page`;
   };
 
-  const memo = (params: any) => {
-    const { id, anotherId } = params;
-    container.textContent = `This is another detail page with id ${id} and anotherId ${anotherId}`;
+  const memo = () => {
+    container.textContent = `This is memo page`;
   };
 
   const notFound = () => {
     container.textContent = "404 Not Found";
   };
 
-  return { home, posts, resume, portfolio, memo, notFound };
+  return { home, post, posts, resume, portfolio, memo, notFound };
 };

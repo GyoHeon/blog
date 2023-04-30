@@ -16,6 +16,7 @@ ruby, section, summary, time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
+  color:#F1F1F1;
   vertical-align: baseline;
 }
 
@@ -24,7 +25,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-  background-color: rgba(64, 58, 53);
+  background-color: #403a36;
 }
 
 /* HTML5 display-role reset for older browsers */

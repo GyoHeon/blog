@@ -8,15 +8,17 @@ const body = document.querySelector("body") as HTMLElement;
 customElements.define("app-header", AppHeader);
 customElements.define("app-footer", AppFooter);
 body.innerHTML = `
-<app-header></app-header>
-<main></main>
-<app-footer></app-footer>
+  <app-header></app-header>
+    <main></main>
+  <app-footer></app-footer>
 `;
+
 const container = document.querySelector("main") as HTMLElement;
 const pages = page(container);
 const route = router();
 
 route
+  .addRouter("/posts/:slug", pages.post)
   .addRouter("/memo", pages.memo)
   .addRouter("/portfolio", pages.portfolio)
   .addRouter("/resume", pages.resume)
@@ -25,11 +27,10 @@ route
   .setNotFound(pages.notFound)
   .start();
 
-window.addEventListener("popstate", (evt: PopStateEvent) => {
-  const main = document.querySelector("main") as HTMLElement;
-
-  // main.innerText = evt.state.id;
-});
+// window.addEventListener("popstate", (evt: PopStateEvent) => {
+// const main = document.querySelector("main") as HTMLElement;
+// main.innerText = evt.state.id;
+// });
 
 // vercel analytics
 inject();

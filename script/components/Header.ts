@@ -1,16 +1,13 @@
 const template = document.createElement("template");
 template.innerHTML = `
   <style>
-    header {
-      max-width: 700px;
+    header.main {
+      width:100%;
       height: 80px;
       border-bottom: 1px solid #DAA276;
     }
-    img {
-      width: 50px;
-      height: 50px;
-    }
-    ul {
+    .main--ul {
+      max-width: 700px;
       display: grid;
       grid-auto-flow: column;
       place-items: center;
@@ -28,11 +25,11 @@ template.innerHTML = `
     }
   </style>
 
-  <header>
-    <ul>
+  <header class="main">
+    <ul class="main--ul">
       <li>
         <h1>
-          <image src='/image/gear.png' alt='main image of blog Developer GyoHeon' />
+          <image class="main--logo" src="/image/gear.png" width="50" height="50" alt="main image of blog Developer GyoHeon" />
         </h1>
       </li>
       <li><a data-navigation href="/">Home</a></li>

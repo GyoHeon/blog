@@ -16,7 +16,7 @@ ruby, section, summary, time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  color:#F1F1F1;
+  color: var(--text);
   vertical-align: baseline;
 }
 
@@ -27,7 +27,12 @@ body {
   min-height: 100vh;
   background-color: #403a36;
 }
-
+body > main {
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 20px;
+  place-items: center;
+}
 /* HTML5 display-role reset for older browsers */
 /* prettier-ignore  */
 article, aside, details, figcaption, figure,
@@ -62,4 +67,18 @@ a {
 }
 ::selection {
   background: red;
+}
+:root {
+  font-size: 20px;
+  --text: #f1f1f1;
+  --text--sec: #c1b7a4;
+  --blue: #9bb9d1;
+  --orange: #daa276;
+  --green: #7a9e88;
+  --neumo: 20px 20px 60px #36312e, -20px -20px 60px #4a433e;
+}
+@media (max-width: 600px) {
+  :root {
+    font-size: 10px;
+  }
 }

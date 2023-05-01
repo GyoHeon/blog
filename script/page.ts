@@ -1,6 +1,13 @@
+import AppCard from "./components/Card";
+
+customElements.define("app-card", AppCard);
+
 export default (container: HTMLElement) => {
   const home = () => {
-    container.textContent = "This is home page";
+    container.innerHTML = `
+      <app-card></app-card>
+      <app-card></app-card>
+    `;
   };
 
   const post = (params: any) => {

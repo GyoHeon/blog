@@ -4,7 +4,7 @@ template.innerHTML = `
     header.main {
       width:100%;
       height: 80px;
-      border-bottom: 1px solid #DAA276;
+      box-shadow: var(--neumo);
     }
     .main--ul {
       max-width: 700px;
@@ -14,14 +14,14 @@ template.innerHTML = `
       height: 100%;
     }
     li.active{
-      border-bottom: 2px solid #DAA276;
+      border-bottom: 2px solid var(--orange);
     }
     a {
       color:white;
       transition: color 0.3s ease-in-out;
     }
     a:hover {
-      color:#DAA276;
+      color: var(--orange);
     }
   </style>
 

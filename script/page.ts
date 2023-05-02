@@ -1,14 +1,7 @@
-import AppCard from "./components/Card";
-
-customElements.define("app-card", AppCard);
+import Home from "./pages/Home";
 
 export default (container: HTMLElement) => {
-  const home = () => {
-    container.innerHTML = `
-      <app-card></app-card>
-      <app-card></app-card>
-    `;
-  };
+  const home = () => Home(container);
 
   const post = (params: any) => {
     const { slug } = params;

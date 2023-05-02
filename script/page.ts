@@ -1,28 +1,32 @@
 import Home from "./pages/Home";
+import Memo from "./pages/Memo";
+import Portfolio from "./pages/Portfolio";
+import Post from "./pages/Post";
+import Posts from "./pages/Posts";
+import Resume from "./pages/Resume";
 
 export default (container: HTMLElement) => {
   const home = () => Home(container);
 
   const post = (params: any) => {
     const { slug } = params;
-    container.textContent = "This is post page with slug: " + slug;
+    Post(container);
   };
 
   const posts = () => {
-    container.innerHTML = `
-    <a data-navigation href='/posts/1'>This is list page</a>`;
+    Posts(container);
   };
 
   const resume = () => {
-    container.textContent = `This is resume page`;
+    Resume(container);
   };
 
   const portfolio = () => {
-    container.textContent = `This is portfolio page`;
+    Portfolio(container);
   };
 
   const memo = () => {
-    container.textContent = `This is memo page`;
+    Memo(container);
   };
 
   const notFound = () => {

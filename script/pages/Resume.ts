@@ -1,5 +1,3 @@
-import AppCard from "../components/Card";
-
 const template = document.createElement("template");
 template.innerHTML = `
   <style>
@@ -9,8 +7,6 @@ template.innerHTML = `
   <app-card></app-card>
   <app-card></app-card>
   `;
-
-customElements.get("app-card") || customElements.define("app-card", AppCard);
 
 const Resume = (container: HTMLElement) => {
   container.replaceChildren(template.content.cloneNode(true));

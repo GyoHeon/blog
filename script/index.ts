@@ -8,6 +8,15 @@ const body = document.querySelector("body") as HTMLElement;
 customElements.define("app-header", AppHeader);
 customElements.define("app-footer", AppFooter);
 body.innerHTML = `
+  <style>
+    body > main {
+      display: grid;
+      grid-auto-flow: row;
+      grid-gap: 2rem;
+      place-items: center;
+      margin: 2rem ;
+    }
+  </style>
   <app-header></app-header>
     <main></main>
   <app-footer></app-footer>

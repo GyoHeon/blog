@@ -3,17 +3,32 @@ template.innerHTML = `
   <style>
     header.main {
       width:100%;
-      height: 80px;
-      box-shadow: var(--neumo);
+      height: 5rem;
+      padding: 0 2rem;
+      box-shadow: -6px 6px 12px #2d2d2d;
     }
     .main--ul {
-      max-width: 700px;
-      display: grid;
-      grid-auto-flow: column;
-      place-items: center;
       height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
     }
-    li.active{
+    li.logo {
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      box-shadow: var(--neumo);
+    }
+    li.logo a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0 0.5rem;
+    }
+    li.logo:hover {
+      border-color: transparent;
+      box-shadow: var(--neumo-reverse);
+    }
+    li.active {
       border-bottom: 2px solid var(--orange);
     }
     a {
@@ -23,16 +38,24 @@ template.innerHTML = `
     a:hover {
       color: var(--orange);
     }
+    @media (max-width: 679px) {
+      li.logo img{
+        height: 25px;
+        width: 25px;
+      }
+    }
   </style>
 
   <header class="main">
     <ul class="main--ul">
-      <li>
-        <h1>
-          <image class="main--logo" src="/image/gear.png" width="50" height="50" alt="main image of blog Developer GyoHeon" />
-        </h1>
+      <li class="logo">
+        <a data-navigation href="/">
+          <h1>
+            <image class="main--logo" src="/image/gear.png" width="50" height="50" alt="main image of blog Developer GyoHeon" />
+          </h1>
+          Home
+        </a>
       </li>
-      <li><a data-navigation href="/">Home</a></li>
       <li><a data-navigation href="/posts">Posts</a></li>
       <li><a data-navigation href="/resume">Resume</a></li>
       <li><a data-navigation href="/portfolio">Portfolio</a></li>

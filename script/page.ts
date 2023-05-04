@@ -1,23 +1,15 @@
-import AppCard from "./components/Card";
 import Home from "./pages/Home";
 import Memo from "./pages/Memo";
 import Portfolio from "./pages/Portfolio";
 import Post from "./pages/Post";
-import Posts from "./pages/Posts";
 import Resume from "./pages/Resume";
-
-customElements.define("app-card", AppCard);
 
 export default (container: HTMLElement) => {
   const home = () => Home(container);
 
   const post = (params: any) => {
     const { slug } = params;
-    Post(container);
-  };
-
-  const posts = () => {
-    Posts(container);
+    Post(container, slug);
   };
 
   const resume = () => {
@@ -36,5 +28,5 @@ export default (container: HTMLElement) => {
     container.textContent = "404 Not Found";
   };
 
-  return { home, post, posts, resume, portfolio, memo, notFound };
+  return { home, post, resume, portfolio, memo, notFound };
 };

@@ -8,7 +8,7 @@ template.innerHTML = `
   <app-card></app-card>
   `;
 
-const Post = (container: HTMLElement) => {
+const Post = (container: HTMLElement, slug: string) => {
   container.replaceChildren(template.content.cloneNode(true));
 };
 

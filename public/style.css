@@ -14,7 +14,7 @@ ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
+  font-size: 0.8rem;
   font: inherit;
   color: var(--text);
   vertical-align: baseline;
@@ -59,8 +59,28 @@ a {
   text-decoration: none;
   color: inherit;
 }
+h2 {
+  font-size: 2em;
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.8em;
+  font-weight: 700;
+}
+h4 {
+  font-size: 1.6em;
+  font-weight: 700;
+}
+h5 {
+  font-size: 1.4em;
+  font-weight: 700;
+}
+h6 {
+  font-size: 1.2em;
+  font-weight: 700;
+}
 ::selection {
-  background: red;
+  background: var(--red);
 }
 :root {
   font-size: 20px;
@@ -81,9 +101,19 @@ a {
   /* Hover color: #0077b6 */
   /* Success color: #2ecc71 */
   /* --orange: #f1c40f; */
-  /* --orange: #e74c3c; */
+  --red: #e74c3c;
 }
 @media (max-width: 679px) {
+  /* prettier-ignore  */
+  html, body, div, span, applet, object, iframe, p, blockquote,
+  pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+  img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt,
+  var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label,
+  legend, table, caption, tbody, tfoot, thead, tr, th, td, article,
+  aside, canvas, details, embed, figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    font-size: 1.6rem;
+  }
   :root {
     font-size: 10px;
   }

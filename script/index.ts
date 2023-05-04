@@ -1,4 +1,5 @@
 import { inject } from "@vercel/analytics";
+import AppCard from "./components/Card";
 import AppFooter from "./components/Footer";
 import AppHeader from "./components/Header";
 import page from "./page";
@@ -7,6 +8,7 @@ import router from "./router";
 const body = document.querySelector("body") as HTMLElement;
 customElements.define("app-header", AppHeader);
 customElements.define("app-footer", AppFooter);
+customElements.define("app-card", AppCard);
 body.innerHTML = `
   <style>
     body > main {
@@ -30,15 +32,9 @@ route
   .addRouter("/memo", pages.memo)
   .addRouter("/portfolio", pages.portfolio)
   .addRouter("/resume", pages.resume)
-  .addRouter("/posts", pages.posts)
   .addRouter("/", pages.home)
   .setNotFound(pages.notFound)
   .start();
-
-// window.addEventListener("popstate", (evt: PopStateEvent) => {
-// const main = document.querySelector("main") as HTMLElement;
-// main.innerText = evt.state.id;
-// });
 
 // vercel analytics
 inject();

@@ -4,7 +4,6 @@ template.innerHTML = `
   </style>
 
   <h2>Home</h2>
-  <app-card imgSrc="/image/lgh.png"></app-card>
   <app-card></app-card>
   `;
 

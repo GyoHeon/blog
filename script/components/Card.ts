@@ -1,10 +1,17 @@
+interface AppCardProps {
+  title: Attr;
+  desc: Attr;
+  imgSrc?: Attr;
+}
+
 const template = document.createElement("template");
 template.innerHTML = `
   <style>
     article.card {
       display: flex;
-      height: 20rem;
-      width: 20rem;
+      flex-direction: column;
+      min-height: 20rem;
+      min-width: 20rem;
       border-radius: 40px;
       background: var(--bg);
       box-shadow: var(--neumo);
@@ -20,47 +27,58 @@ template.innerHTML = `
       width: 100%;
       object-fit: cover;
     }
+    article.card main {
+      padding: 1.5rem;
+      word-break: keep-all;
+    }
+    article.card main h5 {
+      margin-bottom: 1.5rem; 
+    }
+    article.card main p {
+      line-height: 1.2;
+    }
+
     @media (max-width: 679px) {
       article.card {
+        flex-direction: row;
+        align-items: center;
         width: 100%;
       }
       article.card header {
         height: 100%;
         width: 50%;
       }
-    article.card header img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
+      article.card header img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      } 
+      article.card main {
+        width: 50%;
+      }
     }
   </style>
 
   <article class="card">
     <header>
-      <img src="https://avatars.githubusercontent.com/u/10047099?v=4" alt="cover image" />
+      <img src="" alt="cover image" />
     </header>
     <main></main>
   </article>
   `;
 
 class AppCard extends HTMLElement {
-  get imgSrc() {
-    return this.getAttribute("imgSrc") || "https://avatars.githubusercontent.com/u/10047099?v=4";
-  }
-
-  set imgSrc(value: string) {
-    this.setAttribute("imgSrc", value);
-  }
-
   connectedCallback() {
     window.requestAnimationFrame(() => {
+      const { title, desc, imgSrc } = this.attributes as any as AppCardProps;
       this.appendChild(template.content.cloneNode(true));
 
-      const imgSrc = this.imgSrc;
       const imgEl = this.querySelector("img") as HTMLImageElement;
+      const mainEl = this.querySelector("main") as HTMLElement;
 
-      if (imgSrc) imgEl.setAttribute("src", imgSrc);
+      imgEl.setAttribute("src", imgSrc ? imgSrc.value : "https://avatars.githubusercontent.com/u/10047099?v=4");
+      mainEl.innerHTML += `<h5>${title ? title.value : "Title"}</h5>`;
+      mainEl.innerHTML += `<p>${desc ? desc.value : "Description"}</p>`;
     });
   }
 }

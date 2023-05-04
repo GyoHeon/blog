@@ -9,17 +9,17 @@ template.innerHTML = `
       height: 10rem;
       padding: 1rem;
     }
-    .main--footer h2 {
-      font-size: 1.5rem;
+    .main--footer h5 {
       margin-bottom: 1rem;
     }
     .main--footer p {
-      line-height: 1.3rem;
+      font-size: 1rem;
+      line-height: 1.2rem;
     }
   </style>
 
   <footer class="main--footer">
-    <h2>© 2023 GyoHeon</h2>
+    <h5>© 2023 GyoHeon</h5>
     <p>
     This blog is created without any frameworks,
     </br>

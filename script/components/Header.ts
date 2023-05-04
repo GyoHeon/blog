@@ -31,7 +31,8 @@ template.innerHTML = `
     li.active {
       border-bottom: 2px solid var(--orange);
     }
-    a {
+    li a {
+      font-size: 1.2rem;
       color:white;
       transition: color 0.3s ease-in-out;
     }
@@ -56,7 +57,6 @@ template.innerHTML = `
           Home
         </a>
       </li>
-      <li><a data-navigation href="/posts">Posts</a></li>
       <li><a data-navigation href="/resume">Resume</a></li>
       <li><a data-navigation href="/portfolio">Portfolio</a></li>
       <li><a data-navigation href="/memo">Memo</a></li>

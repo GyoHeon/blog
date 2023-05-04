@@ -1478,7 +1478,6 @@ __metadata:
     ts-jest: ^29.1.0
     typescript: ^5.0.2
     vite: ^4.2.1
-    zero-md: ^2.4.0
   languageName: unknown
   linkType: soft
 
@@ -4576,12 +4575,5 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
-  languageName: node
-  linkType: hard
-
-"zero-md@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "zero-md@npm:2.4.0"
-  checksum: 1b3b51c2e1854f2c4c9badecc9d9480a258546299bbd152382b639249ef79efc43e01c9d33f74a230db2d0ef5972dc558e9c88aa9d16b1f9aef3db76118e9fbb
   languageName: node
   linkType: hard

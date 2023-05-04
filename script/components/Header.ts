@@ -5,7 +5,7 @@ template.innerHTML = `
       width:100%;
       height: 5rem;
       padding: 0 2rem;
-      box-shadow: -6px 6px 12px #2d2d2d;
+      box-shadow: var(--neumo);
     }
     .main--ul {
       height: 100%;

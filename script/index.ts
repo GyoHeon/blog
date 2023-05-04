@@ -13,8 +13,7 @@ body.innerHTML = `
       display: grid;
       grid-auto-flow: row;
       grid-gap: 2rem;
-      place-items: center;
-      margin: 2rem ;
+      margin: 2rem;
     }
   </style>
   <app-header></app-header>

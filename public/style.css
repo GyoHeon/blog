@@ -24,7 +24,6 @@ ruby, section, summary, time, mark, audio, video {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   min-height: 100vh;
   background-color: var(--bg);
 }

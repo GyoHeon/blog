@@ -2,8 +2,9 @@ const template = document.createElement("template");
 template.innerHTML = `
   <style>
     article.card {
-      height: 500px;
-      width: 500px;
+      display: flex;
+      height: 20rem;
+      width: 20rem;
       border-radius: 40px;
       background: var(--bg);
       box-shadow: var(--neumo);
@@ -21,8 +22,17 @@ template.innerHTML = `
     }
     @media (max-width: 679px) {
       article.card {
-        margin: 0 20px;
+        width: 100%;
       }
+      article.card header {
+        height: 100%;
+        width: 50%;
+      }
+    article.card header img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
     }
   </style>
 

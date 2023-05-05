@@ -38,7 +38,7 @@ template.innerHTML = `
       line-height: 1.2;
     }
 
-    @media (max-width: 679px) {
+    @media (max-width: 767px) {
       article.card {
         flex-direction: row;
         align-items: center;

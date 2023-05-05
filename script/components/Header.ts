@@ -1,3 +1,5 @@
+import { setTheme } from "../util/themeToggle";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <style>
@@ -33,13 +35,16 @@ template.innerHTML = `
     }
     li a {
       font-size: 1.2rem;
-      color:white;
+      color: var(--text);
       transition: color 0.3s ease-in-out;
     }
     a:hover {
       color: var(--orange);
     }
-    @media (max-width: 679px) {
+    .button--theme {
+      margin-left: auto;
+    }
+    @media (max-width: 767px) {
       li.logo img{
         height: 25px;
         width: 25px;
@@ -60,6 +65,9 @@ template.innerHTML = `
       <li><a data-navigation href="/resume">Resume</a></li>
       <li><a data-navigation href="/portfolio">Portfolio</a></li>
       <li><a data-navigation href="/memo">Memo</a></li>
+      <li class="button--theme">
+        <button>Theme</button>
+      </li>
     </ul>
   </header>
   `;
@@ -72,6 +80,12 @@ class AppHeader extends HTMLElement {
   connectedCallback() {
     window.requestAnimationFrame(() => {
       this.appendChild(template.content.cloneNode(true));
+
+      const themeButton = this.querySelector(".button--theme") as HTMLButtonElement;
+      themeButton.addEventListener("click", () => {
+        const theme = document.documentElement.className;
+        setTheme(theme === "light" ? "dark" : "light");
+      });
     });
   }
 }

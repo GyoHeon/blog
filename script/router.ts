@@ -71,9 +71,6 @@ const router = () => {
 
   router.navigate = (path: string) => {
     window.history.pushState({ id: path }, "", path);
-
-    const popStateEvent = new PopStateEvent("popstate", { state: { id: path } });
-    window.dispatchEvent(popStateEvent);
   };
 
   router.start = () => {
@@ -88,6 +85,8 @@ const router = () => {
         checkRoutes();
       }
     });
+
+    window.addEventListener("popstate", checkRoutes);
 
     return router;
   };

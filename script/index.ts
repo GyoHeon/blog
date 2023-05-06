@@ -16,6 +16,7 @@ body.innerHTML = `
   <style>
     .layout {
       display: flex;
+      margin: 0 auto;
     }
     .layout > .lgh {
       background: var(--red);

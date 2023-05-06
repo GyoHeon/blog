@@ -10,11 +10,11 @@ template.innerHTML = `
       padding: 1rem;
     }
     .main--footer h5 {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     .main--footer p {
       font-size: 1rem;
-      line-height: 1.2rem;
+      line-height: 1.4rem;
     }
   </style>
 
@@ -26,8 +26,6 @@ template.innerHTML = `
     using pure TypeScript, and will focus on sharing
     </br>
     tech-related articles primarily about frontend development.
-    </br>
-    I hope you enjoy your time here!</p>
   </footer>
   `;
 

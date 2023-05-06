@@ -7,17 +7,14 @@ interface AppCardProps {
 const template = document.createElement("template");
 template.innerHTML = `
   <style>
-    .label {
+    .theme-label {
       display: inline-flex;
       align-items: center;
       background: var(--bg--sec);
       border-radius: 15px;
       cursor: pointer;
     }
-    .label-text {
-      margin-left: 16px;
-    }
-    .toggle {
+    .theme-toggle {
       isolation: isolate;
       position: relative;
       height: 30px;
@@ -26,10 +23,10 @@ template.innerHTML = `
       overflow: hidden;
       box-shadow: var(--neumo), var(--neumo-reverse);
     }
-    .toggle-state {
+    .theme-state {
       display: none;
     }
-    .indicator {
+    .theme-indicator {
       height: 100%;
       width: 200%;
       background: var(--bg);
@@ -38,15 +35,15 @@ template.innerHTML = `
       transition: transform 0.4s cubic-bezier(0.85, 0.05, 0.18, 1.35);
       box-shadow: var(--neumo);
     }
-    .toggle-state:checked ~ .indicator {
+    .theme-state:checked ~ .theme-indicator {
       transform: translate3d(25%, 0, 0);
     }
   </style>
 
-  <label class="label">
-    <div class="toggle">
-      <input class="toggle-state" type="checkbox" name="check" value="check">
-      <div class="indicator"></div>
+  <label class="theme-label">
+    <div class="theme-toggle">
+      <input class="theme-state" type="checkbox" name="check" value="check">
+      <div class="theme-indicator"></div>
     </div>
   </label>
   `;
@@ -56,7 +53,7 @@ class ThemeButton extends HTMLElement {
     window.requestAnimationFrame(() => {
       this.appendChild(template.content.cloneNode(true));
 
-      const themeButton = this.querySelector(".toggle-state") as HTMLInputElement;
+      const themeButton = this.querySelector(".theme-state") as HTMLInputElement;
       const colorTheme = localStorage.getItem("theme") || "dark";
 
       if (colorTheme) {

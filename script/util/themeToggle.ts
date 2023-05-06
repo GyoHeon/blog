@@ -1,1 +1,3 @@
-export const setTheme = (theme?: string) => (document.documentElement.className = theme || "dark");
+export const setTheme = (theme: "light" | "dark") => {
+  document.documentElement.className = theme;
+};

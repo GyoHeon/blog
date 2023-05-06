@@ -1,5 +1,3 @@
-import { setTheme } from "../util/themeToggle";
-
 const template = document.createElement("template");
 template.innerHTML = `
   <style>
@@ -66,7 +64,7 @@ template.innerHTML = `
       <li><a data-navigation href="/portfolio">Portfolio</a></li>
       <li><a data-navigation href="/memo">Memo</a></li>
       <li class="button--theme">
-        <button>Theme</button>
+        <theme-button></theme-button>
       </li>
     </ul>
   </header>
@@ -80,24 +78,6 @@ class AppHeader extends HTMLElement {
   connectedCallback() {
     window.requestAnimationFrame(() => {
       this.appendChild(template.content.cloneNode(true));
-
-      const colorTheme = localStorage.getItem("theme") || "dark";
-      if (colorTheme) {
-        document.documentElement.className = colorTheme;
-      } else {
-        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          localStorage.setItem("theme", "dark");
-        } else {
-          localStorage.setItem("theme", "light");
-        }
-      }
-
-      const themeButton = this.querySelector(".button--theme") as HTMLButtonElement;
-      themeButton.addEventListener("click", () => {
-        const theme = document.documentElement.className === "light" ? "dark" : "light";
-        setTheme(theme);
-        localStorage.setItem("theme", theme);
-      });
     });
   }
 }

@@ -10,8 +10,8 @@ template.innerHTML = `
     article.card {
       display: flex;
       flex-direction: column;
-      min-height: 20rem;
-      min-width: 20rem;
+      height: 20rem;
+      width: 20rem;
       border-radius: 40px;
       background: var(--bg);
       box-shadow: var(--neumo);
@@ -41,8 +41,8 @@ template.innerHTML = `
     @media (max-width: 767px) {
       article.card {
         flex-direction: row;
-        align-items: center;
         width: 100%;
+        height: 100%;
       }
       article.card header {
         height: 100%;

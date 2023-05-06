@@ -3,6 +3,7 @@ import AppCard from "./components/Card";
 import AppFooter from "./components/Footer";
 import AppHeader from "./components/Header";
 import LGH from "./components/LGH";
+import ThemeButton from "./components/ThemeButton";
 import page from "./page";
 import router from "./router";
 
@@ -10,6 +11,7 @@ customElements.define("app-header", AppHeader);
 customElements.define("app-footer", AppFooter);
 customElements.define("app-card", AppCard);
 customElements.define("lgh-card", LGH);
+customElements.define("theme-button", ThemeButton);
 
 const body = document.querySelector("body") as HTMLElement;
 body.innerHTML = `

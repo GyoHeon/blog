@@ -22,19 +22,22 @@ template.innerHTML = `
       border-radius: 0.5rem;
       margin: -10px -10px 10px;
     }
+    .lgh > p {
+      word-break: keep-all;
+    }
     .lgh strong {
       color: var(--blue);
     }
     @media (max-width: 767px) {
       .lgh {
         position: absolute;
-        transform: translateX(-100%);
+        transform: translateX(100vw);
       }
     }
   </style>
 
   <aside class="lgh">
-    <img src="/image/lgh.png" width="280"  object-fit="cover" />
+    <img src="/image/lgh.png" width="280"  object-fit="cover" alt="Lee Gyoheon's photo"/>
     <h5>
       안녕하세요!
       </br>
@@ -43,7 +46,7 @@ template.innerHTML = `
     <p>
       성능 향상에 큰 관심을 가진 개발자 이교헌입니다.
       </br>
-      프로젝트의 Lighthouse Performance 점수를 26점 향상시키고 초기 번들 사이즈를 70% 감소시킨 경험이 있습니다.
+      프로젝트의 <strong>Lighthouse Performance 점수를 26점 향상</strong>시키고 <strong>초기 번들 사이즈를 70% 감소</strong>시킨 경험이 있습니다.
       </br>
     </p>
   </aside>

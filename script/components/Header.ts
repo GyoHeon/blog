@@ -81,10 +81,22 @@ class AppHeader extends HTMLElement {
     window.requestAnimationFrame(() => {
       this.appendChild(template.content.cloneNode(true));
 
+      const colorTheme = localStorage.getItem("theme") || "dark";
+      if (colorTheme) {
+        document.documentElement.className = colorTheme;
+      } else {
+        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          localStorage.setItem("theme", "dark");
+        } else {
+          localStorage.setItem("theme", "light");
+        }
+      }
+
       const themeButton = this.querySelector(".button--theme") as HTMLButtonElement;
       themeButton.addEventListener("click", () => {
-        const theme = document.documentElement.className;
-        setTheme(theme === "light" ? "dark" : "light");
+        const theme = document.documentElement.className === "light" ? "dark" : "light";
+        setTheme(theme);
+        localStorage.setItem("theme", theme);
       });
     });
   }

@@ -98,9 +98,9 @@ h6 {
   --bg-sec: #292929;
   --border: #333333;
   --text: #f2f2f2;
-  --blue: #0bb7c1;
-  /* Link color: #00a4d8 */
-  /* Hover color: #0077b6 */
+  /* --blue: #0bb7c1; */
+  --blue: #00a4d8;
+  /* --blue: #0077b6; */
   /* Success color: #2ecc71 */
   /* --orange: #f1c40f; */
   --red: #e74c3c;

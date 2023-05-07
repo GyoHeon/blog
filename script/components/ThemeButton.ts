@@ -70,7 +70,6 @@ class ThemeButton extends HTMLElement {
 
       themeButton.addEventListener("click", () => {
         const theme = document.documentElement.className === "light" ? "dark" : "light";
-        console.log({ theme });
         setTheme(theme);
         localStorage.setItem("theme", theme);
       });

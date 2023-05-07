@@ -13,16 +13,21 @@ template.innerHTML = `
       height: 20rem;
       width: 20rem;
       border-radius: 40px;
-      background: var(--bg);
       box-shadow: var(--neumo);
       overflow: hidden;
       border: 1px solid var(--border);
+      cursor: pointer;
+    }
+    article.card:hover {
+      box-shadow: var(--neumo-reverse);
     }
     article.card header {
       height: 50%;
       width: 100%;
     }
     article.card header img {
+      position: relative;
+      z-index: -1;
       height: 100%;
       width: 100%;
       object-fit: cover;

@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <head>
-        <title>GyoHeon's Blog</title>
+        <title>GyoHeon&apos;s Blog</title>
         <meta name="description" content="GyoHeon's Blog" />
       </head>
       <body>

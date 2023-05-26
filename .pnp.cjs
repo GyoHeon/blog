@@ -28,9 +28,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@next/font", "npm:13.4.4"],\
             ["@types/node", "npm:20.2.4"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-dom", "npm:18.2.4"],\
+            ["@vercel/analytics", "npm:1.0.1"],\
             ["autoprefixer", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:10.4.14"],\
             ["eslint", "npm:8.41.0"],\
             ["eslint-config-next", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:13.4.4"],\
@@ -233,6 +235,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@next/eslint-plugin-next", "npm:13.4.4"],\
             ["glob", "npm:7.1.7"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@next/font", [\
+        ["npm:13.4.4", {\
+          "packageLocation": "./.yarn/cache/@next-font-npm-13.4.4-73c54c2d1d-4c49743d65.zip/node_modules/@next/font/",\
+          "packageDependencies": [\
+            ["@next/font", "npm:13.4.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -558,6 +569,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/visitor-keys", "npm:5.59.7"],\
             ["@typescript-eslint/types", "npm:5.59.7"],\
             ["eslint-visitor-keys", "npm:3.4.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@vercel/analytics", [\
+        ["npm:1.0.1", {\
+          "packageLocation": "./.yarn/cache/@vercel-analytics-npm-1.0.1-545fdc4bb4-6876e1d086.zip/node_modules/@vercel/analytics/",\
+          "packageDependencies": [\
+            ["@vercel/analytics", "npm:1.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -906,9 +926,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["blog", "workspace:."],\
+            ["@next/font", "npm:13.4.4"],\
             ["@types/node", "npm:20.2.4"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-dom", "npm:18.2.4"],\
+            ["@vercel/analytics", "npm:1.0.1"],\
             ["autoprefixer", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:10.4.14"],\
             ["eslint", "npm:8.41.0"],\
             ["eslint-config-next", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:13.4.4"],\

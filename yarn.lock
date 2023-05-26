@@ -160,6 +160,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@next/font@npm:^13.4.4":
+  version: 13.4.4
+  resolution: "@next/font@npm:13.4.4"
+  checksum: 4c49743d65e0ab45356534d57b053c33505ec386cb35096acb38fabc4a56cd733d28b3173c451fafa7df777455506c051ce9b48d42ce7a4d003562fb09beac99
+  languageName: node
+  linkType: hard
+
 "@next/swc-darwin-arm64@npm:13.4.4":
   version: 13.4.4
   resolution: "@next/swc-darwin-arm64@npm:13.4.4"
@@ -414,6 +421,13 @@ __metadata:
     "@typescript-eslint/types": 5.59.7
     eslint-visitor-keys: ^3.3.0
   checksum: 4367f2ea68dd96a0520485434ad11e1bd26239eeeb3a2150bee7478a0f1df3c2099a39f96486722932be0456bcb7a47a483b452876d1d30bdeb9b81d354eef3d
+  languageName: node
+  linkType: hard
+
+"@vercel/analytics@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@vercel/analytics@npm:1.0.1"
+  checksum: 6876e1d0868e85198d43a17ffec7266cdee5a53d5fc797d3f7e0d64e9d76a2ade3cbdcbc0a665e2ee2389f65dfc80591f7d667e9fc981cdbaa848006cbaefe19
   languageName: node
   linkType: hard
 
@@ -697,15 +711,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "blog@workspace:."
   dependencies:
+    "@next/font": ^13.4.4
     "@types/node": 20.2.4
     "@types/react": 18.2.7
     "@types/react-dom": 18.2.4
+    "@vercel/analytics": ^1.0.1
     autoprefixer: 10.4.14
     eslint: 8.41.0
     eslint-config-next: 13.4.4
     next: 13.4.4
     postcss: 8.4.23
-    react: 18.2.0
+    react: ^18.2.0
     react-dom: 18.2.0
     tailwindcss: 3.3.2
     typescript: 5.0.4
@@ -3328,7 +3344,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0":
+"react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:

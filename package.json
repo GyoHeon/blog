@@ -2,6 +2,7 @@
   "name": "blog",
   "version": "0.1.0",
   "description": "NEXT.JS blog",
+  "packageManager": "yarn@3.5.1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -17,6 +18,9 @@
   ],
   "author": "GyoHeon Lee",
   "license": "MIT",
+  "installConfig": {
+    "pnp": true
+  },
   "bugs": {
     "url": "https://github.com/GyoHeonLee/blog/issues"
   },

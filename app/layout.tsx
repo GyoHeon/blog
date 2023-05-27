@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import { Analytics } from "@vercel/analytics/react";
 import React from "react";
 import "./globals.css";
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="description" content="GyoHeon's Blog" />
       </head>
       <body>
+        <Header />
         {children}
         <Analytics />
       </body>

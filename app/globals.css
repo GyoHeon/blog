@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* prettier-ignore  */
+html, body, div, span, applet, object, iframe, p, blockquote,
+pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt,
+var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label,
+legend, table, caption, tbody, tfoot, thead, tr, th, td, article,
+aside, canvas, details, embed, figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  font-size: 1.6rem;
+  color: var(--text);
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.8em;
+  font-weight: 700;
+}
+h4 {
+  font-size: 1.6em;
+  font-weight: 700;
+}
+h5 {
+  font-size: 1.4em;
+  font-weight: 700;
+}
+h6 {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+::selection {
+  background: var(--blue-sec);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+  }
+}
+:root {
+  font-size: 10px;
+  font-family: "Nunito Sans", sans-serif;
+  background-color: var(--bg);
+}
+:root,
+:root.dark {
+  --neumo: 3px 3px 6px #0b0b0b, -3px -3px 6px #2d2d2d;
+  --neumo-reverse: inset 3px 3px 6px #0b0b0b, inset -3px -3px 6px #2d2d2d;
+
+  --text--sec: #c1b7a4;
+  --orange: #daa276;
+  --green: #7a9e88;
+  --bg: #1c1c1c;
+  --bg--sec: #333333;
+  --bg--neumo: #252525;
+  --border: #2a2a2a;
+  --text: #f2f2f2;
+  /* --blue: #0bb7c1; */
+  --blue: #00a4d8;
+  --blue-sec: #0077b6;
+  /* Success color: #2ecc71 */
+  /* --orange: #f1c40f; */
+  --red: #e74c3c;
+}
+:root.light {
+  --neumo: 4px 4px 8px #b8b9be, -4px -4px 8px #ffffff;
+  --neumo-reverse: inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #ffffff;
+
+  --text: #31344b;
+  --text--sec: #c1b7a4;
+  --orange: #daa276;
+  --green: #7a9e88;
+  --bg: #e6e7ee;
+  --bg--sec: #ffffff;
+  --border: #d1d9e6;
+  --blue: #0056b3;
+  --blue-sec: #00a4d8;
+  /* Success color: #2ecc71 */
+  /* --orange: #f1c40f; */
+  --red: #a91e2c;
+}
+
+:root,
+:root.dark {
+  --neumo: 4px 4px 8px #1f1f1f, -4px -4px 8px #2b2b2b;
+  --neumo-reverse: inset 4px 4px 8px #1f1f1f, inset -4px -4px 8px #2b2b2b;
+}
+:root.light {
+  --neumo: 3px 3px 6px #b8b9be, -3px -3px 6px #ffffff;
+  --neumo-reverse: inset 3px 3px 6px #b8b9be, inset -3px -3px 6px #ffffff;
+}
+
+@layer components {
+  .neumo {
+    box-shadow: var(--neumo);
+    @apply bg-zinc-900;
+  }
+  .neumo-reverse {
+    box-shadow: var(--neumo-reverse);
+    background-color: var(--bg--neumo);
+  }
+}
+
+@screen md {
+  /* prettier-ignore  */
+  html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6,
+  p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+  em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+  b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+  details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output,
+  ruby, section, summary, time, mark, audio, video {
+    font-size: 0.8rem;
+    color: var(--text);
+  }
+  :root {
+    font-size: 20px;
+  }
+}

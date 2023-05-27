@@ -40,12 +40,6 @@ template.innerHTML = `
     }
   </style>
 
-  <label class="theme-label">
-    <div class="theme-toggle">
-      <input class="theme-state" type="checkbox" name="check" value="check">
-      <div class="theme-indicator"></div>
-    </div>
-  </label>
   `;
 
 class ThemeButton extends HTMLElement {

@@ -3,7 +3,6 @@ template.innerHTML = `
   <style>
     app-footer{
       margin-top: auto;
-      box-shadow: var(--neumo);
     }
     .main--footer {
       height: 10rem;

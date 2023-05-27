@@ -13,7 +13,6 @@ template.innerHTML = `
       margin: 2rem 1rem 1rem;
       padding: 20px;
       border-radius: 0.5rem;
-      box-shadow: var(--neumo-reverse);
       overflow: hidden;
       line-height: 1.2;
     }

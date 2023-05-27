@@ -22,7 +22,7 @@ export function Header() {
           </Link>
         </li>
         {HEADER_MENUS.map((menu) => (
-          <li>
+          <li key={menu.name}>
             <Link href={menu.url} className="text-xl hover:text-[--orange]">
               {menu.name}
             </Link>

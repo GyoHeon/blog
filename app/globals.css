@@ -14,26 +14,12 @@ menu, nav, output, ruby, section, summary, time, mark, audio, video {
   color: var(--text);
 }
 
-h2 {
-  font-size: 2em;
-  font-weight: 700;
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-h3 {
-  font-size: 1.8em;
-  font-weight: 700;
-}
-h4 {
-  font-size: 1.6em;
-  font-weight: 700;
-}
-h5 {
-  font-size: 1.4em;
-  font-weight: 700;
-}
-h6 {
-  font-size: 1.2em;
-  font-weight: 700;
-}
+
 ::selection {
   background: var(--blue-sec);
 }
@@ -114,4 +100,25 @@ h6 {
   :root {
     font-size: 20px;
   }
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.8em;
+  font-weight: 700;
+}
+h4 {
+  font-size: 1.6em;
+  font-weight: 700;
+}
+h5 {
+  font-size: 1.4em;
+  font-weight: 700;
+}
+h6 {
+  font-size: 1.2em;
+  font-weight: 700;
 }

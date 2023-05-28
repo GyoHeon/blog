@@ -28,7 +28,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["@next/font", "npm:13.4.4"],\
             ["@types/node", "npm:20.2.4"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-dom", "npm:18.2.4"],\
@@ -235,15 +234,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@next/eslint-plugin-next", "npm:13.4.4"],\
             ["glob", "npm:7.1.7"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@next/font", [\
-        ["npm:13.4.4", {\
-          "packageLocation": "./.yarn/cache/@next-font-npm-13.4.4-73c54c2d1d-4c49743d65.zip/node_modules/@next/font/",\
-          "packageDependencies": [\
-            ["@next/font", "npm:13.4.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -926,7 +916,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["blog", "workspace:."],\
-            ["@next/font", "npm:13.4.4"],\
             ["@types/node", "npm:20.2.4"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-dom", "npm:18.2.4"],\

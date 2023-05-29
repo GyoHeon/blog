@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HEADER_MENUS } from "../../constants/urls";
-import { ThemeButton } from "./button/ThemeButton";
 
 export function Header() {
   return (
@@ -28,9 +27,7 @@ export function Header() {
             </Link>
           </li>
         ))}
-        <li>
-          <ThemeButton />
-        </li>
+        <li>{/* <ThemeButton /> */}</li>
       </ul>
     </header>
   );

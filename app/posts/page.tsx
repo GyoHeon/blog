@@ -7,7 +7,12 @@ export default function Home() {
         {Array(10)
           .fill(0)
           .map((_, index) => (
-            <PostCard title="Hello World" description={`This is a test ${index} post`} image="/image/lgh.png" />
+            <PostCard
+              key={index}
+              title="Hello World"
+              description={`This is a test ${index} post`}
+              image="/image/lgh.png"
+            />
           ))}
       </div>
     </main>

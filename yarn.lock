@@ -144,7 +144,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/mdx@npm:^2.2.1":
+"@mdx-js/loader@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@mdx-js/loader@npm:2.3.0"
+  dependencies:
+    "@mdx-js/mdx": ^2.0.0
+    source-map: ^0.7.0
+  peerDependencies:
+    webpack: ">=4"
+  checksum: 1217f811b7ee37e4f63ca828642cd47120b7b2994975409b38cdd8550434166520c94f116efa975cb2b14760a5cc7a424848649519ce05d47f96d21b8c2c1066
+  languageName: node
+  linkType: hard
+
+"@mdx-js/mdx@npm:^2.0.0, @mdx-js/mdx@npm:^2.2.1":
   version: 2.3.0
   resolution: "@mdx-js/mdx@npm:2.3.0"
   dependencies:
@@ -169,7 +181,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:^2.2.1":
+"@mdx-js/react@npm:^2.2.1, @mdx-js/react@npm:^2.3.0":
   version: 2.3.0
   resolution: "@mdx-js/react@npm:2.3.0"
   dependencies:
@@ -194,6 +206,23 @@ __metadata:
   dependencies:
     glob: 7.1.7
   checksum: 0a14780aed31d5faa6fa4b0a28f1ee7852d5ed5ed2dad166f05b2ed614bd1802fa033d7b313bcfb053b523f708c379052081069802b087f8ce22c787f361621a
+  languageName: node
+  linkType: hard
+
+"@next/mdx@npm:^13.4.4":
+  version: 13.4.4
+  resolution: "@next/mdx@npm:13.4.4"
+  dependencies:
+    source-map: ^0.7.0
+  peerDependencies:
+    "@mdx-js/loader": ">=0.15.0"
+    "@mdx-js/react": ">=0.15.0"
+  peerDependenciesMeta:
+    "@mdx-js/loader":
+      optional: true
+    "@mdx-js/react":
+      optional: true
+  checksum: b381b0971c4a764faccbe178150d38d14a8960451b8292aa8ddcfd7f21316872c0d25e4130ac647219775e9a668a1e0265b3775ff9bc9a1d33b94fff3a2f9b40
   languageName: node
   linkType: hard
 
@@ -410,7 +439,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mdx@npm:^2.0.0":
+"@types/mdx@npm:^2.0.0, @types/mdx@npm:^2.0.5":
   version: 2.0.5
   resolution: "@types/mdx@npm:2.0.5"
   checksum: 1069baff0b2d0fb0bc724748e2386af626cc30f8ef99e680afb4dee566ed0aeabd31cea774212a7033f491e594a0acc234116078b252cba94ac413f91eb585a3
@@ -837,6 +866,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "blog@workspace:."
   dependencies:
+    "@mdx-js/loader": ^2.3.0
+    "@mdx-js/react": ^2.3.0
+    "@next/mdx": ^13.4.4
+    "@types/mdx": ^2.0.5
     "@types/node": 20.2.4
     "@types/react": 18.2.7
     "@types/react-dom": 18.2.4

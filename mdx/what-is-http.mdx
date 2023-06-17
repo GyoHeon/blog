@@ -1,0 +1,124 @@
+---
+title: HTTP란?
+description: test post
+date: 2023.06.04
+tags: test, mdx
+image: /test.jpg
+slug: what-is-http
+---
+
+HTTP는 무엇일까?
+
+# HTTP란?
+
+팀 버너스리는 영국의 물리학과 출신 컴퓨터 과학자이다.
+그는 컴퓨터를 이용해 소통을 할 수 있는 여러 기술을 고안, 제시하였다.
+
+1. HTML
+2. URL, URI
+3. HTTP
+4. 웹 서버, 웹 브라우저
+
+이다.
+
+이 중 HTTP는 HyperText Transfer Protocol의 약자로, 웹에서 하이퍼텍스트를 교환하기 위한 통신 규약이다.
+HTTP는 웹에서 이루어지는 모든 데이터 교환의 기초이며, 웹의 기본이라고 할 수 있다.
+HTTP는 클라이언트-서버 프로토콜로, 이는 클라이언트의 요청에 서버가 응답하는 형태로 이루어진다.
+이때 클라이언트가 서버에 보내는 요청은 Request라 하고 서버가 클라이언트에 보내는 응답은 Response라 한다.
+
+# Request
+
+Request는 크게 3가지로 이루어져 있다.
+
+1. Start Line
+2. Header
+3. Body
+
+## Start Line
+
+Start Line은 Request의 첫 줄로, Method, Request-URI, HTTP-Version으로 이루어져 있다.
+
+### Method
+
+Method는 Request의 종류를 나타내는 부분으로, GET, POST, PUT, DELETE 등이 있다.
+
+### Request-URI
+
+Request-URI는 Request의 대상을 나타내는 부분으로, URL이나 URI가 들어간다.
+
+### HTTP-Version
+
+HTTP-Version은 HTTP의 버전을 나타내는 부분으로, HTTP/1.1, HTTP/2.0 등이 들어간다.
+
+## Header
+
+Header는 Request의 헤더 부분으로, Key: Value 형태로 이루어져 있다.
+Header에는 다양한 정보가 들어갈 수 있으며, 이는 Request의 종류에 따라 달라진다.
+그 중 대표적인 것들은 다음과 같다.
+
+1. User-Agent
+2. Accept
+3. Content-Type
+4. Cookie
+
+### User-Agent
+
+User-Agent는 클라이언트의 정보를 나타내는 부분으로, 브라우저의 종류, 버전 등이 들어간다.
+
+### Accept
+
+Accept는 클라이언트가 받을 수 있는 데이터 타입을 나타내는 부분으로, MIME 타입이 들어간다.
+
+### Content-Type
+
+Content-Type은 클라이언트가 보내는 데이터 타입을 나타내는 부분으로, MIME 타입이 들어간다.
+
+### Cookie
+
+Cookie는 클라이언트의 쿠키 정보를 나타내는 부분으로, Key: Value 형태로 이루어져 있다.
+
+## Body
+
+Body는 Request의 바디 부분으로, 클라이언트가 서버에 보내는 데이터가 들어간다.
+Body는 GET, HEAD, DELETE 등의 Method에서는 없을 수도 있다.
+
+# Response
+
+Response는 크게 3가지로 이루어져 있다.
+
+1. Start Line
+2. Header
+3. Body
+
+## Start Line
+
+Start Line은 Response의 첫 줄로, HTTP-Version, Status Code, Reason Phrase으로 이루어져 있다.
+
+### HTTP-Version
+
+HTTP-Version은 HTTP의 버전을 나타내는 부분으로, HTTP/1.1, HTTP/2.0 등이 들어간다.
+
+### Status Code
+
+Status Code는 Response의 상태를 나타내는 부분으로, 100번대부터 500번대까지의 숫자로 이루어져 있다.
+100번대는 Informational, 200번대는 Success, 300번대는 Redirection, 400번대는 Client Error, 500번대는 Server Error를 나타낸다.
+
+### Reason Phrase
+
+Reason Phrase는 Status Code의 이유를 나타내는 부분으로, Status Code와 함께 나타난다.
+
+## Header
+
+Header는 Response의 헤더 부분으로, Key: Value 형태로 이루어져 있다.
+
+### Content-Type
+
+Content-Type은 서버가 보내는 데이터 타입을 나타내는 부분으로, MIME 타입이 들어간다.
+
+### Set-Cookie
+
+Set-Cookie는 서버가 보내는 쿠키 정보를 나타내는 부분으로, Key: Value 형태로 이루어져 있다.
+
+## Body
+
+Body는 Response의 바디 부분으로, 서버가 클라이언트에 보내는 데이터가 들어간다.

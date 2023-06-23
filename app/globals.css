@@ -34,13 +34,13 @@ body {
 }
 :root,
 :root.dark {
+  --text: #f2f2f2;
   --text--sec: #c1b7a4;
   --orange: #daa276;
   --green: #7a9e88;
   --bg: #1c1c1c;
   --bg--sec: #333333;
   --border: #2a2a2a;
-  --text: #f2f2f2;
   /* --blue: #0bb7c1; */
   --blue: #00a4d8;
   --blue-sec: #0077b6;
@@ -70,6 +70,9 @@ body {
 }
 
 @layer components {
+  .post-box {
+    @apply grid grid-flow-row grid-cols-1 gap-12 gap-y-24 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto;
+  }
   .crater {
     position: absolute;
     border-radius: 100%;

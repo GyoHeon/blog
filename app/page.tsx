@@ -6,8 +6,8 @@ export default async function Home() {
   const posts = await getAllPostsMeta();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="grid grid-flow-row grid-cols-1 gap-12 gap-y-24 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
+    <main className="flex min-h-screen flex-col items-center justify-between p-6">
+      <div className="post-box">
         <PostCard {...MY_INFO} />
         {posts.map((post) => (
           <PostCard key={post.slug} {...post} slug={"posts/" + post.slug} />

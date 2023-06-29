@@ -5,12 +5,12 @@ export default async function Posts() {
   const posts = await getAllPostsMeta();
 
   return (
-    <main className="min-h-screen p-6">
-      <div className="post-box">
-        {posts.map((post) => (
-          <PostCard key={post.slug} {...post} slug={"posts/" + post.slug} />
-        ))}
-      </div>
-    </main>
+    <div className="post-box">
+      <h2 className="title-section">POSTS</h2>
+
+      {posts.map((post) => (
+        <PostCard key={post.slug} {...post} slug={"posts/" + post.slug} />
+      ))}
+    </div>
   );
 }

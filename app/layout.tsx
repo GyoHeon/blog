@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <body>
         <Header />
-        {children}
+        <main className="flex min-h-screen flex-col items-center justify-between p-6 py-12">{children}</main>
         <Footer />
 
         <Analytics />

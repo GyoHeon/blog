@@ -68,7 +68,10 @@ body {
 
 @layer components {
   .post-box {
-    @apply grid grid-flow-row grid-cols-1 gap-12 gap-y-24 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto;
+    @apply grid grid-flow-row grid-cols-1 gap-12 gap-y-12 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto;
+  }
+  .title-section {
+    @apply md:col-span-2 lg:col-span-3 border-b-4 border-b-[--text];
   }
   .crater {
     position: absolute;

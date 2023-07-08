@@ -4,7 +4,7 @@ import { HEADER_MENUS } from "../../constants/urls";
 
 export function Header() {
   return (
-    <header className="w-full h-20 px-4 py-2 border-b-2 border-[orange]">
+    <header className="w-full h-20 px-4 py-2 border-b-2 border-[--orange]">
       <ul className="flex items-center gap-5 h-full">
         <li className="mr-auto px-2 rounded-lg">
           <Link href="/" className="flex items-center gap-0.5 px-0 py-0.5 text-xl hover:text-[--orange]">

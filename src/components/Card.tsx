@@ -20,8 +20,8 @@ export function PostCard({ title, description, image, slug }: Props) {
           alt={title}
         />
 
-        <div className="w-full ml-4 md:ml-0 p-1">
-          <h5 className="mt-2 md:mt-4 font-bold">{title}</h5>
+        <div className="min-w-0 ml-4 md:ml-0 p-1">
+          <h5 className="mt-2 md:mt-4 font-bold truncate">{title}</h5>
           <p className="mt-2 text-main text-[--text--sec]">{description}</p>
         </div>
       </Link>

@@ -1,8 +1,8 @@
+import { HEADER_MENUS } from "@/constants/urls";
 import Image from "next/image";
 import Link from "next/link";
-import { HEADER_MENUS } from "../../constants/urls";
 
-export function Header() {
+export function MainHeader() {
   return (
     <header className="w-full h-20 px-4 py-2 border-b-2 border-[--orange]">
       <ul className="flex items-center gap-5 h-full">

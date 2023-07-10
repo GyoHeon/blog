@@ -1,5 +1,5 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { MainFooter } from "@/components/layout/MainFooter";
+import { MainHeader } from "@/components/layout/MainHeader";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
@@ -12,9 +12,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body>
-        <Header />
+        <MainHeader />
         <main className="flex min-h-screen flex-col items-center justify-between p-6 py-12">{children}</main>
-        <Footer />
+        <MainFooter />
 
         <Analytics />
       </body>

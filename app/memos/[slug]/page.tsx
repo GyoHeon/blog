@@ -1,4 +1,4 @@
-import { PostHeader } from "@/components/post/PostHeader";
+import PostMain from "@/components/post/PostMain";
 import { getPostBySlug } from "@/util/mdx";
 
 interface Props {
@@ -7,16 +7,10 @@ interface Props {
   };
 }
 
-export default async function Post({ params: { slug } }: Props) {
+export default async function Memo({ params: { slug } }: Props) {
   const { meta, content } = await getPostBySlug("memos/" + slug);
 
   if (!(meta && content)) return <div>404</div>;
 
-  return (
-    <main className="min-h-screen p-6">
-      <PostHeader {...meta} />
-
-      {content}
-    </main>
-  );
+  return <PostMain meta={meta} content={content} />;
 }

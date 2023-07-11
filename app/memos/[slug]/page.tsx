@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default async function Post({ params: { slug } }: Props) {
-  const { meta, content } = await getPostBySlug("posts/" + slug);
+  const { meta, content } = await getPostBySlug("memos/" + slug);
 
   if (!(meta && content)) return <div>404</div>;
 

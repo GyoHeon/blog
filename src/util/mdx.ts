@@ -18,13 +18,16 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
   return { meta: { ...frontmatter, slug: realSlug }, content };
 }
 
-export async function getAllPostsMeta(): Promise<MetaData[]> {
-  const files = fs.readdirSync(rootDirectory).filter((path) => /\.mdx?$/.test(path));
+export async function getAllPostsMeta(postType: PostType): Promise<MetaData[]> {
+  const fileDirectory = path.join(rootDirectory, postType);
+
+  const files = fs.readdirSync(fileDirectory).filter((path) => /\.mdx?$/.test(path));
 
   let posts: MetaData[] = [];
 
   for (const file of files) {
-    const post = await getPostBySlug(file);
+    const filePathWithType = path.join(postType, file);
+    const post = await getPostBySlug(filePathWithType);
 
     if (!post) continue;
 

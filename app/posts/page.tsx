@@ -1,16 +1,11 @@
 import { PostCard } from "@/components/Card";
+import { PostSection } from "@/components/layout/PostSection";
 import { getAllPostsMeta } from "@/util/mdx";
 
 export default async function Posts() {
-  const posts = await getAllPostsMeta();
+  const posts = await getAllPostsMeta("posts");
 
-  return (
-    <div className="post-box">
-      <h2 className="title-section">POSTS</h2>
+  const postsCard = posts.map((post) => <PostCard key={post.slug} {...post} slug={post.slug} />);
 
-      {posts.map((post) => (
-        <PostCard key={post.slug} {...post} slug={"posts/" + post.slug} />
-      ))}
-    </div>
-  );
+  return <PostSection postType="posts">{postsCard}</PostSection>;
 }

@@ -11,3 +11,5 @@ type BlogPost = {
   meta: MetaData;
   content: ReactElement;
 };
+
+type PostType = "posts" | "memos" | "all";

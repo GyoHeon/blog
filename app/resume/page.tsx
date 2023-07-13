@@ -16,7 +16,7 @@ function HeadInfo() {
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-12 md:w-96">
+    <main className="flex flex-col gap-12 w-full md:w-[700px]">
       <section>
         <h2 className="title-resume text-4xl font-bold">{RESUME_HEAD.name}</h2>
         <div className="flex flex-col md:flex-row justify-between">
@@ -28,10 +28,20 @@ export default function Home() {
       <section>
         <h2 className="title-resume">About Me</h2>
 
-        <p>{RESUME_HEAD.description}</p>
+        <p className="whitespace-pre-line">{RESUME_HEAD.description}</p>
       </section>
-      <section>hi</section>
-      <section>hi</section>
+      <section>
+        <h2 className="title-resume">Work Experience</h2>
+      </section>
+      <section>
+        <h2 className="title-resume">Other Project</h2>
+      </section>
+      <section>
+        <h2 className="title-resume">Activity</h2>
+      </section>
+      <section>
+        <h2 className="title-resume">ETC</h2>
+      </section>
     </main>
   );
 }

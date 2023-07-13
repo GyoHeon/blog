@@ -14,6 +14,21 @@ export const RESUME_HEAD = {
   ],
 };
 
+export const RESUME_WORK = [
+  {
+    title: "뮤즈라이브",
+    description: "KiT 앨범 사용자를 대상으로 한 커뮤니티입니다.",
+    stack: ["React", "Next", "emotion", "TypeScript"],
+    date: "2022.04 ~ 2023.07",
+    works: [
+      { title: "프로젝트 개발", date: "2022.04 ~ 2023.07", value: [] },
+      { title: "프로젝트 성능 개선", date: "2022.04 ~ 2023.07", value: [] },
+      { title: "배포 환경 구성 및 불안정성 해소", date: "2022.08 ~ 2023.02", value: [] },
+      { title: "유닛 테스트 구성", date: "2023.02 ~ 2023.07", value: [] },
+    ],
+  },
+];
+
 export const RESUME_ETC = [
   { title: "학력", value: ["서울시립대학교 물리학과"] },
   { title: "자격증", value: ["OPIC - IM1"] },

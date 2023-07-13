@@ -1,4 +1,4 @@
-import { RESUME_ETC, RESUME_HEAD } from "@/constants/resume";
+import { RESUME_ETC, RESUME_HEAD, RESUME_WORK } from "@/constants/resume";
 import Image from "next/image";
 
 function HeadInfo() {
@@ -32,6 +32,34 @@ export default function Home() {
       </section>
       <section>
         <h2 className="title-resume">Work Experiences</h2>
+
+        <ul>
+          {RESUME_WORK.map((work) => (
+            <li key={work.title} className="flex flex-col gap-2">
+              <h4>{work.title}</h4>
+              <span>{work.date}</span>
+              <span>{work.description}</span>
+
+              <span>Stack</span>
+              <ul className="flex gap-2">
+                {work.stack.map((stack) => (
+                  <li key={stack} className="tag">
+                    {stack}
+                  </li>
+                ))}
+              </ul>
+
+              <ul>
+                {work.works.map((item) => (
+                  <li key={item.title}>
+                    <h5>{item.title}</h5>
+                    <span>{item.date}</span>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
       </section>
       <section>
         <h2 className="title-resume">Other Project</h2>

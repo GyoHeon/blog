@@ -13,3 +13,8 @@ export const RESUME_HEAD = {
     { title: "Portfolio", value: "https://gyoheon.com" },
   ],
 };
+
+export const RESUME_ETC = [
+  { title: "학력", value: ["서울시립대학교 물리학과"] },
+  { title: "자격증", value: ["OPIC - IM1"] },
+];

@@ -1,4 +1,4 @@
-import { RESUME_HEAD } from "@/constants/resume";
+import { RESUME_ETC, RESUME_HEAD } from "@/constants/resume";
 import Image from "next/image";
 
 function HeadInfo() {
@@ -31,7 +31,7 @@ export default function Home() {
         <p className="whitespace-pre-line">{RESUME_HEAD.description}</p>
       </section>
       <section>
-        <h2 className="title-resume">Work Experience</h2>
+        <h2 className="title-resume">Work Experiences</h2>
       </section>
       <section>
         <h2 className="title-resume">Other Project</h2>
@@ -41,6 +41,19 @@ export default function Home() {
       </section>
       <section>
         <h2 className="title-resume">ETC</h2>
+
+        <ul>
+          {RESUME_ETC.map((etc) => (
+            <li key={etc.title}>
+              <h4>{etc.title}</h4>
+              <ul className="p-2">
+                {etc.value.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   );

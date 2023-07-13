@@ -62,10 +62,10 @@ export default function Home() {
         </ul>
       </section>
       <section>
-        <h2 className="title-resume">Other Project</h2>
+        <h2 className="title-resume">Other Projects</h2>
       </section>
       <section>
-        <h2 className="title-resume">Activity</h2>
+        <h2 className="title-resume">Activities</h2>
       </section>
       <section>
         <h2 className="title-resume">ETC</h2>

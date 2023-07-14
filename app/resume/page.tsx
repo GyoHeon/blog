@@ -1,4 +1,4 @@
-import { RESUME_ETC, RESUME_HEAD, RESUME_WORK } from "@/constants/resume";
+import { RESUME_ACTIVITIES, RESUME_ETC, RESUME_HEAD, RESUME_OTHER_PROJECTS, RESUME_WORKS } from "@/constants/resume";
 import Image from "next/image";
 
 function HeadInfo() {
@@ -11,6 +11,43 @@ function HeadInfo() {
         </li>
       ))}
     </ul>
+  );
+}
+
+function ProjectInfo({ title, projects }: { title: string; projects: typeof RESUME_WORKS }) {
+  return (
+    <section>
+      <h2 className="title-resume">{title}</h2>
+
+      <ul>
+        {projects.map((work) => (
+          <li key={work.title} className="flex flex-col gap-2">
+            <h4>{work.title}</h4>
+            <span className="text-[--text--sec] italic">{work.date}</span>
+            <span>{work.description}</span>
+
+            <span>Stack</span>
+            <ul className="flex gap-2">
+              {work.stack.map((stack) => (
+                <li key={stack} className="tag">
+                  {stack}
+                </li>
+              ))}
+            </ul>
+
+            <ul>
+              {work.works.map((item) => (
+                <li key={item.title} className="flex flex-col gap-1">
+                  <h5>{item.title}</h5>
+                  <span className="text-[--text--sec] italic">{item.date}</span>
+                  <span>{item.description}</span>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -30,43 +67,25 @@ export default function Home() {
 
         <p className="whitespace-pre-line">{RESUME_HEAD.description}</p>
       </section>
+
+      <ProjectInfo title="Work Experiences" projects={RESUME_WORKS} />
+
+      <ProjectInfo title="Other Projects" projects={RESUME_OTHER_PROJECTS} />
+
       <section>
-        <h2 className="title-resume">Work Experiences</h2>
+        <h2 className="title-resume">Activities</h2>
 
         <ul>
-          {RESUME_WORK.map((work) => (
-            <li key={work.title} className="flex flex-col gap-2">
-              <h4>{work.title}</h4>
-              <span>{work.date}</span>
-              <span>{work.description}</span>
-
-              <span>Stack</span>
-              <ul className="flex gap-2">
-                {work.stack.map((stack) => (
-                  <li key={stack} className="tag">
-                    {stack}
-                  </li>
-                ))}
-              </ul>
-
-              <ul>
-                {work.works.map((item) => (
-                  <li key={item.title}>
-                    <h5>{item.title}</h5>
-                    <span>{item.date}</span>
-                  </li>
-                ))}
-              </ul>
+          {RESUME_ACTIVITIES.map((activity) => (
+            <li key={activity.title} className="flex flex-col gap-1">
+              <h4>{activity.title}</h4>
+              <span className="text-[--text--sec] italic">{activity.date}</span>
+              <span>{activity.description}</span>
             </li>
           ))}
         </ul>
       </section>
-      <section>
-        <h2 className="title-resume">Other Projects</h2>
-      </section>
-      <section>
-        <h2 className="title-resume">Activities</h2>
-      </section>
+
       <section>
         <h2 className="title-resume">ETC</h2>
 

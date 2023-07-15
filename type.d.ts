@@ -1,15 +1,15 @@
-type MetaData = {
+interface IMetaData {
   title: string;
+  date: string;
   description: string;
   slug: string;
-  date: string;
   tags: string;
   image: string;
-};
+}
 
-type BlogPost = {
-  meta: MetaData;
+interface IBlogPost {
+  meta: IMetaData;
   content: ReactElement;
-};
+}
 
-type PostType = "posts" | "memos" | "all";
+type TPost = "posts" | "memos" | "all";

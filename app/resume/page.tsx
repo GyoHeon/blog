@@ -23,7 +23,7 @@ function ProjectInfo({ title, projects }: { title: string; projects: typeof RESU
         {projects.map((work) => (
           <li key={work.title} className="flex flex-col gap-2">
             <h4>{work.title}</h4>
-            <span className="text-[--text--sec] italic">{work.date}</span>
+            <span className="date">{work.date}</span>
             <span>{work.description}</span>
 
             <span>Stack</span>
@@ -39,7 +39,7 @@ function ProjectInfo({ title, projects }: { title: string; projects: typeof RESU
               {work.works.map((item) => (
                 <li key={item.title} className="flex flex-col gap-1">
                   <h5>{item.title}</h5>
-                  <span className="text-[--text--sec] italic">{item.date}</span>
+                  <span className="date">{item.date}</span>
                   <span>{item.description}</span>
                 </li>
               ))}
@@ -79,7 +79,7 @@ export default function Home() {
           {RESUME_ACTIVITIES.map((activity) => (
             <li key={activity.title} className="flex flex-col gap-1">
               <h4>{activity.title}</h4>
-              <span className="text-[--text--sec] italic">{activity.date}</span>
+              <span className="date">{activity.date}</span>
               <span>{activity.description}</span>
             </li>
           ))}

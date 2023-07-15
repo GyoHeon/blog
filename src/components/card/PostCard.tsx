@@ -1,14 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-interface Props {
-  title: string;
-  description: string;
-  image: string;
-  slug: string;
-}
+type Props = Omit<IMetaData, "tags">;
 
-export function PostCard({ title, description, image, slug }: Props) {
+export function PostCard({ title, date, description, image, slug }: Props) {
   return (
     <article className="border-b-4 border-b-[--bg--sec] overflow-hidden">
       <Link className="flex flex-row md:flex-col w-auto h-56 md:h-80" href={slug}>
@@ -22,7 +17,8 @@ export function PostCard({ title, description, image, slug }: Props) {
 
         <div className="min-w-0 ml-4 md:ml-0 p-1">
           <h5 className="mt-2 md:mt-4 font-bold truncate">{title}</h5>
-          <p className="mt-2 text-main text-[--text--sec]">{description}</p>
+          <span className="date">{date}</span>
+          <p className="mt-2 text-main">{description}</p>
         </div>
       </Link>
     </article>

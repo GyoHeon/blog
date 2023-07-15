@@ -4,13 +4,13 @@ import path from "path";
 
 const rootDirectory = path.join(process.cwd(), "mdx");
 
-export async function getPostBySlug(slug: string): Promise<BlogPost> {
+export async function getPostBySlug(slug: string): Promise<IBlogPost> {
   const realSlug = slug.replace(/\.mdx$/, "");
   const filePath = path.join(rootDirectory, `${realSlug}.mdx`);
 
   const fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
 
-  const { frontmatter, content } = await compileMDX<MetaData>({
+  const { frontmatter, content } = await compileMDX<IMetaData>({
     source: fileContent,
     options: { parseFrontmatter: true },
   });
@@ -18,12 +18,12 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
   return { meta: { ...frontmatter, slug: realSlug }, content };
 }
 
-export async function getAllPostsMeta(postType: PostType): Promise<MetaData[]> {
+export async function getAllPostsMeta(postType: TPost): Promise<IMetaData[]> {
   const fileDirectory = path.join(rootDirectory, postType);
 
   const files = fs.readdirSync(fileDirectory).filter((path) => /\.mdx?$/.test(path));
 
-  let posts: MetaData[] = [];
+  let posts: IMetaData[] = [];
 
   for (const file of files) {
     const filePathWithType = path.join(postType, file);

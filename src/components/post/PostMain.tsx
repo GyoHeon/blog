@@ -1,7 +1,7 @@
 import { PostHeader } from "./PostHeader";
 
 interface Props {
-  meta: MetaData;
+  meta: IMetaData;
   content: React.ReactNode;
 }
 

@@ -1,4 +1,4 @@
-import { PostCard } from "@/components/Card";
+import { PostCard } from "@/components/card/PostCard";
 import { PostSection } from "@/components/layout/PostSection";
 import { getAllPostsMeta } from "@/util/mdx";
 

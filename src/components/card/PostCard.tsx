@@ -6,7 +6,7 @@ type Props = Omit<IMetaData, "tags">;
 
 export function PostCard({ title, date, description, image, slug }: Props) {
   return (
-    <article className="border-b-4 border-b-[--bg--sec] overflow-hidden">
+    <article className="card border-b-4">
       <Link className="flex flex-row md:flex-col w-auto h-56 md:h-80" href={slug}>
         <Image
           className="w-60 md:w-auto md:h-40 object-cover hover:scale-105 transition-transform"

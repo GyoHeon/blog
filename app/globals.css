@@ -4,7 +4,7 @@
 
 @layer components {
   .date {
-    @apply text-[--text--sec] text-[14px] italic;
+    @apply text-[--text--sec] text-sm italic;
   }
   .tag {
     @apply px-2 bg-[--green] rounded-md;

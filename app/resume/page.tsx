@@ -1,3 +1,4 @@
+import { Date } from "@/components/Date";
 import { RESUME_ACTIVITIES, RESUME_ETC, RESUME_HEAD, RESUME_OTHER_PROJECTS, RESUME_WORKS } from "@/constants/resume";
 import Image from "next/image";
 
@@ -23,10 +24,9 @@ function ProjectInfo({ title, projects }: { title: string; projects: typeof RESU
         {projects.map((work) => (
           <li key={work.title} className="flex flex-col gap-2">
             <h4>{work.title}</h4>
-            <span className="date">{work.date}</span>
+            <Date date={work.date} />
             <span>{work.description}</span>
 
-            <span>Stack</span>
             <ul className="flex gap-2">
               {work.stack.map((stack) => (
                 <li key={stack} className="tag">
@@ -39,7 +39,7 @@ function ProjectInfo({ title, projects }: { title: string; projects: typeof RESU
               {work.works.map((item) => (
                 <li key={item.title} className="flex flex-col gap-1">
                   <h5>{item.title}</h5>
-                  <span className="date">{item.date}</span>
+                  <Date date={item.date} />
                   <span>{item.description}</span>
                 </li>
               ))}
@@ -79,7 +79,7 @@ export default function Home() {
           {RESUME_ACTIVITIES.map((activity) => (
             <li key={activity.title} className="flex flex-col gap-1">
               <h4>{activity.title}</h4>
-              <span className="date">{activity.date}</span>
+              <Date date={activity.date} />
               <span>{activity.description}</span>
             </li>
           ))}

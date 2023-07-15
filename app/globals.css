@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-  .date {
-    @apply text-[--text--sec] text-sm italic;
-  }
   .tag {
     @apply px-2 bg-[--green] rounded-md;
   }

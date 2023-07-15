@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Date } from "../Date";
 
 type Props = Omit<IMetaData, "tags">;
 
@@ -17,7 +18,7 @@ export function PostCard({ title, date, description, image, slug }: Props) {
 
         <div className="min-w-0 ml-4 md:ml-0 p-1">
           <h5 className="mt-2 md:mt-4 font-bold truncate">{title}</h5>
-          <span className="date">{date}</span>
+          <Date date={date} />
           <p className="mt-2 text-main">{description}</p>
         </div>
       </Link>

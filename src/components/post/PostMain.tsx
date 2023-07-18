@@ -7,7 +7,7 @@ interface Props {
 
 export default function PostMain({ meta, content }: Props) {
   return (
-    <main className="min-h-screen p-6">
+    <main className="content-width min-h-screen p-6">
       <PostHeader {...meta} />
 
       {content}

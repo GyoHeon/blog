@@ -7,11 +7,5 @@ export default async function Memos() {
 
   const postsCard = posts.map((post) => <MemoCard key={post.slug} {...post} slug={post.slug} />);
 
-  return (
-    <PostSection postType="memos">
-      {postsCard}
-      {postsCard}
-      {postsCard}
-    </PostSection>
-  );
+  return <PostSection postType="memos">{postsCard}</PostSection>;
 }

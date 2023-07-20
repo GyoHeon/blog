@@ -7,7 +7,7 @@ interface Props {
 export function Tags({ tags }: Props) {
   if (!tags) return null;
 
-  const tagList = tags.split(",");
+  const tagList = tags.split(",").map((tag) => tag.trim());
 
   return (
     <ul className="flex gap-4">

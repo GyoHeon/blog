@@ -1,7 +1,15 @@
+import Link from "next/link";
+
 interface Props {
   tag: string;
 }
 
 export function Tag({ tag }: Props) {
-  return <li className="tag">{tag}</li>;
+  return (
+    <li>
+      <Link href={`/tags/${tag}`} className="tag">
+        {tag}
+      </Link>
+    </li>
+  );
 }

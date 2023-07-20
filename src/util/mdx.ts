@@ -1,6 +1,9 @@
 import fs from "fs";
 import { compileMDX } from "next-mdx-remote/rsc";
 import path from "path";
+import rehypeAutolinkHeadings from "rehype-autolink-headings/lib";
+import rehypeHighlight from "rehype-highlight/lib";
+import rehypeSlug from "rehype-slug";
 
 const rootDirectory = path.join(process.cwd(), "mdx");
 
@@ -12,7 +15,21 @@ export async function getPostBySlug(slug: string): Promise<IBlogPost> {
 
   const { frontmatter, content } = await compileMDX<IMetaData>({
     source: fileContent,
-    options: { parseFrontmatter: true },
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [
+          rehypeHighlight,
+          rehypeSlug,
+          [
+            rehypeAutolinkHeadings,
+            {
+              behavior: "wrap",
+            },
+          ],
+        ],
+      },
+    },
   });
 
   return { meta: { ...frontmatter, slug: realSlug }, content };

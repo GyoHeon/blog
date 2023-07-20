@@ -1,3 +1,4 @@
+import "highlight.js/styles/github-dark.css";
 import { PostHeader } from "./PostHeader";
 
 interface Props {

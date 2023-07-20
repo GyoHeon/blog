@@ -10,7 +10,7 @@
     @apply w-full md:w-[300px] lg:w-[280px] border-[--bg--sec] overflow-hidden;
   }
   .tag {
-    @apply px-2 py-0.5 bg-[--green] rounded-md hover:bg-[--blue];
+    @apply px-2 py-0.5 bg-[--green] rounded-md hover:bg-[--blue] transition-colors;
   }
   .post-box {
     @apply grid grid-flow-row grid-cols-1 gap-12 gap-y-12 md:grid-cols-2 lg:grid-cols-3 max-w-4xl w-full md:w-auto mx-auto;

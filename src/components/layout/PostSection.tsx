@@ -1,14 +1,17 @@
 import React from "react";
 
 interface Props {
-  postType: TPost;
   children: React.ReactNode;
+  title?: string;
+  postType: TPost;
 }
 
-export function PostSection({ postType, children }: Props) {
+export function PostSection({ postType, title, children }: Props) {
+  if (!title) title = postType;
+
   return (
     <div className="post-box">
-      <h2 className="title-section">{postType.toUpperCase()}</h2>
+      <h2 className="title-section">{title.toUpperCase()}</h2>
 
       {children}
     </div>

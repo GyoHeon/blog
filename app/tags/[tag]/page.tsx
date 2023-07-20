@@ -1,6 +1,6 @@
 import { PostCard } from "@/components/card/PostCard";
+import { PostSection } from "@/components/layout/PostSection";
 import { getAllPostsMeta } from "@/util/mdx";
-import { Fragment } from "react";
 
 interface Props {
   params: {
@@ -20,10 +20,10 @@ export default async function Tags({ params: { tag } }: Props) {
   }
 
   return (
-    <Fragment>
+    <PostSection postType="posts" title={tag}>
       {tagPosts.map((post) => (
         <PostCard key={post.slug} {...post} slug={post.slug} />
       ))}
-    </Fragment>
+    </PostSection>
   );
 }

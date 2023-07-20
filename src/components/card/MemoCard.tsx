@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Date } from "../Date";
 
-type Props = Omit<IMetaData, "tags" | "image">;
+type Props = Omit<IMemoMetaData, "tags">;
 
 export function MemoCard({ title, date, description, slug }: Props) {
   return (

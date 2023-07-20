@@ -3,15 +3,15 @@ import { PostHeader } from "./PostHeader";
 
 interface Props {
   meta: IMetaData;
-  content: React.ReactNode;
+  children: React.ReactNode;
 }
 
-export default function PostMain({ meta, content }: Props) {
+export default function PostMain({ meta, children }: Props) {
   return (
     <main className="content-width min-h-screen p-6">
       <PostHeader {...meta} />
 
-      {content}
+      <article>{children}</article>
     </main>
   );
 }

@@ -3,9 +3,11 @@ import { PostSection } from "@/components/layout/PostSection";
 import { getAllPostsMeta } from "@/util/mdx";
 
 export default async function Memos() {
-  const posts = await getAllPostsMeta("memos");
+  const memos = await getAllPostsMeta("memos");
 
-  const postsCard = posts.map((post) => <MemoCard key={post.slug} {...post} slug={post.slug} />);
+  if (!memos) return <p>No posts!</p>;
 
-  return <PostSection postType="memos">{postsCard}</PostSection>;
+  const memoCards = memos.map((post) => <MemoCard key={post.slug} {...post} slug={post.slug} />);
+
+  return <PostSection postType="memos">{memoCards}</PostSection>;
 }

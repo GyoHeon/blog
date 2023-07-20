@@ -5,7 +5,9 @@ import { getAllPostsMeta } from "@/util/mdx";
 export default async function Posts() {
   const posts = await getAllPostsMeta("posts");
 
-  const postsCard = posts.map((post) => <PostCard key={post.slug} {...post} slug={post.slug} />);
+  if (!posts) return <p>No posts!</p>;
 
-  return <PostSection postType="posts">{postsCard}</PostSection>;
+  const postCards = posts.map((post) => <PostCard key={post.slug} {...post} slug={post.slug} />);
+
+  return <PostSection postType="posts">{postCards}</PostSection>;
 }

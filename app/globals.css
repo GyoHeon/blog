@@ -117,27 +117,33 @@ body {
   }
 }
 
-h1 {
-  font-size: 2.2em;
+h1,
+h1 > a {
+  font-size: 36px;
   font-weight: 700;
 }
-h2 {
-  font-size: 2em;
+h2,
+h2 > a {
+  font-size: 32px;
   font-weight: 700;
 }
-h3 {
-  font-size: 1.8em;
+h3,
+h3 > a {
+  font-size: 28px;
   font-weight: 700;
 }
-h4 {
-  font-size: 1.6em;
+h4,
+h4 > a {
+  font-size: 24px;
   font-weight: 700;
 }
-h5 {
-  font-size: 1.4em;
+h5,
+h5 > a {
+  font-size: 22px;
   font-weight: 700;
 }
-h6 {
-  font-size: 1.2em;
+h6,
+h6 > a {
+  font-size: 20px;
   font-weight: 700;
 }

@@ -23,8 +23,8 @@ slug: react-ui-libraries
 ### Ref
 
 모든 라이브러리들이 컴포넌트를 forwardRef로 감싸 두었다.
-디자인 라이브러리를 만들려면 당연히 해야하는 것인지 모르겠다.
-이왕이면 상태를 최소화하여 쓰고싶다.(Next.js와의 호환성, 다른 환경에서의 사용을 위해서)
+이는 ref를 직접 React component에 전달하면 안되기 때문이다.
+따라서 라이브러리 사용자가 React component안의 DOM element에 접근할 수 있도록 하기 위해서다.
 
 ### Build
 

@@ -1,5 +1,6 @@
 import "highlight.js/styles/github-dark.css";
 import { PostHeader } from "./PostHeader";
+import "./styles.css";
 
 interface Props {
   meta: IMetaData;
@@ -11,7 +12,7 @@ export default function PostMain({ meta, children }: Props) {
     <main className="content-width min-h-screen p-6">
       <PostHeader {...meta} />
 
-      <article>{children}</article>
+      <article id="main-post">{children}</article>
     </main>
   );
 }

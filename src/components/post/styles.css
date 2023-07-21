@@ -1,0 +1,15 @@
+#main-post p {
+  margin-bottom: 1em;
+}
+#main-post a {
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+}
+#main-post h1,
+#main-post h2,
+#main-post h3,
+#main-post h4,
+#main-post h5,
+#main-post h6 {
+  margin-top: 0.5em;
+}

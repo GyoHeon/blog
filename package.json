@@ -14,7 +14,11 @@
     "url": "git+https://github.com/GyoHeonLee/blog.git"
   },
   "keywords": [
-    "blog"
+    "blog",
+    "front-end",
+    "next.js",
+    "react",
+    "typescript"
   ],
   "author": "GyoHeon Lee",
   "license": "MIT",
@@ -29,14 +33,8 @@
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.4.4",
-    "@types/mdx": "^2.0.5",
-    "@types/node": "20.2.4",
-    "@types/react": "18.2.7",
-    "@types/react-dom": "18.2.4",
     "@vercel/analytics": "^1.0.1",
     "autoprefixer": "10.4.14",
-    "eslint": "8.41.0",
-    "eslint-config-next": "13.4.4",
     "highlight.js": "^11.8.0",
     "next": "13.4.4",
     "next-mdx-remote": "^4.4.1",
@@ -48,5 +46,13 @@
     "rehype-slug": "^5.1.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/mdx": "^2.0.5",
+    "@types/node": "20.2.4",
+    "@types/react": "18.2.7",
+    "@types/react-dom": "18.2.4",
+    "eslint": "8.41.0",
+    "eslint-config-next": "13.4.4"
   }
 }

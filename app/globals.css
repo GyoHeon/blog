@@ -55,7 +55,7 @@ body {
 }
 
 ::selection {
-  background: var(--blue-sec);
+  background: var(--orange);
 }
 @media (prefers-color-scheme: dark) {
   :root {

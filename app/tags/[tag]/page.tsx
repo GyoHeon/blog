@@ -11,7 +11,7 @@ interface Props {
 
 export default async function Tags({ params: { tag } }: Props) {
   const rawPosts = await getAllPostsMeta("posts");
-  const rawMemos = await getAllPostsMeta("posts");
+  const rawMemos = await getAllPostsMeta("memos");
 
   if (!(rawPosts || rawMemos)) return <p>No posts</p>;
 

@@ -1,7 +1,6 @@
 import { HEADER_MENUS } from "@/constants/urls";
 import Image from "next/image";
 import Link from "next/link";
-import { ThemeButton } from "../button/ThemeButton";
 
 export function MainHeader() {
   return (
@@ -28,9 +27,6 @@ export function MainHeader() {
             </Link>
           </li>
         ))}
-        <li>
-          <ThemeButton />
-        </li>
       </ul>
     </header>
   );

@@ -21,19 +21,6 @@
   .title-section {
     @apply md:col-span-2 lg:col-span-3 border-b-4 border-b-[--text];
   }
-  .crater {
-    position: absolute;
-    border-radius: 100%;
-    background-color: #e8cda5;
-    opacity: 0;
-    transition: opacity 200ms ease-in-out;
-  }
-  .star {
-    position: absolute;
-    border-radius: 50%;
-    background-color: #fff;
-    transition: all 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  }
 }
 
 /* prettier-ignore  */
@@ -65,9 +52,7 @@ body {
   font-size: 10px;
   font-family: "Nunito Sans", sans-serif;
   background-color: var(--bg);
-}
-:root,
-:root.dark {
+
   --bg: #1c1c1c;
   --bg--sec: #333333;
   --text: #f2f2f2;
@@ -79,25 +64,6 @@ body {
   --blue-sec: #0077b6;
   --purple: #a85fd8;
   --red: #ff5454;
-}
-:root.light {
-  --bg: #e6e7ee;
-  --bg--sec: #ffffff;
-  --text: #000000;
-  --text--sec: #333333;
-  --border: #d1d9e6;
-  --orange: #daa276;
-  --green: #00cc66;
-  --blue: #0056b3;
-  --blue-sec: #00a4d8;
-  --purple: #9933cc;
-  --red: #dc3545;
-}
-
-:root,
-:root.dark {
-}
-:root.light {
 }
 
 @screen md {

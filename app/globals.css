@@ -32,7 +32,9 @@ legend, table, caption, tbody, tfoot, thead, tr, th, td, article,
 aside, canvas, details, embed, figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary, time, mark, audio, video {
   font-size: 1.6rem;
+  line-height: 1.5em;
   color: var(--text);
+  vertical-align: bottom;
 }
 
 body {
@@ -43,10 +45,6 @@ body {
 
 ::selection {
   background: var(--orange);
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-  }
 }
 :root {
   font-size: 10px;
@@ -85,31 +83,43 @@ body {
 
 h1,
 h1 > a {
+  margin-top: 0.5em;
+  margin-bottom: 0.25em;
   font-size: 36px;
   font-weight: 700;
 }
 h2,
 h2 > a {
+  margin-top: 0.5em;
+  margin-bottom: 0.25em;
   font-size: 32px;
   font-weight: 700;
 }
 h3,
 h3 > a {
+  margin-top: 0.5em;
+  margin-bottom: 0.25em;
   font-size: 28px;
   font-weight: 700;
 }
 h4,
 h4 > a {
+  margin-top: 0.5em;
+  margin-bottom: 0.25em;
   font-size: 24px;
   font-weight: 700;
 }
 h5,
 h5 > a {
+  margin-top: 0.5em;
+  margin-bottom: 0.25em;
   font-size: 22px;
   font-weight: 700;
 }
 h6,
 h6 > a {
+  margin-top: 0.5em;
+  margin-bottom: 0.25em;
   font-size: 20px;
   font-weight: 700;
 }

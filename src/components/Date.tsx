@@ -8,7 +8,7 @@ export function Date({ className, date }: Props) {
 
   return (
     <time
-      className={`w-fit p-0.5 pr-1 border-b-2 border-[--orange] text-[--text--sec] text-xsmall italic ${className}`}
+      className={`w-fit p-0.5 pr-1 pb-0 border-b-2 border-[--orange] text-[--text--sec] text-xsmall italic ${className}`}
       dateTime={dateTime}
     >
       {date}

@@ -16,6 +16,13 @@ export const RESUME_HEAD = {
 
 export const RESUME_WORKS = [
   {
+    title: "교보문고 DT",
+    date: "2023.07 ~ 재직중",
+    description: "교보문고의 DT 팀에서 프론트엔드 개발자로 근무하고 있습니다.",
+    stack: ["React"],
+    works: [],
+  },
+  {
     title: "뮤즈라이브",
     date: "2022.04 ~ 2023.07",
     description: "KiT 앨범 사용자를 대상으로 한 커뮤니티입니다.",

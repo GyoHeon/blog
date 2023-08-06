@@ -7,7 +7,7 @@ function HeadInfo() {
     <ul className="flex flex-col mt-10 md:mt-0 border-b-[1px] border-white">
       {RESUME_HEAD.information.map((info) => (
         <li key={info.title} className="flex gap-4 items-center py-1 border-t-[1px] border-white">
-          <h6 className="w-32 md:w-20 text-end text-[--blue]">{info.title}</h6>
+          <h6 className="w-32 md:w-20 my-[0.25em] text-end text-[--blue]">{info.title}</h6>
           <a>{info.value}</a>
         </li>
       ))}
@@ -22,12 +22,11 @@ function ProjectInfo({ title, projects }: { title: string; projects: typeof RESU
 
       <ul>
         {projects.map((work) => (
-          <li key={work.title} className="flex flex-col gap-2">
+          <li key={work.title} className="flex flex-col gap-2 pb-2 border-b border-neutral-700">
             <h4>{work.title}</h4>
-            <Date date={work.date} />
-            <span>{work.description}</span>
+            <Date className="text-[20px]" date={work.date} />
 
-            <ul className="flex gap-2">
+            <ul className="flex gap-2 my-2">
               {work.stack.map((stack) => (
                 <li key={stack} className="tag">
                   {stack}
@@ -35,12 +34,14 @@ function ProjectInfo({ title, projects }: { title: string; projects: typeof RESU
               ))}
             </ul>
 
-            <ul>
+            <span>{work.description}</span>
+
+            <ul className="list-disc">
               {work.works.map((item) => (
-                <li key={item.title} className="flex flex-col gap-1">
+                <li key={item.title} className="flex flex-col gap-1 ml-2">
                   <h5>{item.title}</h5>
                   <Date date={item.date} />
-                  <span>{item.description}</span>
+                  <p className="ml-2 mt-2">{item.description}</p>
                 </li>
               ))}
             </ul>
@@ -57,7 +58,13 @@ export default function Home() {
       <section>
         <h2 className="title-resume text-4xl font-bold">{RESUME_HEAD.name}</h2>
         <div className="flex flex-col md:flex-row justify-between">
-          <Image src={RESUME_HEAD.image} width={300} height={300} alt={RESUME_HEAD.name} />
+          <Image
+            className="mx-auto md:mx-0 object-contain"
+            src={RESUME_HEAD.image}
+            width={300}
+            height={300}
+            alt={RESUME_HEAD.name}
+          />
           <HeadInfo />
         </div>
       </section>
@@ -77,10 +84,10 @@ export default function Home() {
 
         <ul>
           {RESUME_ACTIVITIES.map((activity) => (
-            <li key={activity.title} className="flex flex-col gap-1">
+            <li key={activity.title} className="flex flex-col gap-1 pb-2 border-b border-neutral-700">
               <h4>{activity.title}</h4>
               <Date date={activity.date} />
-              <span>{activity.description}</span>
+              <span className="ml-2">{activity.description}</span>
             </li>
           ))}
         </ul>

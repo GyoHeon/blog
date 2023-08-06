@@ -1,12 +1,13 @@
 import { HEADER_MENUS } from "@/constants/urls";
 import Image from "next/image";
 import Link from "next/link";
+import { ThemeButton } from "../button/ThemeButton";
 
 export function MainHeader() {
   return (
-    <header className="w-full h-20 px-4 py-2 border-b-2 border-[--orange]">
+    <header className="fixed w-full h-20 px-4 py-2 border-b-2 border-[--orange] bg-[--bg]">
       <ul className="flex items-center gap-5 h-full">
-        <li className="mr-auto px-2 rounded-lg">
+        <li className="mr-auto">
           <Link href="/" className="flex items-center gap-0.5 px-0 py-0.5 text-xl hover:text-[--orange]">
             <h1>
               <Image
@@ -27,7 +28,9 @@ export function MainHeader() {
             </Link>
           </li>
         ))}
-        <li>{/* <ThemeButton /> */}</li>
+        <li>
+          <ThemeButton />
+        </li>
       </ul>
     </header>
   );

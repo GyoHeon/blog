@@ -7,8 +7,11 @@ export function MainHeader() {
     <header className="fixed w-full h-20 px-4 py-2 border-b-2 border-[--orange] bg-[--bg]">
       <ul className="flex items-center gap-5 h-full">
         <li className="mr-auto">
-          <Link href="/" className="flex items-center gap-0.5 px-0 py-0.5 text-xl hover:text-[--orange]">
-            <h1>
+          <Link
+            href="/"
+            className="flex items-center gap-0.5 px-0 py-0.5 text-xl hover:text-[--blue] transition-colors"
+          >
+            <h1 className="my-0">
               <Image
                 className="md:w-[50px] md:h-[50px]"
                 src="/image/gear.png"
@@ -22,7 +25,7 @@ export function MainHeader() {
         </li>
         {HEADER_MENUS.map((menu) => (
           <li key={menu.name}>
-            <Link href={menu.url} className="text-xl hover:text-[--orange]">
+            <Link href={menu.url} className="text-xl hover:text-[--blue]">
               {menu.name}
             </Link>
           </li>

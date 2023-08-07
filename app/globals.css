@@ -7,7 +7,14 @@
     @apply w-full md:w-[737px];
   }
   .card {
+    @apply default-card;
+    @apply hover-card;
+  }
+  .default-card {
     @apply w-full md:w-[300px] lg:w-[280px] border-[--bg--sec] overflow-hidden;
+  }
+  .hover-card {
+    @apply transition-colors hover:border-[--blue];
   }
   .tag {
     @apply px-2 py-0.5 bg-[--green] rounded-md hover:bg-[--blue] transition-colors;

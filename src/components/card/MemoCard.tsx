@@ -5,7 +5,7 @@ type Props = Omit<IMemoMetaData, "tags">;
 
 export function MemoCard({ title, date, description, slug }: Props) {
   return (
-    <article className="card border-2">
+    <article className="card border-2 hover:border-[--blue] transition-colors">
       <Link className="flex flex-row md:flex-col h-56 md:h-40" href={slug}>
         <div className="ml-4 md:ml-0 p-1">
           <h5 className="mt-2 md:mt-4 font-bold truncate">{title}</h5>

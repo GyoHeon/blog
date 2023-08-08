@@ -51,7 +51,7 @@ export const RESUME_WORKS = [
       {
         title: "유닛 테스트 구성",
         date: "2023.02 ~ 2023.07",
-        description: "프로젝트의 불안정성을 해소하기 위해 테스틑 도입하였습니다.",
+        description: "프로젝트의 불안정성을 해소하기 위해 테스트를 도입하였습니다.",
         value: [],
       },
     ],

@@ -9,3 +9,11 @@
 #main-post a:hover {
   color: var(--orange);
 }
+
+#main-post ol {
+  list-style: decimal;
+}
+
+#main-post ul {
+  list-style: disc;
+}

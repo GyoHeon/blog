@@ -68,7 +68,7 @@ body {
   --blue: #4e8fd1;
   --blue-sec: #0077b6;
   --purple: #a85fd8;
-  --red: #ff5454;
+  --red: #df5452;
 }
 
 @screen md {
@@ -91,7 +91,6 @@ body {
 h1,
 h1 > a {
   margin-top: 0.5em;
-  margin-bottom: 0.25em;
   font-size: 36px;
   font-weight: 700;
 }
@@ -132,7 +131,7 @@ h6 > a {
 }
 
 code {
-  color: var(--blue-sec);
+  color: var(--red);
   padding: 0.125em 0.3em;
   font-size: 0.75em;
   border-radius: 4px;

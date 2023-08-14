@@ -46,7 +46,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:18.2.0"],\
             ["rehype-autolink-headings", "npm:6.1.1"],\
-            ["rehype-color-chips", "npm:0.1.3"],\
             ["rehype-highlight", "npm:6.0.0"],\
             ["rehype-slug", "npm:5.1.0"],\
             ["tailwindcss", "npm:3.3.2"],\
@@ -1157,7 +1156,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:c6dcce817fa225290e033ab3df9d032741dc228bb28c9cbb4719875ef6095c1c8f4a1ecb6d1cce6f1119ad7c9bb93c31bc307a4e235fab5627d039ca42e55b65#npm:18.2.0"],\
             ["rehype-autolink-headings", "npm:6.1.1"],\
-            ["rehype-color-chips", "npm:0.1.3"],\
             ["rehype-highlight", "npm:6.0.0"],\
             ["rehype-slug", "npm:5.1.0"],\
             ["tailwindcss", "npm:3.3.2"],\
@@ -1493,15 +1491,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/csstype-npm-3.1.2-cead7d99b2-e1a52e6c25.zip/node_modules/csstype/",\
           "packageDependencies": [\
             ["csstype", "npm:3.1.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["d3-color", [\
-        ["npm:3.1.0", {\
-          "packageLocation": "./.yarn/cache/d3-color-npm-3.1.0-fc73fe3b15-4931fbfda5.zip/node_modules/d3-color/",\
-          "packageDependencies": [\
-            ["d3-color", "npm:3.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5364,18 +5353,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["hast-util-heading-rank", "npm:2.1.1"],\
             ["hast-util-is-element", "npm:2.1.3"],\
             ["unified", "npm:10.1.2"],\
-            ["unist-util-visit", "npm:4.1.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["rehype-color-chips", [\
-        ["npm:0.1.3", {\
-          "packageLocation": "./.yarn/cache/rehype-color-chips-npm-0.1.3-3841735f5f-33faa00088.zip/node_modules/rehype-color-chips/",\
-          "packageDependencies": [\
-            ["rehype-color-chips", "npm:0.1.3"],\
-            ["d3-color", "npm:3.1.0"],\
-            ["hast-util-to-string", "npm:2.0.0"],\
             ["unist-util-visit", "npm:4.1.2"]\
           ],\
           "linkType": "HARD"\

@@ -130,3 +130,18 @@ h6 > a {
   font-size: 20px;
   font-weight: 700;
 }
+
+code {
+  color: var(--blue-sec);
+  padding: 0.125em 0.3em;
+  font-size: 0.75em;
+  border-radius: 4px;
+  border: 1px solid gray;
+  vertical-align: middle;
+}
+pre code {
+  height: auto;
+  width: auto;
+  border: none;
+  border-radius: 0;
+}

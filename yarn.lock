@@ -884,6 +884,7 @@ __metadata:
     react: ^18.2.0
     react-dom: 18.2.0
     rehype-autolink-headings: ^6.1.1
+    rehype-color-chips: ^0.1.3
     rehype-highlight: ^6.0.0
     rehype-slug: ^5.1.0
     tailwindcss: 3.3.2
@@ -1179,6 +1180,13 @@ __metadata:
   version: 3.1.2
   resolution: "csstype@npm:3.1.2"
   checksum: e1a52e6c25c1314d6beef5168da704ab29c5186b877c07d822bd0806717d9a265e8493a2e35ca7e68d0f5d472d43fac1cdce70fd79fd0853dff81f3028d857b5
+  languageName: node
+  linkType: hard
+
+"d3-color@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "d3-color@npm:3.1.0"
+  checksum: 4931fbfda5d7c4b5cfa283a13c91a954f86e3b69d75ce588d06cde6c3628cebfc3af2069ccf225e982e8987c612aa7948b3932163ce15eb3c11cd7c003f3ee3b
   languageName: node
   linkType: hard
 
@@ -4448,6 +4456,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rehype-color-chips@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "rehype-color-chips@npm:0.1.3"
+  dependencies:
+    d3-color: ^3.1.0
+    hast-util-to-string: ^2.0.0
+    unist-util-visit: ^4.1.1
+  checksum: 33faa0008837a5518a88b715cf6e911bde4ce2cbb62df7dae11354f0b00d91d0a7da14e7cbdd02c48df485797d3b9c25dc45351366beac81418116d833a67c47
+  languageName: node
+  linkType: hard
+
 "rehype-highlight@npm:^6.0.0":
   version: 6.0.0
   resolution: "rehype-highlight@npm:6.0.0"
@@ -5307,7 +5326,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-visit@npm:^4.0.0":
+"unist-util-visit@npm:^4.0.0, unist-util-visit@npm:^4.1.1":
   version: 4.1.2
   resolution: "unist-util-visit@npm:4.1.2"
   dependencies:

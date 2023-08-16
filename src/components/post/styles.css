@@ -1,13 +1,20 @@
+@tailwind components;
+@tailwind utilities;
+
 #main-post p {
   margin-bottom: 1em;
 }
-#main-post a {
+#main-post h2 a,
+h3 a {
   text-decoration: underline;
   text-decoration-color: var(--orange);
+  text-decoration-thickness: 2px;
   transition: color 0.2s ease-in-out;
 }
-#main-post a:hover {
+#main-post h2 a:hover,
+h3 a:hover {
   color: var(--orange);
+  text-decoration-color: var(--blue);
 }
 
 #main-post ol {
@@ -16,4 +23,36 @@
 
 #main-post ul {
   list-style: disc;
+}
+
+#main-post blockquote {
+  padding: 0.75rem 0.75rem 0.75rem 1.5rem;
+  border-left: 3px solid var(--orange);
+  background-color: var(--bg--sec);
+}
+
+#main-post blockquote p {
+  margin: 0;
+}
+
+#main-post hr {
+  margin: 2rem 0;
+  opacity: 0.3;
+}
+
+#main-post pre {
+  margin: 2rem 0;
+}
+#main-post pre code {
+  padding: 1rem;
+}
+#main-post pre code,
+code * {
+  font-size: 12px;
+}
+@screen md {
+  #main-post pre code,
+  code * {
+    font-size: 14px;
+  }
 }

@@ -3,7 +3,7 @@ title: React Docs를 읽자. - 1
 description: 새로워진 React Docs를 읽어보자.
 date: 2023.08.14
 tags: React, Front-end
-image: /thumbnail/Sir_Tim_Berners-Lee.jpg
+image: https://react.dev/images/home/conf2019/cover.svg
 slug: React-Docs-1
 ---
 
@@ -15,18 +15,29 @@ slug: React-Docs-1
 
 ### Your First Component
 
-1.  전통적으로 웹 페이지를 만들때, 마크업을 완성한 후 JavaScript를 뿌려서(sprinkling) 동적인 기능을 추가한다.
-    React도 마찬가지다.
-    하지만 React 컴포넌트는 마크업과 JavaScript를 같이 뿌릴 수 있다.
+###### React와 기존 방식의 프론트엔드와의 차이점
 
-2.  만약 컴포넌트의 첫 굴자를 소문자로 쓴다면, 기존의 HTML 태그로, 대문자로 쓴다면 커스텀 컴포넌트로 인식한다.
+전통적으로 웹 페이지를 만들때, 마크업을 완성한 후 JavaScript를 뿌려서(sprinkling) 동적인 기능을 추가한다.
+React도 마찬가지다.
+하지만 React 컴포넌트는 마크업과 JavaScript를 (한 곳에서) 같이 뿌릴 수 있다.
 
-    `<section>`은 소문자로 시작하므로 HTML 태그라고 인식한다.
-    `<Profile />`은 대문자 `P`로 시작하므로, React는 `Profile`이라는 이름의 커스텀 컴포넌트로 인식한다..
+###### React에서 커스텀 컴포넌트를 인식하는 기준
 
-3.  리액트 컴포넌트 안에서는, HTML tag 처럼 보이는 것들도 전부 JS(JSX)다!
+만약 컴포넌트의 첫 글자를 소문자로 쓴다면, 기존의 HTML 태그로, 대문자로 쓴다면 커스텀 컴포넌트로 인식한다.
+`<section>`은 소문자로 시작하므로 HTML 태그라고 인식한다.
+`<Profile />`은 대문자 `P`로 시작하므로, React는 `Profile`이라는 이름의 커스텀 컴포넌트로 인식한다..
 
-4.  주의! 절대로 컴포넌트 안에서 컴포넌트를 정의하지 말 것! 이는 심각한 버그와 성능 하락을 유발함!
+###### React에서의 HTML?
+
+리액트 컴포넌트 안에서는, HTML tag 처럼 보이는 것들도 전부 JS(JSX)다!
+
+###### React 컴포넌트의 범위
+
+리액트 컴포넌트는 재사용 가능한 부분들에만 사용하는 것이 아니라, 모든 곳에 사용된다. (페이지 같이 큰 범위도 결국은 컴포넌트라는 의미이다.)
+
+###### 주의!
+
+절대로 컴포넌트 안에서 컴포넌트를 정의하지 말 것! 이는 심각한 버그와 성능 하락을 유발한다!
 
     ```jsx
     export default function Gallery() {
@@ -40,129 +51,171 @@ slug: React-Docs-1
 
     위 코드는 [매우 느리고 버그를 유발한다.](https://beta.reactjs.org/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state)
 
-5.  리액트 컴포넌트는 재사용 가능한 부분들에만 사용하는 것이 아니라, 모든 곳에 사용된다. (페이지 같이 큰 범위도 결국은 컴포넌트라는 의미이다.)
+---
 
 ### Importing and Exporting Components
 
-1. default exports와 named exports 모두 허용된다.(선호도 차이일 뿐)
-   한 파일안에서 하나 이하의 default export가 가능하다는 규칙만 지키면 어떤 것도 문제 되지 않는다.
-   심지어 한 파일 안에서 default export와 named exports를 같이 사용하는 것도 가능하다.
+###### 어떻게 export 할 것인가
 
-   두 exports의 차이는 import할 때의 차이다.
-   default exports는 import할 때 이름을 마음대로 정할 수 있고, 이는 한 파일에서 default export의 대상이 오직 하나 뿐이기 때문이다.
-   반면 named exports는 import 할 때 export 이름을 그대로 사용해야 한다.
-   그것이 `named` exports인 이유다.
+`default exports`와 `named exports` 모두 허용된다.(선호도 차이일 뿐)
+한 파일안에서 하나 이하의 *default export*가 가능하다는 규칙만 지키면 어떤 것도 문제 되지 않는다.
+심지어 한 파일 안에서 *default export*와 *named exports*를 같이 사용하는 것도 가능하다.
 
-2. 하지만 `export default () => {}` 와 같이 이름 없이 default를 하면, 디버깅이 힘들어진다.
+두 *exports*의 차이는 *import*할 때의 차이다.
+*default exports*는 *import*할 때 이름을 마음대로 정할 수 있고, 이는 한 파일에서 *default export*의 대상이 오직 하나(이하) 뿐이기 때문이다.
+반면 *named exports*는 _import_ 할 때 _export_ 한 이름을 그대로 사용해야 한다.
+그것이 *`named` exports*인 이유다.
+
+###### 주의!
+
+하지만 `export default () => {}` 와 같이 이름 없이 *default export*를 하면, 디버깅이 힘들어지기 때문에 추천하지 않는다.
+
+---
 
 ### Writing Markup with JSX
 
-1. JSX는 마크업을 쓸 수 있게한 자바스크립트의 (문법적) 확장판이다.
+###### JSX는 마크업을 쓸 수 있게한 자바스크립트의 (문법적) 확장판이다.
 
-#### HTML과 다른 점들
+위에서 설명했듯이 HTML, JavaScript를 전부 분리해서 사용하던 방식과 다르게 React에서는 마크업과 JavaScript를 같이 사용한다.
+따라서 JSX를 통해 마크업, JavaScript를 한 번에 작성한다.
 
-1.  **Return a single root element**
+###### React와 JSX의 관계
 
-    multiple elements는 div나 <></>(Fragment) 등으로 감싸야만 한다.
+사실 JSX와 React는 종속적인 관계가 아니다.
+JSX는 React 없이도 사용할 수 있고, React는 JSX 없이도 사용할 수 있다.
+다만 둘이 같이 사용되는 경우가 많을 뿐이다.
 
-    이는 JSX가 결국은 JS 객체이고, JS 함수인 컴포넌트는 단 하나의 return만 가능하기 때문이다.
+#### JSX의 규칙
 
-    > JSX looks like HTML, but under the hood it is transformed into plain JavaScript objects. You can’t return two objects from a function without wrapping them into an array.
+###### Return a single root element
 
-2.  Close all the tags
-3.  camelCase <s>all</s> most of the things!
+multiple elements는 div나 <></>(Fragment) 등으로 감싸야만 한다.
+이는 JSX가 결국은 JS 객체이고, JS 함수인 컴포넌트는 단 하나의 return만 가능하기 때문이다.
 
-    JSX에서 사용한 태그 내의 attributes는 자바스크립트 객체의 키값이 된다.
+###### Close all the tags
 
-    여러 attributes를 변수로 사용할 수 있는데, 자바스크립트의 변수명에 걸린 제약 때문에 사용하지 못하는 경우가 있다.
+HTML에서 `<br>`, `<input>`, `<img>`과 같이 닫는 태그가 없는 태그들도 JSX에선 닫아주어야 한다.
 
-    자바스크립트 변수명은 ‘-’(dash)나 예약어(reserved words)를 사용할 수 없기 때문에, stroke-width(contain dash), class(reserved word) 같은 attributes를 그대로 사용하지 못한다.
+###### camelCase <s>all</s> most of the things!
 
-    > For example, their names can’t contain dashes or be reserved words like `class`.
+JSX가 자바스크립트로 변환되면서, JSX 내의 attributes는 자바스크립트 객체의 키값이 된다.
+여러 attributes를 변수로 사용할 수 있는데, 자바스크립트의 변수명에 걸린 제약 때문에 사용하지 못하는 경우가 있다.
+자바스크립트 변수명은 ‘-’(dash)나 예약어(reserved words)를 사용할 수 없기 때문에, stroke-width(contain dash), class(reserved word) 같은 attributes를 그대로 사용하지 못한다.
 
-    따라서 strokeWidth, className등의 변환된 이름을 사용한다.
+따라서 strokeWidth, className등의 변환된 이름을 사용한다.
+그러나, [aria-\*](https://developer.mozilla.org/docs/Web/Accessibility/ARIA)와 [ data-\*](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes)은 역사적인(구버전관련?) 이유로 예외로 둔다.
 
-    그러나, aria-* 와 data-*은 역사적인(구버전관련?) 이유로 예외로 둔다.
+> 개인적인 궁금증으로 `aria-*`와 `data-*`는 왜 예외로 두었는지 궁금해서 서치해 보았지만 명확한 이유는 발견하지 못했고 여러 글과 공식 legacy 문서를 찾았다.
+> legacy docs-
+> [Accessibility](https://legacy.reactjs.org/docs/accessibility.html#wai-aria),
+> [DOM Elements](https://legacy.reactjs.org/docs/dom-elements.html)
+> 정확한 이유는 모르겠으나, `aria-*`는 접근성과 관련된 정보여서 인 것 같고 `data-*`는 모르겠다.
 
-    > For historical reasons, `[aria-*](https://developer.mozilla.org/docs/Web/Accessibility/ARIA)` and `[data-*](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes)` attributes are written as in HTML with dashes.
+---
 
 ### Javascript in JSX with Curly Braces
 
-1. curly brace(중괄호)는 텍스트, 속성(값)으로만 JSX안에서 사용할 수 있다.
+JSX에서 마크업을 사용할 때, 마크업 안에 로직이나 인터랙션 등을 넣고 싶은 경우 중괄호를 이용해 마크업과 JavaScript간의 창문을 만들어 줄 수 있다.
+중괄호 안에는 JavaScript 표현식이면 모두 사용할 수 있다.
 
-   > **As text** directly inside a JSX tag: `<h1>{name}'s To Do List</h1>` works, but `<{tag}>Gregorio Y. Zara's To Do List</{tag}>` will not.
-   >
-   > **As attributes** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src="{avatar}"` will pass the string `"{avatar}"`.
+###### JSX에서 중괄호의 사용
 
-2. CSS나 객체를 JSX에 사용할 때는 “double curlies”를 사용한다. (arrow function에서 객체를 리턴할 때 중괄호를 소괄호로 감싸는 것과 비슷하다 생각하면 좋을듯. () ⇒ ({}))
+curly brace(중괄호)는 태그 사이의 텍스트, 속성(값)으로만 JSX안에서 사용할 수 있다.
+따라서 태그 이름이나 속성 이름 등에는 사용할 수 없다.
 
-   > Therefore, to pass a JS object in JSX, you must wrap the object in another pair of curly braces: `person={{ name: "Hedy Lamarr", inventions: 5 }}`.
+> **As text**  
+> 동작 -> `<h1>{name}'s To Do List</h1>`  
+> 에러 -> `<{tag}>Gregorio Y. Zara's To Do List</{tag}>`
+
+> **As attributes**  
+> `avatar` 변수를 전송 -> `src={avatar}`  
+> 값이 `"{avatar}"`인 string을 전송 -> `src="{avatar}"`.
+
+###### JSX에서 이중 중괄호의 사용
+
+CSS나 객체를 JSX에 사용할 때는 “double curlies”를 사용한다.
+(arrow function에서 객체를 리턴할 때 중괄호를 소괄호로 감싸는 것과 비슷하다 생각하면 좋을듯. () ⇒ ({}))
+
+```JSX
+  <ul style={{
+    backgroundColor: 'black',
+    color: 'pink'
+  }}>
+```
+
+---
 
 ### Passing Props to a Component
 
-1. Props는 단순히 함수의 argument일 뿐이다.
+###### Props는 단순히 함수의 argument일 뿐이다.
 
-   > You can think of props like “knobs” that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React component functions accept a single argument, a `props` object:
+> You can think of props like “knobs” that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React component functions accept a single argument, a `props` object:
 
-2. Props의 default value는 props가 입력되지 않거나 undefined인 상황에서만 사용된다.
+###### Props의 default value는 props가 입력되지 않거나 undefined인 상황에서만 사용된다.
 
-   > The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
+> The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
 
-3. 내부 요소는 children이라는 name의 props로 들어온다.
+###### 내부 요소는 children이라는 name의 props로 들어온다.
 
-   > When you nest content inside a JSX tag, the parent component will receive that content in a prop called `childrenj`.
+> When you nest content inside a JSX tag, the parent component will receive that content in a prop called `childrenj`.
 
-4. Props는 읽기 전용인 한 순간의 상태이다. 매 렌더링마다 새로운 버전의 props를 받는다.
+###### Props는 읽기 전용인 한 순간의 상태이다. 매 렌더링마다 새로운 버전의 props를 받는다.
 
-   > Props are read-only snapshots in time: every render receives a new version of props.
+> Props are read-only snapshots in time: every render receives a new version of props.
+
+---
 
 ### Conditional Rendering
 
-1. ternary operator와 if문을 이용한 조건부 렌더링은, 리액트에서는 완벅히 동일한 로직이다.
+###### ternary operator와 if문을 이용한 조건부 렌더링은, 리액트에서는 완벅히 동일한 로직이다.
 
-   > If you’re coming from an object-oriented programming background, you might assume that the two examples above are subtly different because one of them may create two different “instances” of `<li>`. But JSX elements aren’t “instances” because they don’t hold any internal state and aren’t real DOM nodes. They’re lightweight descriptions, like blueprints. So these two examples, in fact, _are_ completely equivalent.
+> If you’re coming from an object-oriented programming background, you might assume that the two examples above are subtly different because one of them may create two different “instances” of `<li>`. But JSX elements aren’t “instances” because they don’t hold any internal state and aren’t real DOM nodes. They’re lightweight descriptions, like blueprints. So these two examples, in fact, _are_ completely equivalent.
 
-2. && 조건부 렌더링시 좌변에 숫자만 넣지말고 비교 연산자를 사용할 것.
+###### && 조건부 렌더링시 좌변에 숫자만 넣지말고 비교 연산자를 사용할 것.
 
-   > To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
+> To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
+
+---
 
 ### Rendering Lists
 
-1. 반복문을 통한 렌더링시 같은 레벨의 컴포넌트를 여러 개 렌더링하고 싶다면, Fragment 컴포넌트를 이용하면 간편하다.
+###### 반복문을 통한 렌더링시 같은 레벨의 컴포넌트를 여러 개 렌더링하고 싶다면, Fragment 컴포넌트를 이용하면 간편하다.
 
-   > Here’s a situation where you need to write `Fragment` explicitly instead of using the `<></>` syntax. When you [render multiple elements in a loop](https://beta.reactjs.org/learn/rendering-lists), you need to assign a `key` to each element. If the elements within the loop are Fragments, you need to use the normal JSX element syntax in order to provide the `key` attribute:
+> Here’s a situation where you need to write `Fragment` explicitly instead of using the `<></>` syntax. When you [render multiple elements in a loop](https://beta.reactjs.org/learn/rendering-lists), you need to assign a `key` to each element. If the elements within the loop are Fragments, you need to use the normal JSX element syntax in order to provide the `key` attribute:
 
-   ```jsx
-   function Blog() {
-     return posts.map((post) => (
-       <Fragment key={post.id}>
-         <PostTitle title={post.title} />
-         <PostBody body={post.body} />
-       </Fragment>
-     ));
-   }
-   ```
+```jsx
+function Blog() {
+  return posts.map((post) => (
+    <Fragment key={post.id}>
+      <PostTitle title={post.title} />
+      <PostBody body={post.body} />
+    </Fragment>
+  ));
+}
+```
 
-2. 리렌더링이 진행되어도 key값이 변하면 안된다.
+###### 리렌더링이 진행되어도 key값이 변하면 안된다.
 
-   > • **Keys must not change** or that defeats their purpose! Don’t generate them while rendering.
+> • **Keys must not change** or that defeats their purpose! Don’t generate them while rendering.
 
-   > Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
+> Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
 
-3. key 값은 props가 아니다.
+###### key 값은 props가 아니다.
 
-   > Note that your components won’t receive `key` as a prop. It’s only used as a hint by React itself. If your component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
+> Note that your components won’t receive `key` as a prop. It’s only used as a hint by React itself. If your component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
+
+---
 
 ### Keeping Components Pure
 
-1. 개발 환경에서 React의 “Strict Mode”는 컴포넌트를 두 번씩 실행하고, 이를 통해 규칙을 깬 컴포넌트를 찾는다.(순수성이 지켜진다면, 함수의 호출 횟수에 상관없이 항상 같은 결과를 리턴해야 하기 때문)
+###### 개발 환경에서 React의 “Strict Mode”는 컴포넌트를 두 번씩 실행하고, 이를 통해 규칙을 깬 컴포넌트를 찾는다.(순수성이 지켜진다면, 함수의 호출 횟수에 상관없이 항상 같은 결과를 리턴해야 하기 때문)
 
-   > React offers a “Strict Mode” in which it calls each component’s function twice during development. **By calling the component functions twice, Strict Mode helps find components that break these rules.**
+> React offers a “Strict Mode” in which it calls each component’s function twice during development. **By calling the component functions twice, Strict Mode helps find components that break these rules.**
 
-2. 컴포넌트 안에서(같은 생명주기를 가진다는 의미) 선언된 변수의 값 변경을 “local mutation”이라 부르며 이러한 변화는 해당 컴포넌트 바깥에서는 알아차리지 못하는 변화이다.(따라서 컴포넌트가 외부 변수에 영향을 주는 부작용이 없다.)
+###### 컴포넌트 안에서(같은 생명주기를 가진다는 의미) 선언된 변수의 값 변경을 “local mutation”이라 부르며 이러한 변화는 해당 컴포넌트 바깥에서는 알아차리지 못하는 변화이다.(따라서 컴포넌트가 외부 변수에 영향을 주는 부작용이 없다.)
 
-   > However, it’s fine because you’ve created them _during the same render_, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **“local mutation”**—it’s like your component’s little secret.
+> However, it’s fine because you’ve created them _during the same render_, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **“local mutation”**—it’s like your component’s little secret.
 
-3. (리액트의)이벤트 핸들러는 렌더링 중에는 작동하지 않는다.
+###### (리액트의)이벤트 핸들러는 렌더링 중에는 작동하지 않는다.
 
-   > Even though event handlers are defined _inside_ your component, they don’t run _during_ rendering! **So event handlers don’t need to be pure.**
+> Even though event handlers are defined _inside_ your component, they don’t run _during_ rendering! **So event handlers don’t need to be pure.**

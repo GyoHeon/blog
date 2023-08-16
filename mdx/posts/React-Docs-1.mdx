@@ -35,7 +35,7 @@ React도 마찬가지다.
 
 리액트 컴포넌트는 재사용 가능한 부분들에만 사용하는 것이 아니라, 모든 곳에 사용된다. (페이지 같이 큰 범위도 결국은 컴포넌트라는 의미이다.)
 
-###### 주의!
+###### _주의!_
 
 절대로 컴포넌트 안에서 컴포넌트를 정의하지 말 것! 이는 심각한 버그와 성능 하락을 유발한다!
 
@@ -66,7 +66,7 @@ React도 마찬가지다.
 반면 *named exports*는 _import_ 할 때 _export_ 한 이름을 그대로 사용해야 한다.
 그것이 *`named` exports*인 이유다.
 
-###### 주의!
+###### _주의!_
 
 하지만 `export default () => {}` 와 같이 이름 없이 *default export*를 하면, 디버깅이 힘들어지기 때문에 추천하지 않는다.
 
@@ -147,33 +147,112 @@ CSS나 객체를 JSX에 사용할 때는 “double curlies”를 사용한다.
 
 ### Passing Props to a Component
 
-###### Props는 단순히 함수의 argument일 뿐이다.
+Props는 React 컴포넌트가 서로 소통하기 위한 수단이다.
+HTML의 attributes와 비슷하게 생겼지만 JavaScript의 모든 값(문자열, 숫자, 함수, 객체 등)을 전달할 수 있다.
 
-> You can think of props like “knobs” that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React component functions accept a single argument, a `props` object:
+###### Props의 진실
 
-###### Props의 default value는 props가 입력되지 않거나 undefined인 상황에서만 사용된다.
+Props는 단순히 함수의 argument일 뿐이다.
+그리고 props는 React 컴포넌트의 *유일한 argument*다.
 
-> The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
+###### Props의 default value
 
-###### 내부 요소는 children이라는 name의 props로 들어온다.
+ES6에서 default parameter라는 specification이 생겼다.
+이는 함수의 argument에 value가 아예 안 들어오거나 undefined가 들어오는 경우 미리 지정된 default value를 사용하도록 하는 것이다.
+만약 argument에 `0`, `null`, `false` 등과 같이 falsy한 값이 들어와도 default value는 사용되지 않는다.
+오직 `no value`, `undefined`인 경우에만 default value가 사용된다.
 
-> When you nest content inside a JSX tag, the parent component will receive that content in a prop called `childrenj`.
+React 컴포넌트에서도 해당 문법이 그대로 적용된다.
 
-###### Props는 읽기 전용인 한 순간의 상태이다. 매 렌더링마다 새로운 버전의 props를 받는다.
+###### Children
 
-> Props are read-only snapshots in time: every render receives a new version of props.
+```jsx
+<Card>
+  <Avatar />
+</Card>
+```
+
+위와 같이 특정 컴포넌트 안에 컴포넌트를 nest하면 부모 컴포넌트는 nest된 컴포넌트를 children이라는 prop으로 받는다.
+children이라는 prop의 구체적인 스펙을 정하지 않아도 사용할 수 있기 때문에, 아주 자유로운 패턴으로 사용할 수 있다.
+
+###### Props는 읽기 전용이다.
+
+Props는 immutable -> 불변해야한다.
+따라서 특정 컴포넌트의 props가 변경되어야 할 때는 props를 내려준 부모 컴포넌트에게 다른 props(새로운 object)를 내려달라고 요청해야 한다.
+Props가 변경되고 나면, 이전의 props는 버려져서 JavaScript garbage collector에 의해 메모리에서 삭제된다.
+
+###### _주의!_
+
+Props는 읽기 전용이기 때문에, props를 직접 수정하거나 변경해서는 안된다.
+만약 props를 변경해야 할 일이 있으면 props를 수정하는 것이 아니라 setState로 state를 변경해야 한다.
 
 ---
 
 ### Conditional Rendering
 
-###### ternary operator와 if문을 이용한 조건부 렌더링은, 리액트에서는 완벅히 동일한 로직이다.
+컴포넌트는 특정 조건에 따라 다른 결과를 렌더링해야 한다.
+리액트에서는 JavsScript 문법(`if`, `&&`, `삼항연산자`)을 이용해 이를 구현한다.
 
-> If you’re coming from an object-oriented programming background, you might assume that the two examples above are subtly different because one of them may create two different “instances” of `<li>`. But JSX elements aren’t “instances” because they don’t hold any internal state and aren’t real DOM nodes. They’re lightweight descriptions, like blueprints. So these two examples, in fact, _are_ completely equivalent.
+###### `null`을 이용한 조건부 렌더링
 
-###### && 조건부 렌더링시 좌변에 숫자만 넣지말고 비교 연산자를 사용할 것.
+특정한 상황에 아무것도 렌더링하고 싶지않다면, `null`(`fale`, `undefined`)을 return하면 된다.
+그러나 컴포넌트에서 `null`을 return 하는 것은 흔치도 않고 권장되지도 않는다.
 
-> To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
+대신에, 부모 컴포넌트에서 특정 부분을 조건부 렌더링하는 것이 더 자주 사용된다.
+
+###### `if` vs `ternary` in React
+
+아래의 두 예제를 보자.
+
+`if`
+
+```jsx
+if (isPacked) {
+  return <li className="item">{name} ✔</li>;
+}
+return <li className="item">{name}</li>;
+```
+
+`ternary`
+
+```jsx
+return <li className="item">{isPacked ? name + " ✔" : name}</li>;
+```
+
+위 에제에서 `if`를 사용한 방법은 마치 두 개의 `<li>` instances를 만들고, 삼항 연산자는 하나의 `<li>` instance를 만드는 것처럼 보인다.
+하지만 JSX elements는 *instance*가 아니다.
+따라서 위 두 예제는 완벽히 동일하다.
+
+###### _주의!_
+
+Logical AND(&&) 를 사용한 조건부 렌더링시 좌변에 숫자를 넣을 경우 주의해야 할 사항이 있다.
+React는 숫자 0을 falsy한 value라고 인식을 하지만, 그대로 렌더링한다.
+따라서
+
+```jsx
+{
+  messageCount && <p>New messages</p>;
+}
+```
+
+같은 조건부 렌더링에서 messageCount가 0 이라면 `0`을 렌더링한다.
+
+이는
+
+```jsx
+0 && <p>New messages</p>;
+```
+
+의 결과가 `0`이고 React가 이를 그대로 렌더링하기 때문이다.
+이런 문제를 해결하기 위해선 숫자를 넣지 말고 특정 조건식을 넣어줘야 한다.
+
+아래와 같이 사용하면 된다.
+
+```jsx
+{
+  messageCount > 0 && <p>New messages</p>;
+}
+```
 
 ---
 
@@ -196,7 +275,7 @@ function Blog() {
 
 ###### 리렌더링이 진행되어도 key값이 변하면 안된다.
 
-> • **Keys must not change** or that defeats their purpose! Don’t generate them while rendering.
+> **Keys must not change** or that defeats their purpose! Don’t generate them while rendering.
 
 > Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
 

@@ -28,6 +28,9 @@
   .title-section {
     @apply md:col-span-2 lg:col-span-3 border-b-4 border-b-[--text];
   }
+  .border-link {
+    @apply underline decoration-[--orange] transition-colors;
+  }
 }
 
 /* prettier-ignore  */

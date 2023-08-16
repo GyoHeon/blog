@@ -1,16 +1,7 @@
-@tailwind components;
-@tailwind utilities;
-
 #main-post p {
   margin-bottom: 1em;
 }
-#main-post h2 a,
-h3 a {
-  text-decoration: underline;
-  text-decoration-color: var(--orange);
-  text-decoration-thickness: 2px;
-  transition: color 0.2s ease-in-out;
-}
+
 #main-post h2 a:hover,
 h3 a:hover {
   color: var(--orange);
@@ -45,14 +36,4 @@ h3 a:hover {
 }
 #main-post pre code {
   padding: 1rem;
-}
-#main-post pre code,
-code * {
-  font-size: 12px;
-}
-@screen md {
-  #main-post pre code,
-  code * {
-    font-size: 14px;
-  }
 }

@@ -29,7 +29,12 @@
     @apply md:col-span-2 lg:col-span-3 border-b-4 border-b-[--text];
   }
   .border-link {
-    @apply underline decoration-[--orange] transition-colors;
+    @apply underline decoration-[--orange] decoration-2 transition-colors;
+  }
+  #main-post p a,
+  #main-post h2 a,
+  #main-post h3 a {
+    @apply border-link;
   }
 }
 
@@ -44,6 +49,10 @@ menu, nav, output, ruby, section, summary, time, mark, audio, video {
   font-size: 1.6rem;
   color: var(--text);
   vertical-align: bottom;
+}
+#main-post pre code,
+code * {
+  font-size: 12px;
 }
 
 body {
@@ -87,6 +96,10 @@ body {
   }
   :root {
     font-size: 20px;
+  }
+  #main-post pre code,
+  code * {
+    font-size: 14px;
   }
 }
 

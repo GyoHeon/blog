@@ -29,11 +29,10 @@
     @apply md:col-span-2 lg:col-span-3 border-b-4 border-b-[--text];
   }
   .border-link {
-    @apply underline decoration-[--orange] decoration-2 transition-colors;
+    @apply underline decoration-[--blue] decoration-2 transition-colors hover:text-[--blue];
   }
-  #main-post p a,
-  #main-post h2 a,
-  #main-post h3 a {
+  #main-post a,
+  #main-post a * {
     @apply border-link;
   }
 }
@@ -63,6 +62,7 @@ body {
 
 ::selection {
   background: var(--orange);
+  color: var(--bg);
 }
 :root {
   font-size: 10px;

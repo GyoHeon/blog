@@ -20,14 +20,14 @@ export default async function Tags({ params: { tag } }: Props) {
 
   const posts = (() => {
     if (!tagPosts.length) {
-      return <p>No posts</p>;
+      return <div className="card">No posts</div>;
     }
     return tagPosts.map((post) => <PostCard key={post.slug} {...post} slug={post.slug} />);
   })();
 
   const memos = (() => {
     if (!tagMemos.length) {
-      return <p>No Memos</p>;
+      return <div className="card">No Memos</div>;
     }
     return tagMemos.map((post) => <MemoCard key={post.slug} {...post} slug={post.slug} />);
   })();

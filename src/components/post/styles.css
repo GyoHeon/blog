@@ -12,7 +12,7 @@
 
 #main-post ol,
 #main-post ul {
-  list-style-position: inside;
+  margin-left: 1rem;
 }
 
 #main-post blockquote {

@@ -1,0 +1,255 @@
+---
+title: React Docs를 읽자 - 2
+description: 새로워진 React Docs를 읽어보자.
+date: 2023.08.17
+tags: React, Front-end
+image: https://react.dev/images/home/conf2019/cover.svg
+slug: React-Docs-2
+---
+
+새로운 리액트 공식문서가 만들어져서, 아예 공식문서를 통으로 공부해보기로 하였다.
+
+지금 적은 내용들은 공식 문서를 그대로 적은게 아니라 필자가 몰랐거나 중요하다고 생각되어지는 것들만 적은 것이다.
+
+## Adding Interactivity
+
+# New React Docs: 2
+
+date: April 21, 2023
+slug: 21
+status: Published
+tags: FrontEnd, React
+summary: New React Docs Study
+type: Post
+
+리액트의 새로운 공식문서 2장.
+
+모든 내용을 적은 것이 아니라 몰랐던 내용이나 중요하다고 생각되는 내용을 정리한 것이다.
+
+# Adding Interactivity
+
+## Responding to Events
+
+1. 이벤트 핸들러에 함수를 전달해야한다. 호출하면 안된다.
+
+   > Functions passed to event handlers must be passed, not called. For example:
+   >
+   > | passing a function (correct)   | calling a function (incorrect)   |
+   > | ------------------------------ | -------------------------------- |
+   > | <button onClick={handleClick}> | <button onClick={handleClick()}> |
+
+2. onScroll을 제외한 모든 이벤트는 bubbling된다.
+
+   > All events propagate in React except `onScroll`, which only works on the JSX tag you attach it to.
+
+3. Capture 이벤트 핸들러로 (심지어 stopPropagation을 실행해도) 이벤트 캡쳐링시에 이벤트를 실행할 수 있다.
+
+   > In rare cases, you might need to catch all events on child elements, _even if they stopped propagation_. For example, maybe you want to log every click to analytics, regardless of the propagation logic. You can do this by adding `Capture` at the end of the event name:
+
+   ```jsx
+   <div
+     onClickCapture={() => {
+       /* this runs first */
+     }}
+   >
+     <button onClick={(e) => e.stopPropagation()} />
+     <button onClick={(e) => e.stopPropagation()} />
+   </div>
+   ```
+
+4. 이벤트 핸들러는 side effects를 위한 최적의 장소다.
+
+   > Absolutely! Event handlers are the best place for side effects.
+   >
+   > Unlike rendering functions, event handlers don’t need to be [pure](https://beta.reactjs.org/learn/keeping-components-pure), so it’s a great place to _change_ something-
+
+## State: A Component’s Memory
+
+1. 컴포넌트는 여러 정보들을 “기억”해야 하는데, 리액트에서 컴포넌트에 특화된 메모리를 state라 부른다.
+
+   > Components need to “remember” things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called _state_.
+
+2. Hook은 리액트가 렌더링 될때만 사용가능한 특수한 함수다.
+
+   > _Hooks_ are special functions that are only available while React is [rendering](https://react.dev/learn/render-and-commit#step-1-trigger-a-render).
+
+3. import문과 비슷하게 Hook은 컴포넌트나 커스텀 훅의 최상위에서 사용되어야한다.
+
+   > You “use” React features at the top of your component similar to how you “import” modules at the top of your file.
+
+4. 리액트의 state는 어떻게 상태(무엇을 리턴할지)를 기억하는가?
+   1. 리액트 Hook은 간결한 구조를 유지하기 위해 매 렌더링마다 동일한 실행 순서에 의존한다.
+
+      > Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same component.**
+
+   2. Hook 을 항상 최상위에서 실행한다는 규칙을 지킨다면, Hook은 항상 같은 순서로 작동되기 때문에 잘 작동할수 있다.
+
+      > This works well in practice because if you follow the rule above (“only call Hooks at the top level”), Hooks will always be called in the same order.
+
+   3. 내부적으로 리액트의 모든 컴포넌트는 state 쌍으로 된 하나의 배열을 가지고 있다.
+
+      > Internally, React holds an array of state pairs for every component.
+
+      <aside>
+💡 개인적인 생각으로, 리액트의 컴포넌트는 state를 클로저 변수로 가지는 내부 함수라는 생각이 든다.
+
+      </aside>
+5. Props와 달리 state는 오직 해당 컴포넌트(state를 선언한) 내부에서만 관리할 수 있다.
+
+   > Unlike props, **state is fully private to the component declaring it. The parent component can’t change it.**
+
+## Render and Commit
+
+1. Trigger a render
+
+   > There are two reasons for a component to render:
+   >
+   > 1. It’s the component’s **initial render.**
+   > 2. The component’s (or one of its ancestors’) **state has been updated.**
+
+   1. 처음 앱이 시작될 때는 createRoot를 타겟 DOM node와 실행한 뒤 render 메서드를 실행한다.
+
+      ```jsx
+      import Image from "./Image.js";
+      import { createRoot } from "react-dom/client";
+
+      const root = createRoot(document.getElementById("root"));
+      root.render(<Image />);
+      ```
+
+   2. state가 업데이트 되면 리렌더링이 일어난다.(queue로)
+
+      > Once the component has been initially rendered, you can trigger further renders by updating its state with the `[set` function.](https://react.dev/reference/react/useState#setstate) Updating your component’s state automatically queues a render.
+
+2. React renders your components
+
+   > After you trigger a render, React calls your components to figure out what to display on screen. **“Rendering” is React calling your components.**
+   >
+   > - **On initial render,** React will call the root component.
+   > - **For subsequent renders,** React will call the function component whose state update triggered the render.
+
+   1. 리액트가 렌더링을 일으키는 방식은 재귀적이다.(부모 컴포넌트가 렌더링되면 자식 컴포넌트도 렌더링 되는 이유이다.)
+
+      > This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on.
+
+3. React commits changes to the DOM
+
+   > After rendering (calling) your components, React will modify the DOM.
+   >
+   > - **For the initial render,** React will use the `[appendChild()](https://developer.mozilla.org/docs/Web/API/Node/appendChild)` DOM API to put all the DOM nodes it has created on screen.
+   > - **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+
+   1. 리액트는 렌더링간 차이가 있는 DOM만 변화시킨다.
+
+      > **React only changes the DOM nodes if there’s a difference between renders.**
+
+## State as a Snapshot
+
+1. 리액트는 이벤트의 변화를 state의 업데이트로 해줘야한다.
+
+   > This means that for an interface to react to the event, you need to _update the state_.
+
+2. Rendering은 어느 한 순간의 함수 리턴이다.
+
+   > The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
+
+3. 리액트가 컴포넌트를 리렌더링하면 state를 제외하고는 전부 새로 만든다. state는 리렌더링 시에만 값이 변한다.
+
+   > When React re-renders a component:
+   >
+   > 1. React calls your function again.
+   > 2. Your function returns a new JSX snapshot.
+   > 3. React then updates the screen to match the snapshot you’ve returned.
+
+4. state value는 오직 다음 렌더링시에만 변화된다.
+
+   > **Setting state only changes it for the _next_ render.**
+
+   1. 그래서 아래와 같은 버튼의 동작은 일반적인 생각과 다르다. 이는 ‘이번 렌더링’에서의 state(number)가 고정되어 있기 때문이다.
+
+      ```jsx
+      <button
+        onClick={() => {
+          setNumber(number + 1);
+          setNumber(number + 1);
+          setNumber(number + 1);
+        }}
+      >
+        +3
+      </button>
+      ```
+
+      > Here is what this button’s click handler tells React to do:
+      >
+      > 1. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
+      >    - React prepares to change `number` to `1` on the next render.
+      > 2. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
+      >    - React prepares to change `number` to `1` on the next render.
+      > 3. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
+      >    - React prepares to change `number` to `1` on the next render.
+
+   2. 하나의 rendering(snapshot)안에서 state의 값은 절대 변하지 않는다.
+
+      > **A state variable’s value never changes within a render,** even if its event handler’s code is asynchronous.
+
+## Queueing a Series of State Updates
+
+1. 리액트는 state를 업데이트 하기전에 이벤트 핸들러의 모든 코드를 수행한다.
+
+   > **React waits until _all_ code in the event handlers has run before processing your state updates.**
+
+   1. 그 덕에 다양한 state(심지어 다른 컴포넌트에 존재하는) update도 많은 리렌더링이 일어나지 않는다.
+
+      > This lets you update multiple state variables—even from multiple components—without triggering too many [re-renders.](https://react.dev/learn/render-and-commit#re-renders-when-state-updates)
+
+   2. 하지만 이벤트 핸들러가 완전히 끝나기 전에는 UI가 업데이트 되지않으며, 이 행동을 `batching`이라 한다.
+
+      > But this also means that the UI won’t be updated until _after_ your event handler, and any code in it, completes. This behavior, also known as **batching,** makes your React app run much faster.
+
+2. setState에 값이 아닌 function을 넘겨주는 것으로 queue에 있는 이전 state값을 사용할 수 있다.
+
+   > you can pass a _function_ that calculates the next state based on the previous one in the queue
+
+## Updating Objects in State
+
+1. object의 contents 자체를 바꾸는 것을 mutation이라 한다.(그와 반대로 primitive value는 값을 바꿀 수 없으므로 replace한다 함)
+
+   > Technically, it is possible to change the contents of _the object itself_. **This is called a mutation:**
+
+2. 아직 state가 아닌 object는 mutation해도 상관없다.(어떤 코드도 해당 object를 references하지 않기 때문에.)
+
+   > Mutation is only a problem when you change _existing_ objects that are already in state. Mutating an object you’ve just created is okay because _no other code references it yet._
+
+3. objects는 사실 nesting 되어 있는 것이 아니라 다른 object를 pointing 하고 있는 것이다.
+
+   > An object like this appears “nested” in code:
+
+   ```jsx
+   let obj = {
+     name: "Niki de Saint Phalle",
+     artwork: {
+       title: "Blue Nana",
+       city: "Hamburg",
+       image: "https://i.imgur.com/Sd1AgUOm.jpg",
+     },
+   };
+   ```
+
+   > However, “nesting” is an inaccurate way to think about how objects behave. When the code executes, there is no such thing as a “nested” object. You are really looking at two different objects:
+
+   ```jsx
+   let obj1 = {
+     title: "Blue Nana",
+     city: "Hamburg",
+     image: "https://i.imgur.com/Sd1AgUOm.jpg",
+   };
+
+   let obj2 = {
+     name: "Niki de Saint Phalle",
+     artwork: obj1,
+   };
+   ```
+
+## Updfating Arrays in State
+
+1. javescript의 array는 특별한 종류의 object이므로, object의 내용과 동일하게 mutate를 하지 말고 불변성을 지키면서 array를 사용해야 한다.

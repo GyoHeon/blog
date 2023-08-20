@@ -14,10 +14,18 @@ slug: React-Docs-2
 ## Adding Interactivity
 
 React에서 시간에 따라 변화하는 데이터를 state라 한다.
+이번 챕터에선 state를 컴포넌트에 추가하고 업데이트 하는 것을 배운다.
 
 ### Responding to Events
 
-###### 이벤트 핸들러에 함수를 전달해야한다. 호출하면 안된다.
+jsx에 이벤트 핸들러를 추가하기 위해선 jsx의 prop으로 함수를 전달해야 한다.
+이때 함수는 미리 정의하거나 인라인으로 prop안에서 정의할 수 있다.
+
+###### 주의!
+
+이벤트 핸들러에는 함수를 호출하는 것이 아니라 전달해야한다.
+jsx의 `{}`안에 있는 코드는 즉시 실행되기 때문이다.
+따라서 이벤트 핸들러에서 함수를 호출하면 매 렌더링시에 함수를 실행한다.
 
 ```jsx
 | passing a function (correct)    | calling a function (incorrect)    |
@@ -25,11 +33,17 @@ React에서 시간에 따라 변화하는 데이터를 state라 한다.
 | <button onClick={handleClick}/> | <button onClick={handleClick()}/> |
 ```
 
-###### onScroll을 제외한 모든 이벤트는 bubbling된다.
+###### 주의!
 
-> All events propagate in React except `onScroll`, which only works on the JSX tag you attach it to.
+onScroll을 제외한 모든 이벤트는 bubbling된다.
 
-###### Capture 이벤트 핸들러로 (심지어 stopPropagation을 실행해도) 이벤트 캡쳐링시에 이벤트를 실행할 수 있다.
+###### Stopping Propagation
+
+이벤트 핸들러는 오직 이벤트 객체 하나만 인자로 받는다.
+
+--- 여기까지 함
+
+Capture 이벤트 핸들러로 (심지어 stopPropagation을 실행해도) 이벤트 캡쳐링시에 이벤트를 실행할 수 있다.
 
 > In rare cases, you might need to catch all events on child elements, _even if they stopped propagation_. For example, maybe you want to log every click to analytics, regardless of the propagation logic. You can do this by adding `Capture` at the end of the event name:
 
@@ -44,7 +58,7 @@ React에서 시간에 따라 변화하는 데이터를 state라 한다.
 </div>
 ```
 
-###### 이벤트 핸들러는 side effects를 위한 최적의 장소다.
+###### [1장에서의 설명처럼] 이벤트 핸들러는 side effects를 위한 최적의 장소다.
 
 > Absolutely! Event handlers are the best place for side effects.
 >

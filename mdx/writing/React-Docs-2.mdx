@@ -168,54 +168,83 @@ State는 컴포넌트에 대해 독립적이다.
 
 Props와 달리 state는 오직 state를 선언한 컴포넌트 내부에서만 관리할 수 있다.
 
----여기까지 함
-
 ---
 
 ### Render and Commit
 
-###### Trigger a render
+컴포넌트가 실제로 화면에 나오려면 리액트 렌더링이 먼저 일어나야 한다.
+이런 렌더링 과정을 알아보자.
 
-> There are two reasons for a component to render:
->
-> 1.  It’s the component’s **initial render.**
-> 2.  The component’s (or one of its ancestors’) **state has been updated.**
+리액트를 식당의 종업원이라고 생각해보자.
+먼저 손님에게 주문을 받고, 주문을 주방에 전달하고, 음식을 손님에게 전달한다.
 
-1.  처음 앱이 시작될 때는 createRoot를 타겟 DOM node와 실행한 뒤 render 메서드를 실행한다.
+이 과정이 리액트에서는 아래와 같다.
 
-    ```jsx
-    import Image from "./Image.js";
-    import { createRoot } from "react-dom/client";
+1. 렌더링 트리거-(손님 주문 주방에 전달)
+2. 컴포넌트 렌더링-(주방에서 음식 만들기)
+3. DOM에 커밋-(음식을 손님에게 전달)
 
-    const root = createRoot(document.getElementById("root"));
-    root.render(<Image />);
-    ```
+##### Step 1: 렌더링 트리거
 
-2.  state가 업데이트 되면 리렌더링이 일어난다.(queue로)
+컴포넌트가 렌더링되는 이유는 2가지가 있다.
 
-    > Once the component has been initially rendered, you can trigger further renders by updating its state with the `[set` function.](https://react.dev/reference/react/useState#setstate) Updating your component’s state automatically queues a render.
+1. 컴포넌트의 첫 번째 렌더링
+2. 컴포넌트(혹은 그 조상)의 state가 업데이트 되었을 때
 
-###### React renders your components
+###### 첫 번째 렌더링
 
-> After you trigger a render, React calls your components to figure out what to display on screen. **“Rendering” is React calling your components.**
->
-> - **On initial render,** React will call the root component.
-> - **For subsequent renders,** React will call the function component whose state update triggered the render.
+리액트 app이 실행되면 첫 번째 렌더링을 진행해야한다.
+첫 번째 렌더링은 createRoot를 타겟 DOM에 실행한 뒤 render 메서드를 실행하면 된다.
 
-1.  리액트가 렌더링을 일으키는 방식은 재귀적이다.(부모 컴포넌트가 렌더링되면 자식 컴포넌트도 렌더링 되는 이유이다.)
+```jsx
+import Image from "./Image.js";
+import { createRoot } from "react-dom/client";
 
-    > This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on.
+const root = createRoot(document.getElementById("root"));
+root.render(<Image />);
+```
 
-###### React commits changes to the DOM
+###### state가 업데이트 되었을 때
 
-> After rendering (calling) your components, React will modify the DOM.
->
-> - **For the initial render,** React will use the `[appendChild()](https://developer.mozilla.org/docs/Web/API/Node/appendChild)` DOM API to put all the DOM nodes it has created on screen.
-> - **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+첫 번째 렌더링이 일어난 후에는 [`set function`](https://react.dev/reference/react/useState#setstate)으로 state를 업데이트 하여 렌더링을 일으킬수 있다.
+state가 업데이트되면 관련 렌더링이 queue에 들어가게 된다.
 
-1.  리액트는 렌더링간 차이가 있는 DOM만 변화시킨다.
+##### Step 2: 컴포넌트 렌더링
 
-    > **React only changes the DOM nodes if there’s a difference between renders.**
+렌더링이 트리거되면 리액트는 무엇을 화면에 띄워야 할지 계산해야한다.
+따라서 리액트는 렌더링을 위해 함수를 호출한다.
+즉, `렌더링`은 `함수 호출`이다.
+
+- 첫 번째 렌더링시에, 리액트는 루트 컴포넌트를 호출한다.
+- state가 업데이트 되었을 때, 리액트는 업데이트된 컴포넌트를 호출한다.
+
+이런 과정은 방식은 재귀적으로 일어난다.
+만약 리렌더링된 컴포넌트가 다른 컴포넌트를 호출한다면, 리액트는 그 컴포넌트를 호출한다.
+그 컴포넌트가 다시 다른 컴포넌트를 호출한다면, 리액트는 그 컴포넌트를 호출한다.
+리액트는 이런 과정을 더 이상 호출할 컴포넌트가 없을 때까지 반복한다.
+
+###### **주의!**
+
+렌더링은 순수한 함수 계산이어야 한다.
+만약 그렇지 않으면 예상치 못한 버그가 발생하고 코드의 복잡도가 올라갈 수 있다.
+리액트의 `Strict Mode`는 렌더링시 함수를 2번 호출하면서 순수하지 못한 컴포넌트를 찾아낸다.
+
+##### Step 3: 리액트 커밋이 DOM을 변경
+
+리액트는 컴포넌트를 렌더링하고 나면 DOM을 수정한다.
+
+- 첫 번째 렌더링 시, 리액트는 `[appendChild()](https://developer.mozilla.org/ko/docs/Web/API/Node/appendChild)`를 사용하여 모든 DOM 노드를 화면에 띄운다.
+- 리렌더링시, 리액트는 최소한의 연산을 사용하여 DOM을 최신 렌더링 결과와 일치하게 만든다.
+
+**리액트는 렌더링 간 차이가 있는 DOM 노드만 변경한다.**
+리액트는 렝더링 이전 동일한 위치에 동일한 내용을 가진 DOM을 변경하지 않는다.
+
+##### Epilogue: 브라우저 페인트
+
+리액트가 DOM을 변경하면 브라우저는 repaint 작업을 한다.
+이는 브라우저의 리렌더링으로 알려져있으나, 리액트 문서에선 혼동을 피하기 위해 페인팅이라는 단어를 사용한다.
+
+---여기까지 함
 
 ---
 

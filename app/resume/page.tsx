@@ -1,6 +1,12 @@
 import { Date } from "@/components/Date";
 import { RESUME_ACTIVITIES, RESUME_ETC, RESUME_HEAD, RESUME_OTHER_PROJECTS, RESUME_WORKS } from "@/constants/resume";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "GyoHeon's Resume",
+  description: "GyoHeon's Resume",
+};
 
 function HeadInfo() {
   return (

@@ -7,6 +7,18 @@ interface Props {
   };
 }
 
+export async function generateMetadata({ params: { slug } }: Props) {
+  const { meta } = await getPostBySlug("posts/" + slug);
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      images: [meta.image],
+    },
+  };
+}
+
 export default async function Post({ params: { slug } }: Props) {
   if (!slug) return <div>404</div>;
 

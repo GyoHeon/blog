@@ -1,10 +1,11 @@
 import { MainFooter } from "@/components/layout/MainFooter";
 import { MainHeader } from "@/components/layout/MainHeader";
 import { Analytics } from "@vercel/analytics/react";
+import { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "GyoHeon's Blog",
   description: "GyoHeon's Blog",
 };

@@ -244,58 +244,110 @@ state가 업데이트되면 관련 렌더링이 queue에 들어가게 된다.
 리액트가 DOM을 변경하면 브라우저는 repaint 작업을 한다.
 이는 브라우저의 리렌더링으로 알려져있으나, 리액트 문서에선 혼동을 피하기 위해 페인팅이라는 단어를 사용한다.
 
----여기까지 함
-
 ---
 
 ### State as a Snapshot
 
-###### 리액트는 이벤트의 변화를 state의 업데이트로 해줘야한다.
+State는 JS의 일반적인 변수처럼 보인다.
+하지만, state는 snapshot처럼 행동한다.
+State의 변화는 이미 가지고 있던 state의 값을 변화시키는 게 아니라, 리렌더링을 트리거한다.
 
-> This means that for an interface to react to the event, you need to _update the state_.
+###### State를 업데이트하여 렌더링 트리거하기
 
-###### Rendering은 어느 한 순간의 함수 리턴이다.
+일반적으론 유저가 수행한 동작이 UI를 업데이트한다.
+하지만 리액트는 이와 달리 state를 업데이트하면 UI를 업데이트한다.
 
-> The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
+###### 렌더링은 한 순간의 함수 리턴이다.
 
-###### 리액트가 컴포넌트를 리렌더링하면 state를 제외하고는 전부 새로 만든다. state는 리렌더링 시에만 값이 변한다.
+[`렌더링`](https://react.dev/learn/render-and-commit#step-2-react-renders-your-components)은 리액트가 컴포넌트 -> 함수를 호출한다는 것을 의미한다.
+컴포넌트에서 리턴하는 JSX는 한 순간의 스냅샷이다.
+그 순간에 컴포넌트다 가진 `props, event handlers, local variables` 역시 렌더링 되는 순간의 state를 이용해 계산한다.
 
-> When React re-renders a component:
+그러나 사진과 달리 React의 스냅샷은 인터랙티브하다.
+React의 스냅샷은 event handler와 같은 로직이 포함되기 때문이다.
+
+컴포넌트가 리렌더링 될 때 3단계가 이루어진다.
+
+1. 리액트는 컴포넌트를 호출한다.
+2. 컴포넌트는 JSX 스냅샷을 리턴한다.
+3. 리액트는 JSX 스냅샷을 DOM에 커밋한다.
+
+컴포넌트의 메모리로서, state는 JS의 일반적인 변수와 달리 리렌더링시에도 사라지지 않는다.
+State는 사실 컴포넌트 밖에 존재하기 때문이다.
+State는 컴포넌트 밖 선반 같은 공간에 존재하다가 리렌더링시에 컴포넌트에게 전달된다.
+
+![how react state work](/public/image/react-docs-2-state.png)
+
+이를 이해하기 위한 예제를 살펴보자.
+아래의 예제는 setNumber(number + 1)이 3번이나 있으므로, number가 3이 증가할 것이라고 생각할 수도 있다.
+
+```jsx
+const [number, setNumber] = useState(0);
+
+return (
+  <button
+    onClick={() => {
+      setNumber(number + 1);
+      setNumber(number + 1);
+      setNumber(number + 1);
+    }}
+  >
+    +3
+  </button>
+);
+```
+
+하지만 위 예제에서 number는 오직 1만 증가한다.
+
+**state value는 오직 다음 렌더링시에만 변화된다.**
+첫번째 렌더링시 number는 0이다.
+따라서 `setNumber(number + 1)`은 `setNumber(0 + 1)`과 같다.
+이는 `setNumber(number + 1)`을 아무리 많이 실행해도 똑같다.
+
+> 위 예제에서 버튼을 누를 때 벌어지는 일은 아래와 같다.
 >
-> 1.  React calls your function again.
-> 2.  Your function returns a new JSX snapshot.
-> 3.  React then updates the screen to match the snapshot you’ve returned.
+> 1. `setNumber(number + 1)`: `number` 는 `0` 이고, 따라서 `setNumber(0 + 1)`.
+>    - 리액트는 다음 렌더링시 `number`를 1로 바꿀 준비를 한다.
+> 2. `setNumber(number + 1)`: `number` 는 `0` 이고, 따라서 `setNumber(0 + 1)`.
+>    - 리액트는 다음 렌더링시 `number`를 1로 바꿀 준비를 한다.
+> 3. `setNumber(number + 1)`: `number` 는 `0` 이고, 따라서 `setNumber(0 + 1)`.
+>    - 리액트는 다음 렌더링시 `number`를 1로 바꿀 준비를 한다.
 
-###### state value는 오직 다음 렌더링시에만 변화된다.
+따라서 `setNumber(number + 1)`을 아무리 실행해도 `number`는 1만 증가하는 것이다.
 
-> **Setting state only changes it for the _next_ render.**
+###### 시간 경과에 따른 state
 
-1.  그래서 아래와 같은 버튼의 동작은 일반적인 생각과 다르다. 이는 ‘이번 렌더링’에서의 state(number)가 고정되어 있기 때문이다.
+그렇다면 timer를 넣어 event가 나중에 실행되도록 하면 어떨까?
 
-    ```jsx
+```jsx
+const [number, setNumber] = useState(0);
+
+return (
+  <>
+    <h1>{number}</h1>
     <button
       onClick={() => {
-        setNumber(number + 1);
-        setNumber(number + 1);
-        setNumber(number + 1);
+        setNumber(number + 5);
+        setTimeout(() => {
+          alert(number);
+        }, 3000);
       }}
     >
-      +3
+      +5
     </button>
-    ```
+  </>
+);
+```
 
-    > Here is what this button’s click handler tells React to do:
-    >
-    > 1. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    >    - React prepares to change `number` to `1` on the next render.
-    > 2. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    >    - React prepares to change `number` to `1` on the next render.
-    > 3. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    >    - React prepares to change `number` to `1` on the next render.
+setTimeout에 alert가 들어있으니 해당 alert는 리렌더링 후에 실행되지 않을까?
+만약 리렌더링 전에 alert가 실행되면 0을, 리렌더링 후에 실행되면 5를 출력할 것이다.
 
-2.  하나의 rendering(snapshot)안에서 state의 값은 절대 변하지 않는다.
+해당 alert는 3초 후에 0을 출력한다.
+이는 alert안의 함수가 `number`가 0일 때의 스냅샷이기 때문이다.
 
-    > **A state variable’s value never changes within a render,** even if its event handler’s code is asynchronous.
+즉, 시간이 지나도 해당 snapshot, 렌더링에 포함된 state는 변하지 않는다.
+
+---여기까지 함
 
 ---
 

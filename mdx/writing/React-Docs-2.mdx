@@ -347,41 +347,191 @@ setTimeout에 alert가 들어있으니 해당 alert는 리렌더링 후에 실�
 
 즉, 시간이 지나도 해당 snapshot, 렌더링에 포함된 state는 변하지 않는다.
 
----여기까지 함
-
 ---
 
 ### Queueing a Series of State Updates
 
+State의 업데이트는 다른 렌더링을 대기열에 추가(queue)한다.
+그러나 다음 렌더가 대기열에 추가되기 전에 여러 작업을 수행하고 싶은 경우도 있다.
+이번 장에선 리액트가 state 업데이트를 어떻게 batch 하는지 알아본다.
+
 ###### 리액트는 state를 업데이트 하기전에 이벤트 핸들러의 모든 코드를 수행한다.
 
-> **React waits until _all_ code in the event handlers has run before processing your state updates.**
+웨이터가 손님의 모든 주문을 받은 후 주방에 전달하는 것처럼, 리액트 역시 이벤트 핸들러 안의 모든 코드를 실행한 후 state를 업데이트한다.
+웨이터는 주문을 하나 받을 때마다 주방에 뛰어가서 전달하지 않는다.
+대신, 테이블에 있는 모든 손님들의 주문을 받은 후 한 번에 전달한다.
 
-1.  그 덕에 다양한 state(심지어 다른 컴포넌트에 존재하는) update도 많은 리렌더링이 일어나지 않는다.
+![react-waiter](/image/react-docs-2-queue.png)
 
-    > This lets you update multiple state variables—even from multiple components—without triggering too many [re-renders.](https://react.dev/learn/render-and-commit#re-renders-when-state-updates)
+이 덕에 리액트는 수 많은 state가 업데이트 되어도 리렌더링이 많이 일어나지 않는다.
+대신에 리액트는 이벤트 핸들러에 있는 모든 코드가 마무리 될 때까지 업데이트 되지않다.
+이런 행동을 `batching`이라고 한다.
+이는 컴포넌트가 절반만 업데이트 되는 등의 현상을 방지하기도 한다.
 
-2.  하지만 이벤트 핸들러가 완전히 끝나기 전에는 UI가 업데이트 되지않으며, 이 행동을 `batching`이라 한다.
+###### 렌더링이 진행되기 전에 같은 state를 여러번 업데이트 하기
 
-    > But this also means that the UI won’t be updated until _after_ your event handler, and any code in it, completes. This behavior, also known as **batching,** makes your React app run much faster.
+일반적이진 않으나, 렌더링이 진행되기 전에 같은 state를 여러번 업데이트 하고 싶을 수 있다.
+이럴 땐 다음 state를 계산하는 함수(updater function)를 전달하면 된다.
+함수를 전달하면 state를 대체하는게 아니라 state를 계산을 하라고 리액트에게 말하는 것이다.
 
-###### setState에 값이 아닌 function을 넘겨주는 것으로 queue에 있는 이전 state값을 사용할 수 있다.
+```jsx
+const [number, setNumber] = useState(0);
 
-> you can pass a _function_ that calculates the next state based on the previous one in the queue
+return (
+  <>
+    <h1>{number}</h1>
+    <button
+      onClick={() => {
+        setNumber((n) => n + 1);
+        setNumber((n) => n + 1);
+        setNumber((n) => n + 1);
+      }}
+    >
+      +3
+    </button>
+  </>
+);
+```
+
+버튼을 클릭하면 아래 3가지 동작이 일어날 것이다.
+
+```jsx
+setNumber((n) => n + 1);
+setNumber((n) => n + 1);
+setNumber((n) => n + 1);
+```
+
+리액트는 state 대신 함수가 들어왔으니 함수를 대기열에 추가한다.
+n의 초기값이 0이었으므로 아래와 같이 실행된다.
+
+> | queued update | n   | returns   |
+> | ------------- | --- | --------- |
+> | `n => n + 1`  | 0   | 0 + 1 = 1 |
+> | `n => n + 1`  | 1   | 1 + 1 = 2 |
+> | `n => n + 1`  | 2   | 2 + 1 = 3 |
+
+###### State 대체와 업데이트시 액션
+
+다음 예제를 살펴보자.
+
+```jsx
+const [number, setNumber] = useState(0);
+
+return (
+  <>
+    <h1>{number}</h1>
+    <button
+      onClick={() => {
+        setNumber(number + 5);
+        setNumber((n) => n + 1);
+      }}
+    >
+      Increase the number
+    </button>
+  </>
+);
+```
+
+위와 같이 state를 대체하는 경우와 updater 함수를 같이 사용한 상황에선 state가 어떻게 될까?
+
+> | queued update    | n   | returns   |
+> | ---------------- | --- | --------- |
+> | replace with `5` | 0   | 5         |
+> | `n => n + 1`     | 5   | 5 + 1 = 6 |
+
+결국 순서대로 실행되므로, state는 6이 된다.
+
+---
 
 ### Updating Objects in State
 
-###### object의 contents 자체를 바꾸는 것을 mutation이라 한다.(그와 반대로 primitive value는 값을 바꿀 수 없으므로 replace한다 함)
+State는 객체를 포함한 JS의 모든 값을 가질 수 있다.
+그러나 객체를 사용할 경우엔 객체를 수정하는 것이 아니라 새로운 객체를 만들어야 한다.
 
-> Technically, it is possible to change the contents of _the object itself_. **This is called a mutation:**
+###### Mutation?
 
-###### 아직 state가 아닌 object는 mutation해도 상관없다.(어떤 코드도 해당 object를 references하지 않기 때문에.)
+object의 contents 자체를 바꾸는 것을 mutation이라 한다. (그와 반대로 primitive value는 값을 바꿀 수 없으므로 replace라고 한다.)
 
-> Mutation is only a problem when you change _existing_ objects that are already in state. Mutating an object you’ve just created is okay because _no other code references it yet._
+```jsx
+const [position, setPosition] = useState({ x: 0, y: 0 });
+position.x = 5;
+```
 
-###### objects는 사실 nesting 되어 있는 것이 아니라 다른 object를 pointing 하고 있는 것이다.
+위 동작은 기술적으로 전혀 문제가 없다.
+하지만 리액트에선 객체를 마치 primitive value처럼 취급해야만 한다.
 
-> An object like this appears “nested” in code:
+###### State를 read-only로 취급하기
+
+객체를 primitive value로 취급한다는 것은 객체를 read-only로 취급한다는 것과 같다.
+
+아래 예제를 살펴보자.
+
+```jsx
+const [position, setPosition] = useState({
+  x: 0,
+  y: 0,
+});
+
+return (
+  <div
+    onPointerMove={(e) => {
+      position.x = e.clientX;
+      position.y = e.clientY;
+    }}
+    style={{
+      position: "relative",
+      width: "100vw",
+      height: "100vh",
+    }}
+  >
+    <div
+      style={{
+        position: "absolute",
+        backgroundColor: "red",
+        borderRadius: "50%",
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        left: -10,
+        top: -10,
+        width: 20,
+        height: 20,
+      }}
+    />
+  </div>
+);
+```
+
+`<div>` 태그에 onPointerMove 이벤트 핸들러가 있지만, 위 예제는 정상적으로 작동하지 않는다.
+이는 onPointerMove 이벤트 때문이다.
+
+```jsx
+onPointerMove={(e) => {
+  position.x = e.clientX;
+  position.y = e.clientY;
+}}
+```
+
+위 이벤트는 가장 최근 렌더링 시 만들어진 `position` state를 변경시킬 뿐이다.
+따라서 리액트는 해당 객체가 변경되었는지 알 수 없다.
+
+따라서 아래와 같이 이벤트를 변경해야한다.
+
+```jsx
+onPointerMove={(e) => {
+  setPosition({
+    x: e.clientX,
+    y: e.clientY,
+  });
+}}
+```
+
+위 예제는 리액트에게 2가지를 전달한다.
+
+1. `position` state를 새로운 객체로 대체할 것.
+2. 리렌더링을 할 것.
+
+###### Nested object는 사실 nesting 되어 있는 것이 아니라 다른 object를 pointing 하고 있는 것이다.
+
+아래 두 예제는 사실 같은 예제이다.
 
 ```jsx
 let obj = {
@@ -394,8 +544,6 @@ let obj = {
 };
 ```
 
-> However, “nesting” is an inaccurate way to think about how objects behave. When the code executes, there is no such thing as a “nested” object. You are really looking at two different objects:
-
 ```jsx
 let obj1 = {
   title: "Blue Nana",
@@ -403,11 +551,13 @@ let obj1 = {
   image: "https://i.imgur.com/Sd1AgUOm.jpg",
 };
 
-let obj2 = {
+let obj = {
   name: "Niki de Saint Phalle",
   artwork: obj1,
 };
 ```
+
+---여기까지 함
 
 ---
 

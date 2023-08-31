@@ -1,8 +1,22 @@
+import { getAllPostsMeta } from "@/util/mdx";
 import { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const URL = "https://www.gyoheon.com";
+  const URL = "https://www.gyoheon.com/";
+
+  const posts = await getAllPostsMeta("posts");
+  const memos = await getAllPostsMeta("memos");
+
+  const postsSlug = posts.map((post) => ({
+    url: URL + post.slug,
+    lastModified: now,
+  }));
+
+  const memosSlug = memos.map((memo) => ({
+    url: URL + memo.slug,
+    lastModified: now,
+  }));
 
   return [
     {
@@ -21,5 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: URL + "/memos",
       lastModified: now,
     },
+    ...postsSlug,
+    ...memosSlug,
   ];
 }

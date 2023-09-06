@@ -159,3 +159,8 @@ pre code {
   border: none;
   border-radius: 0;
 }
+
+#main-post img {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

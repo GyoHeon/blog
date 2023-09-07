@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 const font = Nunito_Sans({
   subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "vietnamese"],
   display: "swap",
+  variable: "--font-nunito-sans",
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

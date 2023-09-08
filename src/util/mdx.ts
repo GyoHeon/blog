@@ -35,10 +35,15 @@ export async function getPostBySlug(slug: string): Promise<IBlogPost> {
   return { meta: { ...frontmatter, slug: realSlug }, content };
 }
 
-export async function getAllPostsMeta(postType: TPost): Promise<IMetaData[]> {
+export async function getAllPostsMeta(postType: TPost, page = 1): Promise<IMetaData[]> {
+  const viewedPosts = [(page - 1) * 6, page * 6];
+
   const fileDirectory = path.join(rootDirectory, postType);
 
-  const files = fs.readdirSync(fileDirectory).filter((path) => /\.mdx?$/.test(path));
+  const files = fs
+    .readdirSync(fileDirectory)
+    .filter((path) => /\.mdx?$/.test(path))
+    .slice(...viewedPosts);
 
   let posts: IMetaData[] = [];
 

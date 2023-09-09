@@ -7,6 +7,8 @@ import rehypeSlug from "rehype-slug";
 
 const rootDirectory = path.join(process.cwd(), "mdx");
 
+export const isMdx = (path: string) => /\.mdx?$/.test(path);
+
 export async function getPostBySlug(slug: string): Promise<IBlogPost> {
   const realSlug = slug.replace(/\.mdx$/, "");
   const filePath = path.join(rootDirectory, `${realSlug}.mdx`);
@@ -42,7 +44,7 @@ export async function getAllPostsMeta(postType: TPost, page = 1): Promise<IMetaD
 
   const files = fs
     .readdirSync(fileDirectory)
-    .filter((path) => /\.mdx?$/.test(path))
+    .filter(isMdx)
     .slice(...viewedPosts);
 
   let posts: IMetaData[] = [];

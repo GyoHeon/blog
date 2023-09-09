@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const font = Nunito_Sans({
-  subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "vietnamese"],
+  subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
   display: "swap",
   variable: "--font-nunito-sans",
 });

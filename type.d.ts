@@ -15,4 +15,4 @@ interface IBlogPost {
   content: ReactElement;
 }
 
-type TPost = "posts" | "memos" | "all";
+type TPost = "posts" | "memos";

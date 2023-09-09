@@ -66,7 +66,6 @@ body {
 }
 :root {
   font-size: 10px;
-  font-family: "Nunito Sans", sans-serif;
   background-color: var(--bg);
 
   --bg: #1c1c1c;

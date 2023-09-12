@@ -59,7 +59,7 @@ export default function Home() {
             <li key={etc.title}>
               <h4>{etc.title}</h4>
               <ul className="p-2">
-                {etc.value.map((item) => (
+                {etc.values.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>

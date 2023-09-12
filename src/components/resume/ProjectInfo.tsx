@@ -1,4 +1,5 @@
 import { RESUME_WORKS } from "@/constants/resume";
+import Image from "next/image";
 import { Date } from "../Date";
 
 export function ProjectInfo({ title, projects }: { title: string; projects: typeof RESUME_WORKS }) {
@@ -24,10 +25,29 @@ export function ProjectInfo({ title, projects }: { title: string; projects: type
 
             <ul className="list-disc">
               {work.works.map((item) => (
-                <li key={item.title} className="flex flex-col gap-1 ml-2">
+                <li key={item.title} className="flex flex-col gap-1 my-6">
                   <h5>{item.title}</h5>
+
                   <Date date={item.date} />
-                  <p className="ml-2 mt-2">{item.description}</p>
+
+                  <ul>
+                    <li className="my-2">{item.description}</li>
+
+                    <li className="mt-6">
+                      <h6>업무</h6>
+                    </li>
+
+                    <li>
+                      <ul className="flex flex-col gap-2">
+                        {item.values.map((value) => (
+                          <li key={value} className="flex gap-2 items-start">
+                            <Image src="/icons/Check.svg" width={24} height={24} alt="Check icon" />
+                            {value}
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  </ul>
                 </li>
               ))}
             </ul>

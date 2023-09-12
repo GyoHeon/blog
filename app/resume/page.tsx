@@ -1,4 +1,6 @@
 import { Date } from "@/components/Date";
+import { HeadInfo } from "@/components/resume/HeadInfo";
+import { ProjectInfo } from "@/components/resume/ProjectInfo";
 import { RESUME_ACTIVITIES, RESUME_ETC, RESUME_HEAD, RESUME_OTHER_PROJECTS, RESUME_WORKS } from "@/constants/resume";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -7,56 +9,6 @@ export const metadata: Metadata = {
   title: "GyoHeon's Resume",
   description: "GyoHeon's Resume",
 };
-
-function HeadInfo() {
-  return (
-    <ul className="flex flex-col mt-10 md:mt-0 border-b-[1px] border-white">
-      {RESUME_HEAD.information.map((info) => (
-        <li key={info.title} className="flex gap-4 items-center py-1 border-t-[1px] border-white">
-          <h6 className="w-32 md:w-20 my-[0.25em] text-end text-[--blue]">{info.title}</h6>
-          <a>{info.value}</a>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function ProjectInfo({ title, projects }: { title: string; projects: typeof RESUME_WORKS }) {
-  return (
-    <section>
-      <h2 className="title-resume">{title}</h2>
-
-      <ul>
-        {projects.map((work) => (
-          <li key={work.title} className="flex flex-col gap-2 pb-2 border-b border-neutral-700">
-            <h4>{work.title}</h4>
-            <Date className="text-[20px]" date={work.date} />
-
-            <ul className="flex gap-2 my-2">
-              {work.stack.map((stack) => (
-                <li key={stack} className="tag">
-                  {stack}
-                </li>
-              ))}
-            </ul>
-
-            <span>{work.description}</span>
-
-            <ul className="list-disc">
-              {work.works.map((item) => (
-                <li key={item.title} className="flex flex-col gap-1 ml-2">
-                  <h5>{item.title}</h5>
-                  <Date date={item.date} />
-                  <p className="ml-2 mt-2">{item.description}</p>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
 
 export default function Home() {
   return (

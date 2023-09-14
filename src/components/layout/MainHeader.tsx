@@ -1,4 +1,4 @@
-import { HEADER_MENUS } from "@/constants/urls";
+import { GITHUB, HEADER_MENUS } from "@/constants/urls";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,6 +22,11 @@ export function MainHeader() {
             </h1>
             Home
           </Link>
+        </li>
+        <li>
+          <a href={GITHUB.image}>
+            <Image src={GITHUB.image} width={24} height={24} alt="GitHub link" />
+          </a>
         </li>
         {HEADER_MENUS.map((menu) => (
           <li key={menu.name}>

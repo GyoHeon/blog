@@ -24,7 +24,7 @@ export function MainHeader() {
           </Link>
         </li>
         <li>
-          <a href={GITHUB.image}>
+          <a href={GITHUB.url}>
             <Image src={GITHUB.image} width={24} height={24} alt="GitHub link" />
           </a>
         </li>

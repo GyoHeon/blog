@@ -1,19 +1,29 @@
-import React from "react";
+import { getAllPostsMeta } from "@/util/mdx";
+import { postCount } from "@/util/postCount";
+import Link from "next/link";
+import { PostGrid } from "../card/PostGrid";
 
 interface Props {
-  children: React.ReactNode;
-  title?: string;
   postType: TPost;
+  page?: number;
 }
 
-export function PostSection({ postType, title, children }: Props) {
-  if (!title) title = postType;
+export async function PostSection({ postType, page = 1 }: Props) {
+  const posts = await getAllPostsMeta("posts", page);
+  const pageNum = postCount(postType);
+
+  if (!posts) return <p>No posts!</p>;
 
   return (
     <div className="post-box">
-      <h2 className="title-section">{title.toUpperCase()}</h2>
+      <header className="title-section">
+        <h2>{postType.toUpperCase()}</h2>
+        <Link className="text-lg border-link" href={`/${postType}`}>
+          More
+        </Link>
+      </header>
 
-      {children}
+      <PostGrid posts={posts} postType={postType} />
     </div>
   );
 }

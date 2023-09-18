@@ -1,13 +1,9 @@
-import { PostCard } from "@/components/card/PostCard";
 import { PostSection } from "@/components/layout/PostSection";
-import { getAllPostsMeta } from "@/util/mdx";
 
-export default async function Posts() {
-  const posts = await getAllPostsMeta("posts");
+interface Props {
+  searchParams: { page: number };
+}
 
-  if (!posts) return <p>No posts!</p>;
-
-  const postCards = posts.map((post) => <PostCard key={post.slug} {...post} slug={post.slug} />);
-
-  return <PostSection postType="posts">{postCards}</PostSection>;
+export default async function Posts({ searchParams: { page } }: Props) {
+  return <PostSection postType="posts" page={page} />;
 }

@@ -26,7 +26,7 @@
     @apply mb-5 border-b-2 border-[--blue] text-[--blue];
   }
   .title-section {
-    @apply md:col-span-2 lg:col-span-3 border-b-4 border-b-[--text];
+    @apply flex justify-between items-end md:col-span-2 lg:col-span-3 border-b-4 border-b-[--text];
   }
   .border-link {
     @apply underline decoration-[--blue] decoration-2 transition-colors hover:text-[--blue];

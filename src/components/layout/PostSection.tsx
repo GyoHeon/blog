@@ -22,7 +22,7 @@ export async function PostSection({ postType, page = "1", isHome = false }: Prop
       <header className="title-section">
         <h2>{postType.toUpperCase()}</h2>
         {isHome ? (
-          <Link className="text-lg border-link" href={`/${postType}`}>
+          <Link className="mb-2 text-[22px] border-link" href={`/${postType}`}>
             More
           </Link>
         ) : (

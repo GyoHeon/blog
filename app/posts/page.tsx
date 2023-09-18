@@ -1,9 +1,5 @@
 import { PostSection } from "@/components/layout/PostSection";
 
-interface Props {
-  searchParams: { page: number };
-}
-
-export default async function Posts({ searchParams: { page } }: Props) {
+export default async function Posts({ searchParams: { page } }: IPostSearchParams) {
   return <PostSection postType="posts" page={page} />;
 }

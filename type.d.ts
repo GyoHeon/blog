@@ -15,4 +15,8 @@ interface IBlogPost {
   content: ReactElement;
 }
 
+interface IPostSearchParams {
+  searchParams: { page: string };
+}
+
 type TPost = "posts" | "memos";

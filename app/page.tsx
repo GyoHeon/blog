@@ -10,7 +10,6 @@ export default async function Home() {
 
   return (
     <div className="post-box">
-      <h2 className="title-section">MY</h2>
       <ResumeCard {...MY_INFO} />
 
       <h2 className="title-section">POSTS</h2>

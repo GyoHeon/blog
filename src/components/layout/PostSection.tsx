@@ -12,7 +12,7 @@ interface Props {
 
 export async function PostSection({ postType, page = "1", isHome = false }: Props) {
   const numPage = Number(page);
-  const posts = await getAllPostsMeta("posts", numPage);
+  const posts = await getAllPostsMeta(postType, numPage);
   const pageNum = postCount(postType);
 
   if (!posts) return <p>No posts!</p>;

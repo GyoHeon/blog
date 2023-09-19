@@ -12,7 +12,7 @@ export const RESUME_HEAD = {
   ],
 };
 
-export const RESUME_WORKS = [
+export const RESUME_WORKS: IResumeWork[] = [
   {
     title: "교보문고 DT",
     date: "2023.07 ~ 재직중",
@@ -40,6 +40,7 @@ export const RESUME_WORKS = [
     title: "뮤즈라이브",
     date: "2022.04 ~ 2023.07",
     description: "KiT 앨범 사용자를 대상으로 한 커뮤니티입니다.",
+    link: "https://kitbetter.com/community/discover",
     stack: ["React", "Next", "emotion", "TypeScript"],
     works: [
       {
@@ -79,6 +80,7 @@ export const RESUME_OTHER_PROJECTS = [
     title: "뭉클",
     date: "2023.04 ~ 진행중",
     description: "뭉클은 온라인 그룹 상담을 제공하는 서비스입니다.",
+    link: "https://moonkl.com",
     stack: ["Next", "tailwind", "TypeScript"],
     works: [
       {

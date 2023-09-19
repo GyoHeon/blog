@@ -1,0 +1,247 @@
+---
+title: Next.js의 app router를 알아보자.
+description: Next.js 13의 신 기능인 app router를 알아보자.
+date: 2023.09.19
+tags: React, Front-end, Next
+image: /thumbnail/Next.webp
+slug: Next-App-Router
+---
+
+> ❗ 해당 문서의 일부는 RFC를 기준으로 쓰여져있어서, 추후에 스펙이 바뀔 가능성이 있습니다.  
+> 💡 RSC는 React Server Components, RCC는 React Client Components 입니다.
+> 💡 아래의 js파일들은 모두 (jsx | ts | tsx)로도 사용 가능합니다.
+
+## App Router?
+
+NEXT.JS의 새로운 라우팅 기능인 app router는 13 버전부터 beta로 출시되었고, 13.4 버전부터 stable한 상태가 되었다.
+
+app router의 새로운 기능과 이전 page router와의 차이점을 정리해본다.
+
+## Why?
+
+Next.js를 필두로 CSR에서 SSR로 대세가 흐르고 있다. 리액트는 거기에 더해 React Server Components로 SSR을 더욱 지원하려는 움직임을 보인다. NEXT.JS의 App router는 달라진 페이지 구성 + React Server Components 사용 + 새로운 SSR 방식을 합친 라우트 구조이다.
+
+따라서 App router는 이전과 비교하여 여러 이점을 가지고 있다.
+
+## 달라진 페이지 구성
+
+이전부터 파일 시스템 기반 라우팅은 Next.js의 핵심 기능이었다. 이는 개발자가 어떤 setup 없이도 간단하게 라우트 구조를 만들게 하기 위함이다. ([참고사항](https://nextjs.org/blog/next-13-4?utm_source=marketo&utm_medium=email&utm_campaign=monthly_newsletter&mkt_tok=MDAxLUxSRy0xOTQAAAGL6fUMIvj-Hv_SiYh-E66Wv6IynrHAkFo2f-rk25syE4jknhv1zTZ_9L1HSSbHF6ilPWzM9jOFZldGXlsWqzcvBrqClmJgI_CL0CF3hScz#zero-setup-use-the-filesystem-as-an-api))
+
+하지만 시간이 지나면서(당연하게도) 새로운 요구들이 생겨났다.  
+Layout, nesting, loading, error 등이 그렇다.  
+해당 기능들은 이전의 라우트 구조로는 개조가 힘들었기 때문에 완전히 새로운 app router가 만들어졌다.
+
+### Tree
+
+![Next.js new layout tree](/image/Next-App-Router-Tree.png)
+
+Tree 구조는 이전과 비슷하다.
+
+다만 새로운 app router에는 아래와 같은 차이점들이 존재한다.
+
+### Page
+
+`page.js`가 새로운 파일 컨벤션으로 등장했다.  
+라우트 세그먼트당 하나만 존재하는 `page.js`는 해당 세그먼트의 대표(이름 그대로 페이지) 컴포넌트다.
+
+### Layout
+
+`layout.js`가 새로운 파일 컨벤션으로 등장했다.  
+`layout.js`는 해당 라우트 세그먼트와 하위 세그먼트가 모두 공유하는 컴포넌트이다.
+
+- path나 자식 요소의 리렌더링이 일어나도 layout 컴포넌트는 별개이다.
+- 데이터 페칭 같은 역할도 수행할 수 있다.
+- 무조건 children 요소를 받아야한다.
+- 이전에는 `_app.js`를 제외한 다른 router 관련 컴포넌트에서는 external npm packages stylesheets를 import할 수 없었다.  
+  하지만 app router에서는 어떤 컴포넌트에서도 custom stylesheets를 import할 수 있다.
+- Layout은 하위 세그먼트를 따라가면서 중첩될 수 있다. (기본적으로 중첩된다.)
+
+![Next.js new layout nesting](/image/Next-App-Router-Nesting.png)
+
+#### Root layout
+
+App directory 가장 상위에 있는 layout.js 를 root layout이라 한다.
+
+- 해당 컴포넌트는 모든 라우트에서 동작하므로, 이전 버전의 `_app.js`와 `_document.js`를 대체한다.
+- `<html>`, `<head>`, `<body>` 모두 커스텀 할 수 있다.(서버 사이드에서 커스텀이 된다.)
+
+## React Server Components
+
+(아직 많은 정보가 나오지 않고, 개념 이해가 충분하지 않아서 부족한 정보들입니다.)
+
+- App router 안의 모든 컴포넌트는 기본적으로 React Server Components를 사용한다.
+- server component hooks라는 개념이 추가될 것이다.
+- 기본적으로 app router는 static generation 방식으로 작동하고, **server-side hooks를 사용할 때에만** dynamic rendering 으로 동작한다.
+
+### RSC VS RCC
+
+![Difference with RSC and RCC](/image/Next-App-Router-Difference.png)
+
+### With RCC
+
+프로젝트의 성능을 위해선 client components를 최하위 트리(leaf tree)에 배치하는 것이 좋다. 이를 통해 client의 영역을 최소화할 수 있기 때문이다.
+
+### Composing Client and Server Components
+
+서버 단에서 모든 RSC는 클라이언트로 전달되기 전에 렌더링이 일어난다.
+
+- 해당 작업은 RCC 안에 있는 RSC도 마찬가지이다.
+- 이때 RCC는 스킵된다.
+
+클라이언트 단에서는 RCC가 렌더링되고 RSC의 solts를 렌더링 한뒤 RSC와 RCC를 병합한다.
+
+#### Nesting Server Components inside Client Components
+
+RCC 안에 RSC를 nesting 할 때, 일반적인 import 방식은 작동하지 않는다.
+
+아래는 동작하지 않는 예시이다.
+
+```tsx
+"use client";
+
+// This pattern will **not** work!
+// You cannot import a Server Component into a Client Component.
+import ExampleServerComponent from "./example-server-component";
+
+export default function ExampleClientComponent({ children }: { children: React.ReactNode }) {
+  const [count, setCount] = useState(0);
+
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>{count}</button>
+
+      <ExampleServerComponent />
+    </>
+  );
+}
+```
+
+대신에, RCC 안에 RSC를 nesting하기 위해선 RSC를 props로 받아 사용해야 한다.
+
+아래는 RSC를 children으로 받아 동작하는 예시이다.
+
+당연히 children이 아닌 다른 props로 RSC를 받아도 동작한다.
+
+이는 props로 받은 컴포넌트가 독립적으로 렌더링되기 때문이다.
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+export default function ExampleClientComponent({ children }: { children: React.ReactNode }) {
+  const [count, setCount] = useState(0);
+
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>{count}</button>
+
+      {children}
+    </>
+  );
+}
+```
+
+#### Passing props from Server to Clien Componenets (Serialization)
+
+RSC와 RCC는 코드가 아니라 network로 통신해야 한다.
+
+문서에선 이를 `the network boundary is between Server Components and Client Components.`라고 설명하고 있다.
+
+따라서 RSC과 RCC의 props는 network를 통해 소통을 한다는 것이다. 네트워크는 JS의 function이나 date 같은 특수한 데이터를 있는 그대로 받아들이지 못하기 때문에 해당 정보들은 JSON.stringfy(), toString() 등의 방법으로 Serialization하여 props로 넘겨줘야만 한다.
+
+아래와 같이 코드를 사용하면 에러가 나온다.
+
+```tsx
+import ExampleClientComponent from "./example-client-component";
+
+export default function ExampleServerComponent({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>{count}</button>
+
+      <ExampleClientComponent test={() => console.log("test")} />
+    </>
+  );
+}
+```
+
+![Next.js error example](/image/Next-App-Router-Error.png)
+
+이를 피하기 위해선 아래와 같이 props를 넘겨준 뒤 받은 props를 eval() 등으로 사용해주어야 한다.
+
+> ❗ 참고로 eval code는 mdn에 절대 사용하지 말라고 적혀있다! [[읽어보기](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval)]
+
+```tsx
+import ExampleClientComponent from "./example-client-component";
+
+export default function ExampleServerComponent({ children }: { children: React.ReactNode }) {
+  const testFunc = () => console.log("test");
+
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>{count}</button>
+
+      <ExampleClientComponent test={testFunc.toString()} />
+    </>
+  );
+}
+```
+
+## 달라진 SSR
+
+이전 getServerSideProps를 통한 SSR에서는 전체 페이지가 hydrate 되기 전에 application이 block되었다.  
+하지만 App router에서는 [React Suspense](https://react.dev/reference/react/Suspense)와의 통합을 진행했고, 다른 컴포넌트의 block을 일으키지 않고 특정 컴포넌트만 hydrate를 할 수 있게 되었다. (구동 원리를 몰라서 단순 해석임.)
+
+### Code splitting
+
+이전에는 component-level에서 코드 스플리팅을 하기 위해 next/dynamic 을 사용해야 했다. (page 단위의 코드 스플리팅은 이전부터 지원되었다. 기본적으로 page Router로 나뉜 페이지는 모두 코드 스플리팅이 되어 있는 상태이다.)  
+하지만 App router에서는 client components를 자동적으로 코드 스플리팅해준다.  
+따라서 단순 로직만으로 컴포넌트 단위의 코드 스플리팅이 가능하다.
+
+아래와 같은 예시에서 로그인 하지않은 유저는 `<Dashboad />` 를 로드하지 않는다.
+
+```tsx
+// app/layout.tsx
+
+import { getUser } from "./auth";
+import { Dashboard, Landing } from "./components";
+
+export default async function Layout() {
+  const isLoggedIn = await getUser();
+  return isLoggedIn ? <Dashboard /> : <Landing />;
+}
+```
+
+## ETC
+
+### use client
+
+기본적으로 app router내 컴포넌트는 모두 react server components이기 때문에, useState, useEffect, window API 등을 사용하지 못한다.  
+해당 기능등을 사용하기 위해선 client components를 사용해주어야 한다.  
+client components를 사용하기 위해선 컴포넌트 내에서 ‘use client’를 선언해주어야한다.  
+아래와 같이 사용할 수 있다.
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  );
+}
+```
+
+## 출처
+
+- [https://nextjs.org/blog/next-13-4](https://nextjs.org/blog/next-13-4)
+- [https://nextjs.org/blog/layouts-rfc](https://nextjs.org/blog/layouts-rfc)
+- [https://react.dev/reference/react/Suspense](https://react.dev/reference/react/Suspense)
+- [https://nextjs.org/docs/getting-started/react-essentials](https://nextjs.org/docs/getting-started/react-essentials)

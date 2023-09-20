@@ -14,7 +14,9 @@ export async function generateMetadata({ params: { slug } }: Props) {
     title: meta.title,
     description: meta.description,
     openGraph: {
-      images: [meta.image],
+      images: meta.image,
+      description: meta.description,
+      type: "article",
     },
   };
 }

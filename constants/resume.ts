@@ -86,22 +86,29 @@ export const RESUME_OTHER_PROJECTS: IResumeWork[] = [
       {
         title: "뭉클 메인 페이지 신규 개발",
         date: "2023.04 ~ 진행중",
-        description: "뭉클의 메인 페이지를 신규 개발하였습니다. (기여도 100%)",
-        values: ["Next.js 13 App routing을 사용하여 SSR 구현", "tailwind를 사용하여 스타일링"],
+        description: "뭉클의 웹 사이트를 신규 개발하였습니다. (기여도 100%)",
+        values: [
+          "Next.js 13 App routing을 사용하여 SSR 구현",
+          "monorepo를 구성하여 landing, main 두 개의 웹 프로젝트를 효율적으로 관리",
+        ],
       },
     ],
   },
   {
-    title: "SYSMETIC",
+    title: "SYSMETIC (외주)",
     date: "2021.12 ~ 2022.02",
-    description: "뭉클은 온라인 그룹 상담을 제공하는 서비스입니다.",
-    stack: ["Next", "tailwind", "TypeScript"],
+    description: "주식회사 시스메틱의 외주를 받아 개발을 진행하였습니다.",
+    stack: ["React", "emotion", "D3"],
     works: [
       {
         title: "Moya for Desktop",
         date: "2021.12 ~ 2022.02",
-        description: "시스메틱사와의",
-        values: ["D3을 사용하여 chart 구현", "tailwind를 사용하여 스타일링"],
+        description:
+          "주식회사 SYSMETIC의 뉴스와 주가의 상관관계를 분석하여 제공하는 앱 Moya의 프론트엔드 데모 버전입니다.",
+        values: [
+          "프로젝트의 총괄 팀장을 맡아 개발자, 디자이너, SYSMETIC 사와의 모든 소통을 주도",
+          "D3을 사용하여 chart 구현",
+        ],
       },
     ],
   },
@@ -109,7 +116,7 @@ export const RESUME_OTHER_PROJECTS: IResumeWork[] = [
 
 export const RESUME_ACTIVITIES: IResumeProject[] = [
   {
-    title: "오픈소스 기여-mdn 한글 번역",
+    title: "오픈소스 기여 - mdn 한글 번역",
     date: "2023.06 ~ 진행중",
     description: "mdn의 한글 번역에 기여하였습니다.",
     link: "https://github.com/mdn/translated-content/pulls?q=is%3Apr+author%3AGyoHeon",
@@ -131,9 +138,8 @@ export const RESUME_ACTIVITIES: IResumeProject[] = [
     values: [
       "해커톤 팀장으로 아이디어 결정 및 프로젝트를 주도하여 최우수상 수상",
       "특정 지역 내 채용 공고 확인 기능 프로젝트 구현",
-      "지도 관련 개발을 담당하여 반응형 지도 구현",
+      "위치 확인이 쉽도록 하는 반응형 지도 개발 관련 개발을 담당하여 반응형 지도 구현",
       "회사명을 통해 주소 및 GPS 좌표 확인 후 실제 위치 표시",
-      "위치 확인이 쉽도록 하는 반응형 지도 개발",
     ],
   },
   {

@@ -1,6 +1,6 @@
-import { Date } from "@/components/Date";
 import { HeadInfo } from "@/components/resume/HeadInfo";
 import { ProjectInfo } from "@/components/resume/ProjectInfo";
+import { WorkInfo } from "@/components/resume/WorkInfo";
 import { RESUME_ACTIVITIES, RESUME_ETC, RESUME_HEAD, RESUME_OTHER_PROJECTS, RESUME_WORKS } from "@/constants/resume";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -33,23 +33,11 @@ export default function Home() {
         <p className="whitespace-pre-line">{RESUME_HEAD.description}</p>
       </section>
 
-      <ProjectInfo title="Work Experiences" projects={RESUME_WORKS} />
+      <WorkInfo title="Work Experiences" projects={RESUME_WORKS} />
 
-      <ProjectInfo title="Other Projects" projects={RESUME_OTHER_PROJECTS} />
+      <WorkInfo title="Other Projects" projects={RESUME_OTHER_PROJECTS} />
 
-      <section>
-        <h2 className="title-resume">Activities</h2>
-
-        <ul>
-          {RESUME_ACTIVITIES.map((activity) => (
-            <li key={activity.title} className="flex flex-col gap-1 pb-2 border-b border-neutral-700">
-              <h4>{activity.title}</h4>
-              <Date date={activity.date} />
-              <span className="ml-2">{activity.description}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <ProjectInfo title="Activities" projects={RESUME_ACTIVITIES} />
 
       <section>
         <h2 className="title-resume">ETC</h2>

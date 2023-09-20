@@ -19,6 +19,14 @@ interface IPostSearchParams {
   searchParams: { page: string };
 }
 
+interface IResumeProject {
+  title: string;
+  date: string;
+  description: string;
+  link?: string;
+  values: string[];
+}
+
 interface IResumeWork {
   title: string;
   date: string;

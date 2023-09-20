@@ -75,7 +75,7 @@ export const RESUME_WORKS: IResumeWork[] = [
   },
 ];
 
-export const RESUME_OTHER_PROJECTS = [
+export const RESUME_OTHER_PROJECTS: IResumeWork[] = [
   {
     title: "뭉클",
     date: "2023.04 ~ 진행중",
@@ -91,26 +91,50 @@ export const RESUME_OTHER_PROJECTS = [
       },
     ],
   },
+  {
+    title: "SYSMETIC",
+    date: "2021.12 ~ 2022.02",
+    description: "뭉클은 온라인 그룹 상담을 제공하는 서비스입니다.",
+    stack: ["Next", "tailwind", "TypeScript"],
+    works: [
+      {
+        title: "Moya for Desktop",
+        date: "2021.12 ~ 2022.02",
+        description: "시스메틱사와의",
+        values: ["D3을 사용하여 chart 구현", "tailwind를 사용하여 스타일링"],
+      },
+    ],
+  },
 ];
 
-export const RESUME_ACTIVITIES = [
+export const RESUME_ACTIVITIES: IResumeProject[] = [
   {
-    title: "오픈소스 기여",
+    title: "오픈소스 기여-mdn 한글 번역",
     date: "2023.06 ~ 진행중",
     description: "mdn의 한글 번역에 기여하였습니다.",
-    values: [],
+    link: "https://github.com/mdn/translated-content/pulls?q=is%3Apr+author%3AGyoHeon",
+    values: ["mdn에 한글 번역 문서를 추가하고 있습니다."],
   },
   {
     title: "패스트캠퍼스 프론트엔드 과정 멘토",
     date: "2022.10 ~ 진행중",
     description: "패스트캠퍼스 프론트엔드 과정에서 멘토로 활동하였습니다",
-    values: [],
+    values: [
+      "패스트캠퍼스 프론트엔드 부트캠프에서 코드 리뷰 멘토로 활동하여 수강생들의 코드 리뷰 진행",
+      "수강생 리뷰에서 긍정적인 평가를 받아 이후 담당 멘토로 활동",
+    ],
   },
   {
     title: "Hello, Megabyte 해커톤 최우수상",
     date: "2022.02",
     description: "팀을 구성하여 해커톤에 참가, 최우수상을 수상하였습니다.",
-    values: [],
+    values: [
+      "해커톤 팀장으로 아이디어 결정 및 프로젝트를 주도하여 최우수상 수상",
+      "특정 지역 내 채용 공고 확인 기능 프로젝트 구현",
+      "지도 관련 개발을 담당하여 반응형 지도 구현",
+      "회사명을 통해 주소 및 GPS 좌표 확인 후 실제 위치 표시",
+      "위치 확인이 쉽도록 하는 반응형 지도 개발",
+    ],
   },
   {
     title: "서울시립대학교 빅데이터 연계경진대회 동상",

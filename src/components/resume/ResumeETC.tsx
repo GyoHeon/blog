@@ -1,3 +1,5 @@
+import { ResumeSection } from "./ResumeSection";
+
 interface Props {
   title: string;
   values: {
@@ -8,9 +10,7 @@ interface Props {
 
 export function ResumeETC({ title, values }: Props) {
   return (
-    <section>
-      <h2 className="title-resume">{title}</h2>
-
+    <ResumeSection title={title}>
       <ul>
         {values.map(({ title, content }) => (
           <li key={title}>
@@ -23,6 +23,6 @@ export function ResumeETC({ title, values }: Props) {
           </li>
         ))}
       </ul>
-    </section>
+    </ResumeSection>
   );
 }

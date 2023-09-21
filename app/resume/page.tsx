@@ -1,9 +1,9 @@
-import { ProjectInfo } from "@/components/resume/ProjectInfo";
 import { ResumeAboutMe } from "@/components/resume/ResumeAboutMe";
+import { ResumeActivities } from "@/components/resume/ResumeActivities";
 import { ResumeBanner } from "@/components/resume/ResumeBanner";
 import { ResumeETC } from "@/components/resume/ResumeETC";
+import { ResumeProjects } from "@/components/resume/ResumeProjects";
 import { ResumeSkill } from "@/components/resume/ResumeSkill";
-import { WorkInfo } from "@/components/resume/WorkInfo";
 import {
   RESUME_ACTIVITIES,
   RESUME_ETC,
@@ -23,17 +23,11 @@ export default function Home() {
   return (
     <main className="flex flex-col gap-12 w-full md:w-[700px]">
       <ResumeBanner {...RESUME_HEAD} />
-
       <ResumeAboutMe {...RESUME_HEAD} />
-
       <ResumeSkill {...RESUME_SKILLS} />
-
-      <WorkInfo title="Work Experiences" projects={RESUME_WORKS} />
-
-      <WorkInfo title="Other Projects" projects={RESUME_OTHER_PROJECTS} />
-
-      <ProjectInfo title="Activities" projects={RESUME_ACTIVITIES} />
-
+      <ResumeProjects {...RESUME_WORKS} />
+      <ResumeProjects {...RESUME_OTHER_PROJECTS} />
+      <ResumeActivities {...RESUME_ACTIVITIES} />
       <ResumeETC {...RESUME_ETC} />
     </main>
   );

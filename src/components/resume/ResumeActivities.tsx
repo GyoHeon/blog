@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { Date } from "../Date";
 import { ActionList } from "./ActionList";
+import { ResumeSection } from "./ResumeSection";
 
-export function ProjectInfo({ title, projects }: { title: string; projects: IResumeProject[] }) {
+export function ResumeActivities({ title, projects }: IResumeActivities) {
   return (
-    <section>
-      <h2 className="title-resume">{title}</h2>
-
+    <ResumeSection title={title}>
       <ul>
         {projects.map(({ title, date, description, values, link = "" }) => (
           <li key={title} className="flex flex-col gap-2 pb-2 border-b border-neutral-700">
@@ -19,18 +18,15 @@ export function ProjectInfo({ title, projects }: { title: string; projects: IRes
                 </a>
               )}
             </header>
+
             <Date date={date} />
 
             <span>{description}</span>
 
-            <ul>
-              <li>
-                <ActionList values={values} />
-              </li>
-            </ul>
+            <ActionList values={values} />
           </li>
         ))}
       </ul>
-    </section>
+    </ResumeSection>
   );
 }

@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { Date } from "../Date";
+import { SkillTags } from "../tag/SkillTags";
 import { ActionList } from "./ActionList";
+import { ResumeSection } from "./ResumeSection";
 
-export function WorkInfo({ title, projects }: { title: string; projects: IResumeWork[] }) {
+export function ResumeProjects({ title, projects }: IResumeProjects) {
   return (
-    <section>
-      <h2 className="title-resume">{title}</h2>
-
+    <ResumeSection title={title}>
       <ul>
         {projects.map(({ title, date, description, stack, works, link = "" }) => (
           <li key={title} className="flex flex-col gap-2 pb-2 border-b border-neutral-700">
@@ -19,26 +19,17 @@ export function WorkInfo({ title, projects }: { title: string; projects: IResume
                 </a>
               )}
             </header>
+
             <Date date={date} />
 
-            {stack && (
-              <ul className="flex gap-2 my-2">
-                {stack.map((stack) => (
-                  <li key={stack} className="tag">
-                    {stack}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <SkillTags stack={stack} />
 
             <span>{description}</span>
 
             <ul>
-              {works.map(({ title, date, description, values }) => (
+              {works.map(({ title, description, values }) => (
                 <li key={title} className="flex flex-col gap-1 my-6">
                   <h5>{title}</h5>
-
-                  <Date date={date} />
 
                   <ul>
                     <li className="my-2">{description}</li>
@@ -57,6 +48,6 @@ export function WorkInfo({ title, projects }: { title: string; projects: IResume
           </li>
         ))}
       </ul>
-    </section>
+    </ResumeSection>
   );
 }

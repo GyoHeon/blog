@@ -1,8 +1,9 @@
 export const RESUME_HEAD = {
   name: "이교헌",
-  description: `꾸준히 노력하는 개발자 이교헌입니다.
-  
-  개인 및 팀 성장에 관심이 높으며, 비지니스에 긍정적인 영향을 미치는 개발자가 되기 위해 노력하고 있습니다.`,
+  description: `꾸준히 노력하는 프론트엔드 엔지니어 이교헌입니다.
+
+  여러 활동에서 적극적으로 팀장을 맡아온 경험이 있으며 조직내 소통을 이끌어내며 프로젝트를 성공시키는 것을 즐깁니다.
+  비즈니스에 긍정적인 영향을 미치는 개발자가 되기 위해 오늘도 끊임없이 노력하고 있습니다.`,
   image: "/image/lgh.png",
   information: [
     { title: "Phone", value: "010-9978-9874" },
@@ -16,7 +17,7 @@ export const RESUME_WORKS: IResumeWork[] = [
   {
     title: "교보문고 DT",
     date: "2023.07 ~ 재직중",
-    description: "교보문고의 DT 팀에서 프론트엔드 개발자로 근무하고 있습니다.",
+    description: "교보문고 DT추진실 크로스플랫폼팀 / FE 개발자",
     stack: ["React", "TypeScript", "Storybook"],
     works: [
       {
@@ -39,7 +40,7 @@ export const RESUME_WORKS: IResumeWork[] = [
   {
     title: "뮤즈라이브",
     date: "2022.04 ~ 2023.07",
-    description: "KiT 앨범 사용자를 대상으로 한 커뮤니티입니다.",
+    description: "뮤즈라이브 / FE 개발 & Infra",
     link: "https://kitbetter.com/community/discover",
     stack: ["React", "Next", "emotion", "TypeScript"],
     works: [
@@ -79,7 +80,7 @@ export const RESUME_OTHER_PROJECTS: IResumeWork[] = [
   {
     title: "뭉클",
     date: "2023.04 ~ 진행중",
-    description: "뭉클은 온라인 그룹 상담을 제공하는 서비스입니다.",
+    description: "뭉클 / FE 개발",
     link: "https://moonkl.com",
     stack: ["Next", "tailwind", "TypeScript"],
     works: [
@@ -95,9 +96,24 @@ export const RESUME_OTHER_PROJECTS: IResumeWork[] = [
     ],
   },
   {
+    title: "Blog",
+    date: "2023.05 ~ 진행중",
+    description: "파일 시스템 기반 개인 블로그",
+    link: "https://gyoheon.com",
+    stack: ["Next", "tailwind", "TypeScript"],
+    works: [
+      {
+        title: "파일 시스템 기반 개인 블로그",
+        date: "2023.05 ~ 진행중",
+        description: "",
+        values: ["Next.js 13 App routing을 사용하여 SSR 구현", "generateMetadata를 사용하여 메타데이터 자동 생성"],
+      },
+    ],
+  },
+  {
     title: "SYSMETIC (외주)",
     date: "2021.12 ~ 2022.02",
-    description: "주식회사 시스메틱의 외주를 받아 개발을 진행하였습니다.",
+    description: "시스메틱 외주 / 총괄 팀장",
     stack: ["React", "emotion", "D3"],
     works: [
       {
@@ -118,25 +134,22 @@ export const RESUME_ACTIVITIES: IResumeProject[] = [
   {
     title: "오픈소스 기여 - mdn 한글 번역",
     date: "2023.06 ~ 진행중",
-    description: "mdn의 한글 번역에 기여하였습니다.",
+    description: "mdn 한글 번역에 기여",
     link: "https://github.com/mdn/translated-content/pulls?q=is%3Apr+author%3AGyoHeon",
     values: ["mdn에 한글 번역 문서를 추가하고 있습니다."],
   },
   {
     title: "패스트캠퍼스 프론트엔드 과정 멘토",
-    date: "2022.10 ~ 진행중",
-    description: "패스트캠퍼스 프론트엔드 과정에서 멘토로 활동하였습니다",
-    values: [
-      "패스트캠퍼스 프론트엔드 부트캠프에서 코드 리뷰 멘토로 활동하여 수강생들의 코드 리뷰 진행",
-      "수강생 리뷰에서 긍정적인 평가를 받아 이후 담당 멘토로 활동",
-    ],
+    date: "2022.10 ~ 2023.10",
+    description: "패스트캠퍼스 프론트엔드 과정 멘토 활동",
+    values: ["패스트캠퍼스 프론트엔드 부트캠프에서 멘토로 활동", "수강생 리뷰에서 긍정적인 평가(4.7/5)를 받음"],
   },
   {
     title: "Hello, Megabyte 해커톤 최우수상",
     date: "2022.02",
-    description: "팀을 구성하여 해커톤에 참가, 최우수상을 수상하였습니다.",
+    description: "팀을 구성하여 해커톤에 참가, 최우수상을 수상.",
     values: [
-      "해커톤 팀장으로 아이디어 결정 및 프로젝트를 주도하여 최우수상 수상",
+      "해커톤 팀장으로 참여하여 아이디어 결정 및 프로젝트를 주도하여 최우수상 수상",
       "특정 지역 내 채용 공고 확인 기능 프로젝트 구현",
       "위치 확인이 쉽도록 하는 반응형 지도 개발 관련 개발을 담당하여 반응형 지도 구현",
       "회사명을 통해 주소 및 GPS 좌표 확인 후 실제 위치 표시",
@@ -145,7 +158,7 @@ export const RESUME_ACTIVITIES: IResumeProject[] = [
   {
     title: "서울시립대학교 빅데이터 연계경진대회 동상",
     date: "2020.12",
-    description: "교내 빅데이터 경진대회에 팀으로 참가 동상을 수상하였습니다.",
+    description: "교내 빅데이터 경진대회에 팀으로 참가, 동상을 수상",
     values: [
       "교내 빅데이터 연계 경진대회에서 코로나 관련 머신러닝 분석 및 시각화 수행",
       "개인 역할로 데이터 전처리 및 시각화 작업을 담당",

@@ -7,6 +7,7 @@ module.exports = {
         "text-main": "16px",
         "text-small": "14px",
         "text-xsmall": "12px",
+        "text-2xs": "10px",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

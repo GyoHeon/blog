@@ -19,7 +19,7 @@ export function ProjectInfo({ title, projects }: { title: string; projects: IRes
                 </a>
               )}
             </header>
-            <Date className="text-[20px]" date={date} />
+            <Date date={date} />
 
             <span>{description}</span>
 

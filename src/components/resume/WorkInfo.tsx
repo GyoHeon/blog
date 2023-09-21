@@ -19,7 +19,7 @@ export function WorkInfo({ title, projects }: { title: string; projects: IResume
                 </a>
               )}
             </header>
-            <Date className="text-[20px]" date={date} />
+            <Date date={date} />
 
             {stack && (
               <ul className="flex gap-2 my-2">

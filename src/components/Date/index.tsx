@@ -3,12 +3,12 @@ interface Props {
   date: string;
 }
 
-export function Date({ className, date }: Props) {
+export function Date({ className = "", date }: Props) {
   const dateTime = date.split(" ~ ")[0];
 
   return (
     <time
-      className={`w-fit p-0.5 pr-1 pb-0 border-b-2 border-[--orange] text-[--text--sec] text-xsmall italic ${className}`}
+      className={`w-fit p-0.5 pr-1 pb-0 border-b-2 border-[--orange] text-[--text--sec] text-2xs ${className}`}
       dateTime={dateTime}
     >
       {date}

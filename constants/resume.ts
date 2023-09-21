@@ -15,12 +15,12 @@ export const RESUME_HEAD = {
 };
 
 export const RESUME_SKILLS = {
-  title: "Skills",
+  title: "기술 스택",
   skills: ["React", "Next", "TypeScript", "emotion", "tailwind", "AWS"],
 };
 
 export const RESUME_WORKS: IResumeProjects = {
-  title: "Projects",
+  title: "경력",
   projects: [
     {
       title: "교보문고 DT",
@@ -51,22 +51,22 @@ export const RESUME_WORKS: IResumeProjects = {
       stack: ["React", "Next", "emotion", "TypeScript", "AWS"],
       works: [
         {
-          title: "키트 커뮤니티 개발",
-          description: "기존 프로젝트의 성능 향상을 이끌었습니다.",
+          title: "키트 커뮤니티 프론트 개발",
+          description: "키트 커뮤니티의 선임 개발을 담당했습니다. (기여도 70%)",
           values: [
-            "JavaScript를 TypeScript로 100% 마이그레이션하여 컴파일 과정에서 에러를 잡아낼 수 있는 환경 구성",
+            "JavaScript를 TypeScript로 100% 마이그레이션하여 안정성 높은 코드 구성",
             "불필요한 라이브러리를 직접 구현하여 기존 46개의 라이브러리를 20개로 감소",
             "500kB에 달하는 번들 사이즈를 70% 감소",
-            "꾸준한 성능 개선으로 lighthouse 점수 향상 (65->83)",
+            "꾸준한 성능 개선으로 lighthouse 측정 결과 65점에서 83점으로 개선",
           ],
         },
         {
           title: "FE 인프라",
-          description: "로컬 코드를 바로 릴리즈로 배포하는 기존 프론트 환경을 개선하였습니다.",
+          description: "프론트엔드 배포 환경을 개선하였습니다.",
           values: [
-            "BitBucket의 pipeline과 AWS의 CodeDeploy를 통해 CI/CD 구성",
+            "AWS 프론트엔드 배포 환경 구축",
             "단일 서버에 웹, 웹뷰 2개의 서비스를 배포",
-            "테스트 서버를 구성하고 배포하여 QA와 구동 환경 테스트를 실시",
+            "테스트 서버를 구성하여 QA와 구동 환경 분리",
           ],
         },
       ],
@@ -75,7 +75,7 @@ export const RESUME_WORKS: IResumeProjects = {
 };
 
 export const RESUME_OTHER_PROJECTS: IResumeProjects = {
-  title: "Other Projects",
+  title: "사이드 프로젝트",
   projects: [
     {
       title: "뭉클",
@@ -121,7 +121,7 @@ export const RESUME_OTHER_PROJECTS: IResumeProjects = {
             "주식회사 SYSMETIC의 뉴스와 주가의 상관관계를 분석하여 제공하는 앱 Moya의 프론트엔드 데모 버전입니다.",
           values: [
             "프로젝트의 총괄 팀장을 맡아 개발자, 디자이너, SYSMETIC 사와의 모든 소통을 주도",
-            "D3을 사용하여 chart 구현",
+            "D3.js 사용하여 Chart 데이터 시각화",
           ],
         },
       ],
@@ -130,7 +130,7 @@ export const RESUME_OTHER_PROJECTS: IResumeProjects = {
 };
 
 export const RESUME_ACTIVITIES: IResumeActivities = {
-  title: "Activities",
+  title: "기타 활동",
   projects: [
     {
       title: "오픈소스 기여 - mdn 한글 번역",
@@ -169,7 +169,7 @@ export const RESUME_ACTIVITIES: IResumeActivities = {
 };
 
 export const RESUME_ETC = {
-  title: "ETC",
+  title: "학력 및 자격증",
   values: [
     { title: "학력", content: ["서울시립대학교 물리학과"] },
     { title: "자격증", content: ["OPIC - IM1"] },

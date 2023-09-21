@@ -1,5 +1,6 @@
 export const RESUME_HEAD = {
   name: "이교헌",
+  title: "About Me",
   description: `꾸준히 노력하는 프론트엔드 엔지니어 이교헌입니다.
 
   여러 활동에서 적극적으로 팀장을 맡아온 경험이 있으며 조직내 소통을 이끌어내며 프로젝트를 성공시키는 것을 즐깁니다.
@@ -11,6 +12,12 @@ export const RESUME_HEAD = {
     { title: "GitHub", value: "https://github.com/GyoHeon" },
     { title: "Blog", value: "https://gyoheon.com" },
   ],
+};
+
+export const RESUME_SKILLS = {
+  title: "Skills",
+
+  skills: ["React", "TypeScript", "Next", "emotion", "tailwind"],
 };
 
 export const RESUME_WORKS: IResumeWork[] = [
@@ -166,7 +173,10 @@ export const RESUME_ACTIVITIES: IResumeProject[] = [
   },
 ];
 
-export const RESUME_ETC = [
-  { title: "학력", values: ["서울시립대학교 물리학과"] },
-  { title: "자격증", values: ["OPIC - IM1"] },
-];
+export const RESUME_ETC = {
+  title: "ETC",
+  values: [
+    { title: "학력", content: ["서울시립대학교 물리학과"] },
+    { title: "자격증", content: ["OPIC - IM1"] },
+  ],
+};

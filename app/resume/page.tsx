@@ -1,9 +1,18 @@
-import { HeadInfo } from "@/components/resume/HeadInfo";
 import { ProjectInfo } from "@/components/resume/ProjectInfo";
+import { ResumeAboutMe } from "@/components/resume/ResumeAboutMe";
+import { ResumeBanner } from "@/components/resume/ResumeBanner";
+import { ResumeETC } from "@/components/resume/ResumeETC";
+import { ResumeSkill } from "@/components/resume/ResumeSkill";
 import { WorkInfo } from "@/components/resume/WorkInfo";
-import { RESUME_ACTIVITIES, RESUME_ETC, RESUME_HEAD, RESUME_OTHER_PROJECTS, RESUME_WORKS } from "@/constants/resume";
+import {
+  RESUME_ACTIVITIES,
+  RESUME_ETC,
+  RESUME_HEAD,
+  RESUME_OTHER_PROJECTS,
+  RESUME_SKILLS,
+  RESUME_WORKS,
+} from "@/constants/resume";
 import { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "GyoHeon's Resume",
@@ -13,25 +22,11 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="flex flex-col gap-12 w-full md:w-[700px]">
-      <section>
-        <h2 className="title-resume text-4xl font-bold">{RESUME_HEAD.name}</h2>
-        <div className="flex flex-col md:flex-row justify-between">
-          <Image
-            className="mx-auto md:mx-0 object-contain"
-            src={RESUME_HEAD.image}
-            width={300}
-            height={300}
-            alt={RESUME_HEAD.name}
-          />
-          <HeadInfo />
-        </div>
-      </section>
+      <ResumeBanner {...RESUME_HEAD} />
 
-      <section>
-        <h2 className="title-resume">About Me</h2>
+      <ResumeAboutMe {...RESUME_HEAD} />
 
-        <p className="whitespace-pre-line">{RESUME_HEAD.description}</p>
-      </section>
+      <ResumeSkill {...RESUME_SKILLS} />
 
       <WorkInfo title="Work Experiences" projects={RESUME_WORKS} />
 
@@ -39,22 +34,7 @@ export default function Home() {
 
       <ProjectInfo title="Activities" projects={RESUME_ACTIVITIES} />
 
-      <section>
-        <h2 className="title-resume">ETC</h2>
-
-        <ul>
-          {RESUME_ETC.map((etc) => (
-            <li key={etc.title}>
-              <h4>{etc.title}</h4>
-              <ul className="p-2">
-                {etc.values.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <ResumeETC {...RESUME_ETC} />
     </main>
   );
 }

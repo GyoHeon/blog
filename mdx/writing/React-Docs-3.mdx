@@ -1,0 +1,299 @@
+---
+title: React Docs를 읽자 - 3
+description: 새로워진 React Docs를 읽어보자.
+date: 2023.09.22
+tags: React, Front-end
+image: https://react.dev/images/home/conf2019/cover.svg
+slug: React-Docs-3
+---
+
+새로운 리액트 공식문서가 만들어져서, 아예 공식문서를 통으로 공부해보기로 하였다.
+
+지금 적은 내용들은 공식 문서를 그대로 적은게 아니라 필자가 몰랐거나 중요하다고 생각되어지는 것들만 적은 것이다.
+
+## State 관리하기
+
+프로젝트가 커짐에 따라 state, data 흐름을 관리하는 것이 어려워진다.
+따라서 state의 구조와 데이터 흐름을 의식적으로 설계하는 것이 중요하다.
+이번 장에서는 state를 관리하는 방법에 대해 알아보자.
+
+### Input을 state로 관리하기
+
+React를 사용하여 input을 프로그래밍 해보자.
+
+#### 선언형 프로그래밍과 명령형 프로그래밍
+
+Form 컴포넌트를 아래와 같은 방식으로 로직을 짠다고 생각해보자.
+
+- form에 입력을 하면 “Submit” 버튼이 활성화 된다.
+- “Submit”을 누르면 form과 버튼이 모두 비활성화되고, loading 상태가 된다.
+- 네트워크 요청이 성공하면, form은 숨겨지고 성공 메세지가 나온다.
+- 네트워크 요청이 실패하면, 에러 메세지가 나오고 form이 다시 활성화된다.
+
+위 방법이 명령형 프로그래밍의 구성으로, 지시를 적는 것이다.  
+해당 방식은 마치 택시기사에게 목적지를 알려주지 않고 좌회전, 직진, 우회전만 요구하는 손님과 같다.
+
+명령형 프로그래밍의 문제는 복잡성에 있다.  
+시스템이 복잡해진다면, 지수적으로 복잡한 프로그램이 필요해질 것이다.  
+리액트는 이런 문제를 해결하기 위해 선언형 프로그래밍 방식을 채택했다.  
+선언형 프로그래밍은 택시기사에 방향이 아니라 목적지만 알려주는 것과 같다.  
+우리는 목적지만 요구하고, 일은 택시기사가 알아서 할 것이다.
+
+#### 선언형으로 UI 구성하기
+
+1. 컴포넌트의 visual states 파악하기
+
+   위 form의 다른 visual state를 생각해보면 아래와 같은 케이스가 존재한다.
+
+   - Empty
+     Submit 버튼이 비활성화된 상태
+   - Typing
+     Submit 버튼이 활성화된 상태
+   - Submitting
+     form, 버튼이 비활성화되고 로딩중인 상태
+   - Success
+     성공 메세지가 보이는 상태
+   - Error
+     Typing 상태와 같지만 에러 메세지가 보이는 상태
+
+2. 어떤 트리거가 state를 변화시키는지 결정하기
+
+   위 state들의 변화에는 2가지 트리러가 존재한다.
+
+   - Human inputs - 버튼 클릭, 타이핑, 링크…
+   - Computer Inputs - 네트워크 응답, 타임아웃, 이미지 로딩…
+
+   위 모든 경우는 setState로 UI를 변화시켜줘야 한다.
+
+   form의 UI가 변하는 상황의 도표는 아래와 같다.
+
+   ![https://react.dev/learn/reacting-to-input-with-state](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/87e2ed6e-ac6e-4163-9ac2-6637b146c43c/Untitled.png)
+
+3. useState로 state 나타내기
+
+   위 상황에서 필요한 모든 변수를 상태로 선언하면 다음과 같다.
+
+   ```jsx
+   const [answer, setAnswer] = useState("");
+   const [error, setError] = useState(null);
+   const [isEmpty, setIsEmpty] = useState(true);
+   const [isTyping, setIsTyping] = useState(false);
+   const [isSubmitting, setIsSubmitting] = useState(false);
+   const [isSuccess, setIsSuccess] = useState(false);
+   const [isError, setIsError] = useState(false);
+   ```
+
+4. 필수적이지 않은 state 삭제하기
+
+   3의 상태는 자세히 보면 필요없는 것들이 있다.
+
+   - Paradox를 일으키는 state가 있는가?
+     위 state 중 isTyping과 isSubmitting은 동시에 true일 수 없다. 즉 두 state 이론적 조합은 4가지이지만, 실제 존재하는 조합은 3가지인 것이다. 이를 표로 나타내면 다음과 같다. (어떤 것이 isTyping이고 isSubmitting인지는 중요하지 않다.)
+     | | true | false |
+     | ----- | ---------- | -------- |
+     | true | impossible | possible |
+     | false | possible | possible |
+     따라서 해당 정보는 2가지 boolean state로 관리하는 것보다 3가지의 다른 상태로 관리하는 것이 좋다. 해당 예제에서는 'typing', 'submitting', or 'success’의 3가지 상태를 사용했다.
+     ```jsx
+     const [status, setStatus] = useState("typing"); // 'typing', 'submitting', or 'success'
+     ```
+   - 이미 존재하는 state로 다른 state를 나타낼 수 있는가?
+     isEmpty는 answer.length가 0일때 true이고 1이상이면 false이다. 따라서 isEmpty는 state로 관리하지 않고 다음처럼 관리하면 된다.
+     ```jsx
+     const isEmpty = answer.length === 0;
+     ```
+   - 다른 state의 역으로 같은 정보를 얻을 수 있는가?
+     아무리 봐도 위 케이스랑 같은 것 같긴한디, isError는 error가 null이면 false, null이외의 truthy한 값이면 true일 것이다. 따라서 isError는 다음처럼 관리하면 된다.
+     ```jsx
+     const isError = error !== null;
+     ```
+
+   위 과정을 전부 거치면 state는 7개에서 3개로 줄어든다.
+
+   1. event handlers와 setState 연결하기
+
+      이제 위의 state를 토대로 event handler에 setState를 결합해 form을 완성하면 된다.
+
+      ```jsx
+      import { useState } from "react";
+
+      export default function Form() {
+        const [answer, setAnswer] = useState("");
+        const [error, setError] = useState(null);
+        const [status, setStatus] = useState("typing");
+
+        if (status === "success") {
+          return <h1>That's right!</h1>;
+        }
+
+        async function handleSubmit(e) {
+          e.preventDefault();
+          setStatus("submitting");
+          try {
+            await submitForm(answer);
+            setStatus("success");
+          } catch (err) {
+            setStatus("typing");
+            setError(err);
+          }
+        }
+
+        function handleTextareaChange(e) {
+          setAnswer(e.target.value);
+        }
+
+        return (
+          <>
+            <h2>City quiz</h2>
+            <p>In which city is there a billboard that turns air into drinkable water?</p>
+            <form onSubmit={handleSubmit}>
+              <textarea value={answer} onChange={handleTextareaChange} disabled={status === "submitting"} />
+              <br />
+              <button disabled={answer.length === 0 || status === "submitting"}>Submit</button>
+              {error !== null && <p className="Error">{error.message}</p>}
+            </form>
+          </>
+        );
+      }
+
+      function submitForm(answer) {
+        // Pretend it's hitting the network.
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            let shouldError = answer.toLowerCase() !== "lima";
+            if (shouldError) {
+              reject(new Error("Good guess but a wrong answer. Try again!"));
+            } else {
+              resolve();
+            }
+          }, 1500);
+        });
+      }
+      ```
+
+   ```jsx
+   const [answer, setAnswer] = useState("");
+   const [error, setError] = useState(null);
+   const [status, setStatus] = useState("typing"); // 'typing', 'submitting', or 'success'
+
+   //일반 변수로 나머지를 관리하면 된다.
+   const isEmpty = answer.length === 0;
+   const isError = error !== null;
+   ```
+
+## Choosing the State Structure
+
+### Group related state
+
+때로는 state를 하나로 관리할지 여러개로 관리할지 애매할 수 있다.
+
+예를 들어,
+
+```jsx
+const [x, setX] = useState(0);
+const [y, setY] = useState(0);
+```
+
+이런 방법과
+
+```jsx
+const [position, setPosition] = useState({ x: 0, y: 0 });
+```
+
+이런 방법 중 어떤 방법을 택해야 할까?
+
+물론 위 두 방법은 모두 문제 없이 동작한다. 그러나 두 state가 항상 같이 변화한다면, 그 둘을 하나의 state로 통합하는 것이 좋은 생각이다. 통합을 하면, 두 가지 변수의 동기화를 까먹지 않을 수 있다.
+
+만약 state의 갯수를 정확히 모른다면, 이 역시 데이터를 객체나 배열로 관리할 수 있는 경우이다. 예를 들어 사용자가 custom field를 추가할 수 있는 form이 있다.
+
+## Avoid contradiction in state
+
+3-1의 Input 게시글과 동일
+
+## Avoid redundant state
+
+3-1의 Input 게시글과 동일
+
+---
+
+<aside>
+💡 **Don’t mirror props in state**
+
+</aside>
+
+아래와 같은 경우를 보자.
+
+```jsx
+function Message({messageColor}) {
+  const [color, setColor] = useState(messageColor);
+```
+
+부모 컴포넌트로부터 받은 prop을 color state로 사용하고 있다. 이 때 prop이 blue에서 red로 바뀌어도 color state는 변하지 않고 blue를 유지한다. 이는 state가 첫번째 렌더링에서만 초기화를 하기 때문이다.
+
+이것이 prop을 미러링하는 state가 혼란을 야기하는 이유이다. prop은 그냥 prop을 즉시 사용하거나 state가 아닌 일반 변수로 사용하는 것이 좋다.
+
+### Avoid duplication in state
+
+아래 메뉴 리스트 컴포넌트는 하나의 travel snack을 고르는 컴포넌트이다.
+
+```jsx
+import { useState } from "react";
+
+const initialItems = [
+  { title: "pretzels", id: 0 },
+  { title: "crispy seaweed", id: 1 },
+  { title: "granola bar", id: 2 },
+];
+
+export default function Menu() {
+  const [items, setItems] = useState(initialItems);
+  const [selectedId, setSelectedId] = useState(0);
+
+  const selectedItem = items.find((item) => item.id === selectedId);
+
+  function handleItemChange(id, e) {
+    setItems(
+      items.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            title: e.target.value,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+  }
+
+  return (
+    <>
+      <h2>What's your travel snack?</h2>
+      <ul>
+        {items.map((item, index) => (
+          <li key={item.id}>
+            <input
+              value={item.title}
+              onChange={(e) => {
+                handleItemChange(item.id, e);
+              }}
+            />{" "}
+            <button
+              onClick={() => {
+                setSelectedId(item.id);
+              }}
+            >
+              Choose
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>You picked {selectedItem.title}.</p>
+    </>
+  );
+}
+```
+
+위 상황에선 selectedItem에 items에 속한 객체를 동일하게 갖는다. 이것은 하나의 객체가 두 곳에 복제된 것이므로 문제를 야기할 수 있다. 만약 items 요소를 사용자가 변경한다면 items만 내용이 변하고 selectedItem의 내용이 바뀌지 않을 것이다. 물론 onChange할 때마다 selectedItem을 set할 수도 있지만, 그것보단 selectedItem을 state로 만들지 않고 items에서 데이터를 가져오는 것이 더 간단하다.
+
+### Avoid deeply nested state

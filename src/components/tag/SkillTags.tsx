@@ -4,7 +4,7 @@ interface Props {
 
 export function SkillTags({ stack }: Props) {
   return (
-    <ul className="flex gap-2 my-2">
+    <ul className="flex flex-wrap gap-2 my-2">
       {stack.map((stack) => (
         <li key={stack} className="tag">
           {stack}

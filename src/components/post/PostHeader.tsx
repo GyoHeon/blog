@@ -7,8 +7,8 @@ export function PostHeader({ title, date, tags }: Props) {
   return (
     <header className="flex flex-col mb-5">
       <Tags tags={tags} />
-      <h1 className="py-2 border-b-2 border-[--orange]">{title}</h1>
-      <Date className="border-l-2 border-r-2" date={date} />
+      <h1 className="py-2 border-b-2 border-[--blue]">{title}</h1>
+      <Date className="border-2 border-t-0 border-[--blue]" date={date} />
     </header>
   );
 }

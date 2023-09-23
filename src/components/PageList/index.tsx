@@ -7,7 +7,7 @@ interface PageLinkProps {
 }
 
 function PageLink({ page, isActive = false, postType }: PageLinkProps) {
-  const className = "p-1 rounded-md hover:bg-[--blue]" + (isActive ? " bg-[--orange]" : "");
+  const className = "px-1 rounded-full hover:bg-[--blue]" + (isActive ? " bg-[--blue-sec] bg-opacity-50" : "");
 
   return (
     <Link className={className} href={{ pathname: postType, query: { page } }}>

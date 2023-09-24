@@ -1,0 +1,53 @@
+---
+title: Trouble shooting - Props must be serializable for components in the "use client" entry file .ts(71007)
+description: Next.js app router에서 발생한 에러 해결법
+date: 2023.09.24
+tags: React, Next, Front-end
+image: /thumbnail/Next.webp
+slug: Next-App-Ts-Props-Error
+---
+
+> RSC는 React Server Components, RCC는 React Client Components를 의미한다.
+
+---
+
+> Props must be serializable for components in the "use client" entry file ts(71007)
+
+Next.js 13 app routing의 `RCC` 작업 중 위와 같은 에러가 발생했다.
+
+## 원인
+
+`RSC`와 `RCC`는 서로 렌더링 되는 곳이 다르다.  
+이름 그대로 `RSC`는 서버에서 렌더링 되고, `RCC`는 클라이언트에서 렌더링 된다.
+
+서버와 클라이언트는 물리적으로 떨어져 있기 때문에, 서로 데이터를 네트워크를 통해 주고 받는다.  
+이는 한 프로젝트 안에 있는 `RSC`와 `RCC`도 마찬가지이다.  
+대표적인 상황은 `props`의 전달이 있을 수 있다.  
+`RSC`에서 `RCC`로든, RCC에서 RSC로든 props는 네트워크를 통해 전달된다.
+
+따라서 props를 네트워크로 보내기 위해 `JSON.stringfy(props)` 처럼 serialization을 하게 되는데, 원시 값이나 배열, 객체등은 문제가 없으나 함수나 생성자 같은 경우 문제가 발생할 수 있다.  
+물론 이론상 모든 코드를 stringfy한 뒤 `eval()` 함수를 사용하는 등의 액션을 할 순 있겠으나 `eval()`함수를 사용하는 것은 절대 금기시되어 있으므로 피해야 한다.
+
+> ❗ eval code는 mdn에 절대 사용하지 말라고 적혀있다! [[읽어보기](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval)]
+
+따라서 해당 에러는 `RCC`에 serialization 할 수 없는 데이터가 들어 있으니 사용하지 말라는 뜻이다.
+
+## 해결법
+
+일단 `RSC` -> `RCC` 든 `RCC` -> `RSC` 든 props로 serialization 할 수 없는 데이터는 그냥 안보내면 된다.  
+하지만 무조건 props로 해당 데이터를 보내야 할 경우에는 부모 요소를 변경해야 한다.  
+예를 들어, `RSC` -> `RCC`의 경우 부모 요소를 `RCC`로 변경하면 해당 에러가 없어질 것이다.  
+이 때 중요한 것은 `'use client'`를 부모 요소에만 적용해야 한다.
+
+### use client
+
+`'use client'`는 Next.js에게 단순히 이 컴포넌트는 `RCC`다.  
+라고 전달하는 것이 아니라 이 컴포넌트는 `RSC`와 `RCC`의 경계이다. (즉, 이 컴포넌트 부터는 `RCC`다)  
+라고 전달한다.
+
+따라서 부모 컴포넌트가 이미 `'use client'`를 명시했다면 자식 요소는 `'use client'`를 명시하면 안된다.  
+그 대신 `'use client'`를 명시한 부모 컴포넌트에서 자식 컴포넌트를 import 하여 사용하면 자식 컴포넌트는 알아서 `RCC`로 사용된다.
+
+## 출처
+
+- [Props must be serializable for components in "use client" file #46795](https://github.com/vercel/next.js/discussions/46795)

@@ -23,22 +23,21 @@ export const RESUME_WORKS: IResumeProjects = {
   title: "경력",
   projects: [
     {
-      title: "교보문고 DT",
+      title: "교보문고 DT추진실",
       date: "2023.07 ~ 재직중",
-      description: "교보문고 DT추진실 크로스플랫폼팀 / FE 개발자",
+      description: "크로스플랫폼팀 / FE 개발자",
       stack: ["React", "TypeScript", "Storybook"],
       works: [
         {
-          title: "디자인 시스템 구축",
-          description: "교보문고의 디자인 시스템을 구축하고 있습니다.",
-          values: ["Storybook을 활용하여 디자인 시스템을 구축"],
-        },
-        {
-          title: "레거시 코드 최신화",
+          title: "교보문고 신규 서비스 및 기존 서비스 개선",
+          // TODO: Make description hidden
           description: "교보문고 레거시 코드의 최신화를 진행했습니다",
           values: [
-            "기존의 jQuery를 전부 react 컴포넌트로 변환",
-            "Thymeleaf를 사용하는 회사 특성상 HTML에 다수의 react-root를 생성할 수 있도록 하는 공통 함수 개발",
+            "Storybook을 적용하여 범용적인 컴포넌트 개발 및 UI 화면 테스트 가능하도록 개발",
+            // "기존의 jQuery를 전부 react로 전환",
+            "JSP를 사용하는 회사 특성상 HTML에 다수의 react-root를 생성할 수 있도록 하는 공통 함수 개발",
+            "신사업 팀의 원활한 협업을 위한 프로젝트 컨벤션과 모듈화 정립",
+            "JSP -> React로 마이그레이션과 동시에 레거시 코드 개선",
           ],
         },
       ],
@@ -54,17 +53,20 @@ export const RESUME_WORKS: IResumeProjects = {
           title: "키트 커뮤니티 프론트 개발",
           description: "키트 커뮤니티의 선임 개발을 담당했습니다. (기여도 70%)",
           values: [
-            "JavaScript를 TypeScript로 100% 마이그레이션하여 안정성 높은 코드 구성",
-            "불필요한 라이브러리를 직접 구현하여 기존 46개의 라이브러리를 20개로 감소",
-            "500kB에 달하는 번들 사이즈를 70% 감소",
-            "꾸준한 성능 개선으로 lighthouse 측정 결과 65점에서 83점으로 개선",
+            "JS -> TS로 점진적으로 마이그레이션하여 안정성 높은 코드 구성",
+            "기존 46개의 라이브러리를 직접 구현하여 20개로 감소",
+            "성능 최적화할 수 있는 여러 방법을 동원하여 500kB에 달하는 번들 사이즈를 70% 감소",
+            "좋은 UX 제공을 위해 프로덕트 성능 점수 65점 -> 83점으로 향상",
+            "PC, Mobile, 웹뷰 등 다양한 환경에 맞게 개발",
+            "다국적 서비스 운영을 위해 SEO를 고려하여 SSR로 개발 시 i18n 적용",
+            "커뮤니티 피드 게시물 무한 스크롤로 불러오기",
           ],
         },
         {
           title: "FE 인프라",
-          description: "프론트엔드 배포 환경을 개선하였습니다.",
+          description: "프론트엔드 배포 환경을 구축 및 개선하였습니다.",
           values: [
-            "AWS 프론트엔드 배포 환경 구축",
+            "AWS 프론트엔드 아키텍처 구성 및 구축",
             "단일 서버에 웹, 웹뷰 2개의 서비스를 배포",
             "테스트 서버를 구성하여 QA와 구동 환경 분리",
           ],

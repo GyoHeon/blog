@@ -21,7 +21,7 @@ export function ResumeProjects({ title, projects }: IResumeProjects) {
                   <h5>{title}</h5>
 
                   <ul>
-                    <li className="my-2">{description}</li>
+                    {description && <li className="my-2">{description}</li>}
 
                     <li className="mt-6">
                       <h6>업무</h6>

@@ -40,7 +40,7 @@ interface IResumeProjects {
     link?: string;
     works: {
       title: string;
-      description: string;
+      description?: string;
       values: string[];
     }[];
   }[];

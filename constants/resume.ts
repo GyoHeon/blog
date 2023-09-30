@@ -30,8 +30,6 @@ export const RESUME_WORKS: IResumeProjects = {
       works: [
         {
           title: "교보문고 신규 서비스 및 기존 서비스 개선",
-          // TODO: Make description hidden
-          description: "교보문고 레거시 코드의 최신화를 진행했습니다",
           values: [
             "Storybook을 적용하여 범용적인 컴포넌트 개발 및 UI 화면 테스트 가능하도록 개발",
             // "기존의 jQuery를 전부 react로 전환",
@@ -92,6 +90,7 @@ export const RESUME_OTHER_PROJECTS: IResumeProjects = {
           values: [
             "FE 1인 개발을 해왔으며 Next.js 13 신규 버전으로 프로덕트 개발",
             "Next.js 13의 신규 기능인 App routing과 React 18의 신규 기능인 RSC를 적용하여 SSR 구현",
+            "각 페이지에 적합한 SSG, ISR, SSR, CSR을 적용하여 최적화된 페이지 렌더링",
             "monorepo로 구성하여 여러 웹 프로젝트를 단일로 효율적으로 관리",
           ],
         },
@@ -107,7 +106,10 @@ export const RESUME_OTHER_PROJECTS: IResumeProjects = {
         {
           title: "파일 시스템 기반 개인 블로그",
           description: "",
-          values: ["Next.js 13 App routing을 사용하여 SSR 구현", "generateMetadata를 사용하여 메타데이터 자동 생성"],
+          values: [
+            "Next.js 13의 신규 기능인 App routing과 React 18의 신규 기능인 RSC를 적용하여 SSR 구현",
+            "generateMetadata를 사용하여 메타데이터 자동 생성",
+          ],
         },
       ],
     },

@@ -7,8 +7,6 @@ import rehypeSlug from "rehype-slug";
 
 const rootDirectory = path.join(process.cwd(), "mdx");
 
-export const isMdx = (path: string) => /\.mdx?$/.test(path);
-
 export async function getPostBySlug(slug: string): Promise<IBlogPost> {
   const realSlug = slug.replace(/\.mdx$/, "");
   const filePath = path.join(rootDirectory, `${realSlug}.mdx`);
@@ -37,8 +35,15 @@ export async function getPostBySlug(slug: string): Promise<IBlogPost> {
   return { meta: { ...frontmatter, slug: realSlug }, content };
 }
 
-export async function getAllPostsMeta(postType: TPost, page = 1): Promise<IMetaData[]> {
-  const viewedPosts = [(page - 1) * 6, page * 6];
+export const isMdx = (path: string) => /\.mdx?$/.test(path);
+
+type TGetPostsMeta = (postType: TPost, page?: number | "all") => Promise<IMetaData[]>;
+
+export const getPostsMeta: TGetPostsMeta = async (postType: TPost, page = 1) => {
+  const viewedPosts: number[] = [];
+  if (typeof page === "number") {
+    viewedPosts.push((page - 1) * 6, page * 6);
+  }
 
   const fileDirectory = path.join(rootDirectory, postType);
 
@@ -59,4 +64,4 @@ export async function getAllPostsMeta(postType: TPost, page = 1): Promise<IMetaD
   }
 
   return posts.sort((a, b) => (a.date > b.date ? -1 : 1));
-}
+};

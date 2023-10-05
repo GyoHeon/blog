@@ -1,12 +1,14 @@
-import { getAllPostsMeta } from "@/util/mdx";
+import { getPostsMeta } from "@/util/mdx";
 import { MetadataRoute } from "next";
+
+const URL = "https://www.gyoheon.com/";
+const MENUS = ["posts", "resume", "memos"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const URL = "https://www.gyoheon.com/";
 
-  const posts = await getAllPostsMeta("posts");
-  const memos = await getAllPostsMeta("memos");
+  const posts = await getPostsMeta("posts", "all");
+  const memos = await getPostsMeta("memos", "all");
 
   const postsSlug = posts.map((post) => ({
     url: URL + post.slug,
@@ -18,24 +20,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: now,
   }));
 
-  return [
-    {
-      url: URL,
-      lastModified: now,
-    },
-    {
-      url: URL + "/posts",
-      lastModified: now,
-    },
-    {
-      url: URL + "/resume",
-      lastModified: now,
-    },
-    {
-      url: URL + "/memos",
-      lastModified: now,
-    },
-    ...postsSlug,
-    ...memosSlug,
-  ];
+  return [...MENUS.map((menu) => ({ url: URL + menu, lastModified: now })), ...postsSlug, ...memosSlug];
 }

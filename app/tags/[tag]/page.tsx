@@ -1,5 +1,5 @@
 import { PostSection } from "@/components/layout/PostSection";
-import { getAllPostsMeta } from "@/util/mdx";
+import { getPostsMeta } from "@/util/mdx";
 
 interface Props {
   params: {
@@ -8,8 +8,8 @@ interface Props {
 }
 
 export default async function Tags({ params: { tag } }: Props) {
-  const rawPosts = await getAllPostsMeta("posts");
-  const rawMemos = await getAllPostsMeta("memos");
+  const rawPosts = await getPostsMeta("posts");
+  const rawMemos = await getPostsMeta("memos");
 
   if (!(rawPosts || rawMemos)) return <p>No posts</p>;
 

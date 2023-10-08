@@ -24,7 +24,6 @@ interface IResumeActivities {
   projects: {
     title: string;
     date: string;
-    description: string;
     link?: string;
     values: string[];
   }[];

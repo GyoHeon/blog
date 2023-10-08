@@ -11,7 +11,7 @@ export function ResumeActivities({ title, projects }: IResumeActivities) {
           <li key={title} className="flex flex-col gap-2 pb-6 border-b border-neutral-700">
             <ProjectHeader title={title} link={link} />
             <Date date={date} />
-            <span>{description}</span>
+            {description && <span>{description}</span>}
             <ActionList values={values} />
           </li>
         ))}

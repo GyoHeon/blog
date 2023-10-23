@@ -27,11 +27,9 @@ jsx에 이벤트 핸들러를 추가하기 위해선 jsx의 prop으로 함수를
 > jsx의 `{}`안에 있는 코드는 즉시 실행되기 때문이다.
 > 따라서 이벤트 핸들러에서 함수를 호출하면 매 렌더링시에 함수를 실행한다.
 >
-> ```jsx
-> | passing a function (correct)    | calling a function (incorrect)    |
-> | ------------------------------- | --------------------------------- |
-> | <button onClick={handleClick}/> | <button onClick={handleClick()}/> |
-> ```
+> | passing a function (correct)      | calling a function (incorrect)      |
+> | --------------------------------- | ----------------------------------- |
+> | `<button onClick={handleClick}/>` | `<button onClick={handleClick()}/>` |
 
 ###### _주의!_
 

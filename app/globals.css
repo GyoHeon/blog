@@ -166,3 +166,12 @@ pre code {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+table {
+  width: 100%;
+}
+th,
+td {
+  border: 1px solid var(--text--sec);
+  padding: 1rem;
+}

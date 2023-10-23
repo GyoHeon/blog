@@ -4,6 +4,7 @@ import path from "path";
 import rehypeAutolinkHeadings from "rehype-autolink-headings/lib";
 import rehypeHighlight from "rehype-highlight/lib";
 import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 
 const rootDirectory = path.join(process.cwd(), "mdx");
 
@@ -18,6 +19,7 @@ export async function getPostBySlug(slug: string): Promise<IBlogPost> {
     options: {
       parseFrontmatter: true,
       mdxOptions: {
+        remarkPlugins: [remarkGfm],
         rehypePlugins: [
           rehypeHighlight,
           rehypeSlug,
@@ -28,6 +30,7 @@ export async function getPostBySlug(slug: string): Promise<IBlogPost> {
             },
           ],
         ],
+        format: "mdx",
       },
     },
   });

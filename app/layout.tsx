@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko" className={font.className}>
       <body>
         <MainHeader />
-        <main className="flex min-h-screen flex-col items-center gap-10 px-6 py-12">{children}</main>
+        <main className="flex flex-col items-center gap-10 px-6 py-12">{children}</main>
         <MainFooter />
 
         <Analytics />

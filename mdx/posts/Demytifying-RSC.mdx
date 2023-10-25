@@ -1,0 +1,175 @@
+---
+title: RSC 알아보기!(번역)
+description: React Server Component를 자세히 알아보자.
+date: 2023.10.25
+tags: React, Next, Front-end
+image: /thumbnail/React-icon.png
+slug: Demytifying-RSC
+---
+
+해당 글은 https://demystifying-rsc.vercel.app/ 를 번역한 글입니다.
+
+---
+
+## Key Concepts
+
+- RSC는 특정 프레임워크에 의존하지 않는 새로운 메서드다.
+- RSC는 SSG를 default로 동작한다.
+- RSC는 서버에서 동작하여 특정 HTML을 생성하며 서버는 생성된 HTML을 클라이언트에 전달한다.
+
+---
+
+## Virtual DOM
+
+아래와 같이 RSC로 구성된 홈페이지의 하단엔 `<script>` 태그로 구성된 자바스크립트 태그들이 포함되어 있다.  
+(불필요하다 생각되는 부분은 삭제했다.)
+
+```HTML
+	<script>
+      (self.__next_f = self.__next_f || []).push([0])
+    </script>
+    <script>
+      self.__next_f.push([1, "2:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/77f8f57adc6c0157.css\",\"precedence\":\"next\"}]],[\"$\",\"$L4\",null,{\"buildId\":\"q_Y0XmaURTuu7dMa1dYrf\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/static-content/2/\",\"initialTree\":[\"\",{\"children\":[\"static-content\",{\"children\":[\"2\",{\"children\":[\"__PAGE__\",{}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[\"$L5\",null],\"globalErrorComponent\":\"$6\",\"notFound\":[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[[\"$\",\"head\",null,{\"children\":[\"$\",\"$L7\",null,{\"id\":\"watcher\",\"src\":\"/RSCObserver.js\",\"strategy\":\"beforeInteractive\"}]}],[\"$\",\"body\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"page-info\",\"children\":[\"/layout.js\",\" \",null,\" @ \",1688734135567,\" \",[\"$\",\"$L8\",null,{\"href\":\"/\",\"children\":\"[Home]\",\"prefetch\":false}]]}],[\"$L9\",[],\"404\"]]}]]}],\"asNotFound\":false,\"children\":[[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[[\"$\",\"head\",null,{\"children\":[\"$\",\"$L7\",null,{\"id\":\"watcher\",\"src\":\"/RSCObserver.js\",\"strategy\":\"beforeInteractive\"}]}],[\"$\",\"body\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"page-info\",\"children\":[\"/layout.js\",\" \",null,\" @ \",1688734135567,\" \",[\"$\",\"$L8\",null,{\"href\":\"/\",\"children\":\"[Home]\",\"prefetch\":false}]]}],[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"404\",\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"static-content\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"static-content\",\"children\",\"2\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[[[\"$\",\"h2\",null,{\"children\":\"Virtual DOM\"}],[\"$\",\"p\",null,{\"children\":[\"If you \",[\"$\",\"span\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"\u003ca href=\\\"#\\\" onClick=\\\"this.href='/view-source'+location.pathname+''\\\" class=\\\"view-source\\\" target=\\\"_blank\\\"\u003eView Source\u003c/a\u003e\"}}],\" of this page, you'll see the javascript at the bottom contains script tags that contain an encoded form of this content:\"]}],[\"$\",\"$Lc\",null,{\"inline\":true,\"filter\":\"$d\"}],[\"$\",\"p\",null,{\"children\":\"This is React's new line-based internal data streaming format.\"}],[\"$\",\"p\",null,{\"children\":\"The content is pushed into an array to be processed and split by newlines, which results in the content above, which is the raw React streaming data format.\"}],[\"$\",\"h3\",null,{\"children\":\"What Is It?\"}],[\"$\",\"p\",null,{\"children\":\"It's a compact string representation of the virtual DOM, with abbreviations, internal references, and characters with encoded special meanings.\"}],[\"$\",\"h3\",null,{\"children\":\"Why is it needed?\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",null,{\"children\":[\"It contains a Virtual DOM representation of the static page that was generated. \",[\"$\",\"i\",null,{\"children\":\"(See the box below for an expanded view of the Virtual DOM of the generated page)\"}]]}],[\"$\",\"li\",null,{\"children\":\"If there are client (browser) React components, it needs to know where to insert them at run-time\"}],[\"$\",\"li\",null,{\"children\":\"When routing happens, only the modified parts of the page will be updated (we'll see this later), so it needs to have a virtual representation of the page to dynamically update the DOM\"}]]}],[\"$\",\"h3\",null,{\"children\":\"Current Mental Model\"}],[\"$\",\"p\",null,{\"children\":[\"$\",\"img\",null,{\"src\":\"/mental-model-2.png\"}]}],[\"$\",\"h3\",null,{\"children\":\"A few notes about this format\"}],[\"$\",\"ul\",null,{\"children\":[[\"$\",\"li\",null,{\"children\":\"Lines are separated with a \\\\n, so this is a line-based format, not JSON, for example\"}],[\"$\",\"li\",null,{\"children\":\"The content is actually split into chunks in the source and pushed into an array inside script tags. The above format is only visible after combining the pieces and splitting on \\\\n\"}],[\"$\",\"li\",null,{\"children\":\"Each line is in the format \\\"ID:TYPE?JSON\\\"\"}],[\"$\",\"li\",null,{\"children\":\"This data format is not documented anywhere!\"}],[\"$\",\"li\",null,{\"children\":\"The exact format has been seen to change between React canary releases, so it's a moving target.\"}],[\"$\",\"li\",null,{\"children\":\"Lines can contain references to other lines by using $ID or $LID (ex: $2 or $L2) in their content\"}],[\"$\",\"li\",null,{\"children\":\"This format is considered \\\"internal\\\" to React and is not meant for human consumption. You do not need to know how it works to make apps with RSC. But it's useful to see what is happening behind the scenes.\"}],[\"$\",\"li\",null,{\"children\":[\"The \",[\"$\",\"a\",null,{\"href\":\"https://rsc-parser.vercel.app/\",\"target\":\"_blank\",\"children\":\"RSC Parser\"}],\" is a tool built by Alvar Lagerl철f that explores this format.\"]}]]}],[\"$\",\"h3\",null,{\"children\":\"Virtual DOM Detailed View\"}],[\"$\",\"p\",null,{\"children\":\"This is React's internal representation of the current page/DOM structure. If it needs to update the page, it can compare what it wants with what it knows is there, and perform an efficient update to the DOM.\"}],[\"$\",\"p\",null,{\"children\":\"You can see all the visible content on this page within this Virtual DOM.\"}],[\"$\",\"$Lc\",null,{\"inline\":true,\"filter\":\"$e\"}],[\"$\",\"h3\",null,{\"children\":\"Virtual DOM Reconciliation\"}],[\"$\",\"p\",null,{\"children\":\"When the page loads, React does a reconciliation between the Virtual DOM that it thinks represents the page, and the actual static DOM that the server returned. If any differences are found, it throws a console error. This is because it won't be able to accurately update the DOM if it doesn't have the correct structure representation. We will explore why this could happen in just a bit.\"}],[\"$\",\"p\",null,{\"children\":[\"$\",\"img\",null,{\"src\":\"/mental-model-3.png\"}]}],[\"$\",\"p\",null,{\"children\":[\"$\",\"a\",null,{\"className\":\"button\",\"href\":\"/client-components/\",\"children\":\"Integrating Client Components\"}]}]],null],\"segment\":\"__PAGE__\"},\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/b206048fcfbdc57f.css\",\"precedence\":\"next\"}]]}],\"segment\":\"2\"},\"styles\":[]}],\"segment\":\"static-content\"},\"styles\":[]}]]}]]}],null]}]]\n"])
+    </script>
+```
+
+이것이 RSC에서 사용하는 line-based internal data streaming format이다.  
+HTML과 대응되는 Virtual DOM에 해당하는 데이터들이 위와 같이 들어오는 것이다.  
+id 값 등의 데이터가 들어있다.  
+따라서 완성된 HTML과 line-based data를 reconciliation 한다.
+
+해당 과정이 실패하면 (두 데이터가 다르다면) 기존에 완성된 HTML에 virtual DOM을 부착할 수 없게 되고 따라서 에러가 호출된다.  
+또한 HTML은 무시되고 오로지 RCC로만 렌더링이 다시 일어난다.
+
+---
+
+## Client Components
+
+만약 컴포넌트 안에서 `useState`나 여러 인터랙션이 필요하다면 서버가 아니라 클라이언트 단에서 컴포넌트를 렌더링 해야한다.
+
+- example:
+
+```jsx
+"use client";
+
+export const ClientComponent = () => {
+  console.log("Running client component");
+  return <div className={"client-component"}>Client Component HTML</div>;
+};
+```
+
+- 'use client' 를 명시하면 RSC와 RCC사이의 경계를 만들게 되고, 해당 컴포넌트에서 사용하는 컴포넌트들 (props로 받지 않은)은 모두 RCC로 사용된다.
+- 하지만 네트워크에서 전달된 HTML을 보면 RCC로 사용해도 HTML에 잘 전달되는 것을 볼 수 있다.
+  - 이는 RCC라 하더라도 기본적으로 Server side rendering을 통해 pre-render된 static HTML 리턴을 반환하기 때문이다. (밑에서 pre-render도 금지시키는 법을 배운다.)
+
+```shell
+`c:I{"id":6135,"chunks":["6207:static/chunks/app/client-components/page-96de3ae5bce9c2a7.js"],"name":"ClientComponent","async":false}`
+`2: ...["$","$Lc",null,{}] ...`
+```
+
+- 위 코드는 클라이언트에서 받는 정보이다.
+  - 2번째 줄이 virtualDOM에 관한 정보로 `$Lc`는 L: client component, c: 해당하는 아이디에 virtualDOM을 붙일것 이라는 의미이다.
+  - `c` id에 해당하는 1번째 줄이 실행되면 컴포넌트를 리턴하게 될 것이고 이를 컴포넌트의 원래 위치에 붙이게 되면서 클라이언트 컴포넌트가 실행된다.
+- 위 과정을 Hydration이라고 부른다.
+
+---
+
+## Hydration Failure
+
+이전의 Next.js와 마찬가지로 서버의 데이터와 클라이언트의 데이터가 다르면 Hydration error가 발생한다.  
+위에서 설명했듯이 서버 측 데이터는 클라이언트에서 reconciliation을 거치는데 해당 과정이 실패하는 것이다.  
+이런 경우엔 서버 측 데이터를 아예 사용하지 않고 모든 소스를 클라이언트에서 처음부터 동작 시킨다.
+
+- 다행히 이런 경우 결과물은 서버에서 처리하든 클라이언트에서 처리하든 큰 차이가 없기 때문에, 기능상의 큰 문제는 적다.
+- 하지만 서버에서 렌더링된 결과물을 받은 후 전혀 사용하지 못하고 클라이언트 렌더링이 처음부터 돌아가기 때문에 성능상 굉장한 단점이 있다.
+
+## 'use client'
+
+- 'use client'를 써도 어차피 SSR이 돌아간다면 무슨 역할을 하는 걸까?
+
+1. bundler가 분리된 파일을 생성하게 한다.
+2. 파일이 분리되었으니, 레이지 로드 등을 통해 분리된 파일을 원하는 때만 가져온다.
+3. RCC는 RSC안에서 사용되므로 RSC에게 RCC가 들어갈 placeholder를 만들라고 지시한다.
+
+---
+
+## Disabling SSR Server-Side
+
+따라서 진짜진짜 서버 작업 없이 클라이언트단에서만 컴포넌트가 돌아가게 하려면 아래와 같이 구성할 수 있다.
+
+```jsx
+import dynamic from "next/dynamic";
+
+const ClientComponent = dynamic(() => import("./ClientComponent"), {
+  ssr: false,
+});
+
+export const ClientComponentNoSSR = () => <ClientComponent />;
+```
+
+`next/dynamic`은 `React.lazy()`와 `<Suspense>`의 조합이다.  
+`next/dynamic`은 여러 옵션이 있는데, 그 중 `ssr: false`를 설정하면 서버에서 전혀 돌아가지 않는 100% 클라이언트 컴포넌트가 된다.  
+따라서 서버에서는 HTML에 DOM이 아닌 해당 컴포넌트의 위치와 정보들만 나타낸다.
+
+```html
+<!--$!--><template
+  data-dgst="DYNAMIC_SERVER_USAGE"
+  data-msg="DYNAMIC_SERVER_USAGE"
+  data-stck=" at ServerComponentWrapper (C:\workspace\demystifying-rsc\node_modules\next\dist\server\app-render\create-server-components-renderer.js:78:31) at InsertedHTML (C:\workspace\demystifying-rsc\node_modules\next\dist\server\app-render\app-render.js:835:33)"
+></template
+><!--/$-->
+```
+
+---
+
+## RSC in RCC
+
+RCC안에서 RSC를 import 하여 사용하면 강제로 RCC로 사용된다.  
+props(children 같은)로 받으면 RSC로 사용할 수 있다.  
+이는 component 생성시 props를 알지 못해도 컴포넌트를 렌더링 할 수 있기 때문이다.  
+import를 사용하여 RSC를 RCC에 넣으면 RCC는 RSC를 자기가 렌더링하기 위해 필요한 존재로 인식하고, 해당 정보가 들어오지 않으면 렌더링을 하지 않는다.
+
+따라서 RSC역시 RCC로 처리하는 것이다.
+
+하지만 props는 단순 값으로 처리하여 사용하기 때문에 굳이 브라우저 로직에서 돌아가지 않아도 된다.  
+RSC는 컴포넌트의 return인 HTML로 구성되어지기 때문에 이를 props로 사용하는 것은 단순한 값으로 처리되기 때문에 괜찮으나 이를 RCC에서 import하여 사용할 수 없는 것이다.
+
+---
+
+## async RSC
+
+RSC는 async function으로 사용 가능하다.  
+컴포넌트가 병렬적으로 위치하면 당연히 비동기적으로 동작한다.  
+async RSC 에 nest component 로 async RSC 사용하면 await한다.
+
+이 때 RSC는 SSG한 동작이 default이기 때문에 SSR하게 사용하려면 (api의 최신화 등으로) 추가 작업이 필요하다.
+아래와 같은 코드를 사용하면 된다.
+
+```tsx
+export const revalidate = 0;
+```
+
+---
+
+## Streaming
+
+Suspense?
+
+- Suspense를 사용하면 컴포넌트이너 컴포넌트가 렌더링 될 때까지 fallback 컴포넌트를 보여줌
+- 이때 Suspense 하나에 여러 promise가 존재한다면 모든 promise가 완료될 때 까지 fallback을 보여줌
+- 만약 nested Suspense가 있다면 외곽부터 원래 component를 보여줌.
+
+---
+
+## Don't use Class component
+
+- RSC는 함수형 컴포넌트만 지원함
+- [next.js document](https://nextjs.org/docs/messages/class-component-in-server-component)
+- [medium](https://medium.com/@joydeep1701/better-react-with-hooks-d429235af183)
+- [stackoverflow](https://stackoverflow.com/questions/36097965/when-to-use-es6-class-based-react-components-vs-functional-es6-react-components)
+
+---
+
+## 참조
+
+- [Demystifying React Server Components with NextJS 13 App Router](https://demystifying-rsc.vercel.app/)

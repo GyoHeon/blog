@@ -11,7 +11,7 @@ export function ResumeBanner({ image, name }: Props) {
     <section>
       <h2 className="title-resume text-4xl font-bold">{name}</h2>
       <div className="flex flex-col md:flex-row justify-between">
-        <Image className="mx-auto md:mx-0 object-contain" src={image} width={300} height={300} alt={name} />
+        <Image className="mx-auto md:mx-0 object-contain" src={image} width={300} height={200} alt={name} />
         <HeadInfo />
       </div>
     </section>

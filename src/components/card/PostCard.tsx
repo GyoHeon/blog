@@ -9,7 +9,7 @@ export function PostCard({ title, date, description, image, slug }: Props) {
     <article className="card border-2 border-transparent border-b-4 border-b-[--bg--sec]">
       <Link className="flex flex-row md:flex-col w-auto h-56 md:h-80" href={slug}>
         <Image
-          className="w-60 md:w-auto md:h-40 object-cover transition-transform"
+          className="w-60 md:w-auto md:h-40 object-cover bg-white transition-transform"
           width={400}
           height={400}
           src={image}

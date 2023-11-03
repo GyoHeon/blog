@@ -31,7 +31,7 @@ export const RESUME_WORKS: IResumeProjects = {
       stack: ["Next", "React", "TypeScript", "storybook", "vite", "zustand", "tailwind", "Turborepo", "pnpm"],
       works: [
         {
-          title: "업무",
+          title: "레거시 코드 개선",
           values: [
             "Storybook을 적용하여 범용적인 컴포넌트 개발 및 UI 화면 테스트 가능하도록 개발",
             "신사업 팀의 원활한 협업을 위한 프로젝트 컨벤션과 모듈화 정립",

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "NEXT.JS blog",
   "packageManager": "yarn@3.5.1",
-  "type": "module",
+  "types": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GyoHeonLee/blog.git"

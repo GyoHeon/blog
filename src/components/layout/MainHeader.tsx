@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function MainHeader() {
   return (
-    <header className="w-full h-20 px-4 py-2 border-b-2 border-[--blue] bg-[--bg]">
+    <header className="w-full h-20 px-4 py-2 border-b-2 border-[--blue] bg-[--border]">
       <ul className="flex items-center gap-5 h-full">
         <li className="mr-auto">
           <Link

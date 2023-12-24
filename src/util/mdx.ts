@@ -9,8 +9,8 @@ import remarkGfm from "remark-gfm";
 const rootDirectory = path.join(process.cwd(), "mdx");
 
 export async function getPostBySlug(slug: string): Promise<IBlogPost> {
-  const realSlug = slug.replace(/\.mdx$/, "");
-  const filePath = path.join(rootDirectory, `${realSlug}.mdx`);
+  const slugWithOutMdx = slug.replace(/\.mdx$/, "");
+  const filePath = path.join(rootDirectory, `${slugWithOutMdx}.mdx`);
 
   const fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
 
@@ -35,7 +35,7 @@ export async function getPostBySlug(slug: string): Promise<IBlogPost> {
     },
   });
 
-  return { meta: { ...frontmatter, slug: realSlug }, content };
+  return { meta: { ...frontmatter, slug: slugWithOutMdx }, content };
 }
 
 export const isMdx = (path: string) => /\.mdx?$/.test(path);
@@ -55,16 +55,20 @@ export const getPostsMeta: TGetPostsMeta = async (postType: TPost, page = 1) => 
     .filter(isMdx)
     .slice(...viewedPosts);
 
-  let posts: IMetaData[] = [];
+  const posts = await Promise.allSettled<IBlogPost>(
+    files.map(async (file) => {
+      const filePathWithType = path.join(postType, file);
+      const post = await getPostBySlug(filePathWithType);
 
-  for (const file of files) {
-    const filePathWithType = path.join(postType, file);
-    const post = await getPostBySlug(filePathWithType);
+      return post;
+    })
+  );
+  const fullPosts = posts.filter((post) => post.status === "fulfilled") as PromiseFulfilledResult<IBlogPost>[];
+  const fullPostsData = fullPosts.map((post) => post.value.meta);
 
-    if (!post) continue;
+  console.log(fullPostsData);
 
-    posts.push(post.meta);
-  }
-
-  return posts.sort((a, b) => (a.date > b.date ? -1 : 1));
+  return fullPostsData.sort((prev, next) => {
+    return new Date(next.date).getTime() - new Date(prev.date).getTime();
+  });
 };

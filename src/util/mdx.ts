@@ -6,6 +6,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings/lib";
 import rehypeHighlight from "rehype-highlight/lib";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import { dateSortComparator } from "./date";
 
 const rootDirectory = path.join(process.cwd(), "mdx");
 
@@ -51,23 +52,26 @@ export const getPostsMeta: TGetPostsMeta = async (postType: TPost, page = 1) => 
 
   const fileDirectory = path.join(rootDirectory, postType);
 
-  const files = fs
-    .readdirSync(fileDirectory)
-    .filter(isMdx)
-    .slice(...viewedPosts);
+  const files = fs.readdirSync(fileDirectory).filter(isMdx);
 
-  const posts = await Promise.allSettled<IBlogPost>(
+  const posts = await Promise.allSettled<IBlogPost | null>(
     files.map(async (file) => {
-      const filePathWithType = path.join(postType, file);
-      const post = await getPostBySlug(filePathWithType);
+      try {
+        const filePathWithType = path.join(postType, file);
+        const post = await getPostBySlug(filePathWithType);
 
-      return post;
+        return post;
+      } catch (e) {
+        console.error(e);
+        return null;
+      }
     })
   );
-  const fullPosts = posts.filter((post) => post.status === "fulfilled") as PromiseFulfilledResult<IBlogPost>[];
+
+  const fullPosts = posts.filter(
+    (post) => post.status === "fulfilled" && post.value
+  ) as PromiseFulfilledResult<IBlogPost>[];
   const fullPostsData = fullPosts.map((post) => post.value.meta);
 
-  return fullPostsData.sort((prev, next) => {
-    return new Date(next.date).getTime() - new Date(prev.date).getTime();
-  });
+  return fullPostsData.sort(dateSortComparator).slice(...viewedPosts);
 };

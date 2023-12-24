@@ -1,20 +1,18 @@
 # blog
 
-## color
+이 프로젝트는 Next.js를 이용해 구축된 스태틱 블로그입니다.
 
-- background: #403A35 (Dark Grayish-Brown)
+## 기술 스택
 
-- Primary Text Color: #F1F1F1 (Off-White)
-  This off-white color will provide a strong contrast against the dark background, making the text easy to read.
+- Next.js
+- React.js
+- Tailwind CSS
+- Vitest
+- MDX
+- pnpm
 
-- Secondary Text Color: #C1B7A4 (Light Taupe)
-  Use this lighter shade of taupe for secondary text elements, like subtitles or less important information, to maintain readability while adding some visual interest.
+## 특징
 
-- Accent Color 1: #9BB9D1 (Soft Sky Blue)
-  This soft sky blue will work well as an accent color for buttons, links, and other interactive elements. It creates a nice contrast with the dark background and provides a refreshing pop of color.
-
-- Accent Color 2: #DAA276 (Warm Apricot)
-  This warm apricot color can be used for secondary accents, like highlighting important text or elements, and it complements the other colors nicely.
-
-- Accent Color 3: #7A9E88 (Muted Sage Green)
-  This muted sage green is another option for accent colors that adds a touch of nature-inspired freshness to the design.
+- 성능 최적화: Next.js의 app router를 사용하여 높은 성능을 자랑합니다.
+- metadata: 빌드 시 포스트의 metadata를 읽어 자동으로 배포합니다.
+- MDX 지원: MDX를 사용하여 리치 텍스트 포스팅이 가능합니다.

@@ -1,3 +1,4 @@
+import { POSTS_PER_PAGE } from "@/constants/number";
 import fs from "fs";
 import { compileMDX } from "next-mdx-remote/rsc";
 import path from "path";
@@ -45,7 +46,7 @@ type TGetPostsMeta = (postType: TPost, page?: number | "all") => Promise<IMetaDa
 export const getPostsMeta: TGetPostsMeta = async (postType: TPost, page = 1) => {
   const viewedPosts: number[] = [];
   if (typeof page === "number") {
-    viewedPosts.push((page - 1) * 6, page * 6);
+    viewedPosts.push((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE);
   }
 
   const fileDirectory = path.join(rootDirectory, postType);
@@ -65,8 +66,6 @@ export const getPostsMeta: TGetPostsMeta = async (postType: TPost, page = 1) => 
   );
   const fullPosts = posts.filter((post) => post.status === "fulfilled") as PromiseFulfilledResult<IBlogPost>[];
   const fullPostsData = fullPosts.map((post) => post.value.meta);
-
-  console.log(fullPostsData);
 
   return fullPostsData.sort((prev, next) => {
     return new Date(next.date).getTime() - new Date(prev.date).getTime();

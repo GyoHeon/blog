@@ -1,0 +1,62 @@
+---
+title: 새로운 런타임 bun 써보기
+description: bun 써보자
+date: 2023.12.25
+tags: Back-end, javascript, bun, node.js, elysia
+image: /image/promise.all.allsettled.can.i.use.png
+---
+
+node.js 를 대체하기 위해 deno에 이어 새로운 런타임인 bun이 나왔다.  
+bun을 이용해 간단한 서버를 만들어보자.
+
+## bun?
+
+bun은 node.js를 대체하기 위한 새로운 런타임이다.  
+node.js, deno와 가장 큰 차이는 패키지 매니징도 bun이 한다는 것이다.  
+그러니까 npm, yarn 같은 걸 따로 설치할 필요가 없다는 것이다.
+
+bun 설명과 설치는 [여기](https://bun.sh/)를 참고하자.
+
+## 사용법
+
+```typescript
+const server = Bun.serve({
+  port: process.env.PORT,
+  fetch(req) {
+    const url = new URL(req.url);
+
+    // AWS health check
+    if (url.pathname === "/health") return new Response("OK", { status: 200 });
+
+    // Auth
+    if (url.pathname === "/auth/signup") {
+      return authController.postSignup(req as TSignUp);
+    }
+    if (url.pathname === "/auth/login") {
+      return authController.postSignup(req as TSignUp);
+    }
+    if (url.pathname === "/auth/check/duplication") {
+      return authController.postSignup(req as TSignUp);
+    }
+    if (url.pathname === "/auth/refresh") {
+      return authController.postSignup(req as TSignUp);
+    }
+    if (url.pathname === "/auth/user") {
+      if (req.method === "GET") {
+        return authController.postSignup(req as TSignUp);
+      }
+      if (req.method === "PATCH") {
+        return authController.postSignup(req as TSignUp);
+      }
+    }
+    if (url.pathname === "/auth/me") {
+      return authController.postSignup(req as TSignUp);
+    }
+
+    return new Response("404!", { status: 404 });
+  },
+  error(error) {
+    return new Response(error.message, { status: 500 });
+  },
+});
+```

@@ -85,7 +85,14 @@ map 메서드 안에 async 함수를 넣어서 반환 값을 받도록 했다.
 위 posts 변수를 출력해보자.
 
 ```typescript
-[Promise { <pending> }, Promise { <pending> }, Promise { <pending> }, Promise { <pending> }, Promise { <pending> }, Promise { <pending> }]
+[
+  Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> },
+  Promise { <pending> }
+]
 ```
 
 **대실패다!**  

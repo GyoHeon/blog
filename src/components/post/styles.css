@@ -4,7 +4,7 @@
 }
 
 #main-post p {
-  margin-bottom: 2em;
+  margin-bottom: 24px;
 }
 
 #main-post ol {
@@ -40,4 +40,28 @@
 }
 #main-post pre code {
   padding: 1rem;
+}
+
+#main-post img {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#main-post pre code,
+code * {
+  font-size: 16px;
+}
+
+code {
+  padding: 4px;
+  font-size: 0.75em;
+  border-radius: 4px;
+  background-color: var(--bg--sec);
+  vertical-align: middle;
+}
+pre code {
+  height: auto;
+  width: auto;
+  border: none;
+  border-radius: 0;
 }

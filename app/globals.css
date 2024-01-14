@@ -16,6 +16,9 @@
   .hover-card {
     @apply transition-colors hover:border-[--blue];
   }
+  .card-title {
+    @apply mt-2 md:mt-4 font-bold break-all;
+  }
   .tag {
     @apply px-2 py-0.5 bg-[--green] rounded-md;
   }

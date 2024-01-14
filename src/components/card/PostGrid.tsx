@@ -7,29 +7,15 @@ interface Props {
 }
 
 export function PostGrid({ posts, postType = "posts" }: Props) {
-  if (postType === "posts") {
-    if (!posts.length) {
-      return <div className="card">No Posts!</div>;
-    }
-
-    return (
-      <>
-        {posts.map((post) => (
-          <PostCard key={post.slug} {...post} />
-        ))}
-      </>
-    );
-  }
+  const isPost = postType === "posts";
 
   if (!posts.length) {
-    return <div className="card">No Memos!</div>;
+    return <div className="card">No {postType}!</div>;
   }
 
   return (
     <>
-      {posts.map((post) => (
-        <MemoCard key={post.slug} {...post} />
-      ))}
+      {posts.map((post) => (isPost ? <PostCard key={post.slug} {...post} /> : <MemoCard key={post.slug} {...post} />))}
     </>
   );
 }

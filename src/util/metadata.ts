@@ -10,13 +10,15 @@ interface Props {
 export async function generateMetadataFromPost({ params: { slug }, type }: Props) {
   const { meta } = await getPostBySlug(`${type}/` + slug);
 
-  return {
-    title: meta.title,
-    description: meta.description,
-    openGraph: {
-      images: meta.image,
-      description: meta.description,
-      type: "article",
-    },
-  };
+  return parseMetadata(meta);
 }
+
+const parseMetadata = (meta: IMetaData) => ({
+  title: meta.title,
+  description: meta.description,
+  openGraph: {
+    images: meta.image,
+    description: meta.description,
+    type: "article",
+  },
+});

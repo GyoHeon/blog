@@ -1,5 +1,6 @@
 import PostMain from "@/components/post/PostMain";
 import { getPostBySlug } from "@/util/mdx";
+import { generateMetadataFromPost } from "@/util/metadata";
 
 interface Props {
   params: {
@@ -8,17 +9,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params: { slug } }: Props) {
-  const { meta } = await getPostBySlug("memos/" + slug);
-
-  return {
-    title: meta.title,
-    description: meta.description,
-    openGraph: {
-      images: meta.image,
-      description: meta.description,
-      type: "article",
-    },
-  };
+  return await generateMetadataFromPost({ params: { slug }, type: "memos" });
 }
 
 export default async function Memo({ params: { slug } }: Props) {

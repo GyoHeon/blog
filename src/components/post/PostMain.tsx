@@ -1,6 +1,6 @@
 import "highlight.js/styles/github-dark.css";
 import { PostHeader } from "./PostHeader";
-import "./styles.css";
+import "./styles.scss";
 
 interface Props {
   meta: IMetaData;

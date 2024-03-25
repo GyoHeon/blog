@@ -137,14 +137,20 @@ export const RESUME_ACTIVITIES: IResumeActivities = {
   title: "기타 활동",
   projects: [
     {
+      title: "turbo 오픈소스 기여",
+      date: "2024.01",
+      link: "https://github.com/vercel/turbo/pull/7118",
+      values: ["turbo의 text 오류를 수정"],
+    },
+    {
       title: "MDN 오픈소스 기여",
       date: "2023.06 ~ 진행중",
       link: "https://github.com/mdn/translated-content/pulls?q=is%3Apr+author%3AGyoHeon",
-      values: ["mdn에 한글 번역 문서를 추가하고 있습니다."],
+      values: ["mdn에 한글 번역 문서를 추가"],
     },
     {
       title: "패스트캠퍼스 FE 전문 멘토",
-      date: "2022.10 ~ 2023.10",
+      date: "2022.10 ~ ",
       values: [
         "부트캠프 수강생들의 코드 리뷰와 기술적 질의응답 등 개발에 대한 피드백을 제공",
         "수강생들 사이에서 긍정적인 평가(4.7/5.0)를 획득",

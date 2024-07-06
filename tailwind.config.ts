@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
   content: ["./src/pages/**/*.{ts,tsx,mdx}", "./src/components/**/*.{ts,tsx,mdx}", "./app/**/*.{ts,tsx,mdx}"],
   theme: {
     extend: {
@@ -10,11 +10,9 @@ export default {
         "text-xsmall": "12px",
         "text-2xs": "10px",
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
     },
   },
   plugins: [],
-} satisfies Config;
+};
+
+export default config;

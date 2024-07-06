@@ -2,7 +2,6 @@
   "name": "blog",
   "version": "0.1.0",
   "description": "NEXT.JS blog",
-  "packageManager": "yarn@3.5.1",
   "types": "module",
   "repository": {
     "type": "git",
